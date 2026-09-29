@@ -22,8 +22,8 @@
   "devDependencies": {
     "vitepress": "^1.5.0",
     "vitepress-plugin-mermaid": "^2.0.17",
-    "vue": "^3.5.41",
-    "mermaid": "11.16.1"
+    "vue": "^3.5.43",
+    "mermaid": "12.0.0"
   },
   "overrides": {
     "react-i18next": {
