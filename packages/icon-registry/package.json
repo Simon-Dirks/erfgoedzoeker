@@ -19,10 +19,10 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@ng-icons/feather-icons": "^35.0.1",
+    "@ng-icons/feather-icons": "^36.1.0",
     "@valeros/config-schema": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "~6.0.3"
+    "typescript": "~7.0.2"
   }
 }
