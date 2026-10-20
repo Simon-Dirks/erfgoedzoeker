@@ -34,7 +34,6 @@
     "graphql-request": "^7.4.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "1.5.3",
-    "mirador": "^4.2.3",
     "photoswipe": "^5.4.4",
     "rxjs": "~7.8.0",
     "tify": "^0.35.0",
