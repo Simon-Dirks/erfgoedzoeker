@@ -63,6 +63,45 @@ Navigate to `http://localhost:4200/` to see the application in action.
 
 You can find more information on how to use and configure Erfgoedzoeker at [docs.erfgoedzoeker.nl](https://docs.erfgoedzoeker.nl).
 
+## Acknowledgements
+
+Erfgoedzoeker is developed with the generous support of:
+
+<table>
+  <tr>
+    <td align="center" width="200">
+      <a href="https://netwerkdigitaalerfgoed.nl/">
+        <img src="docs/logos/nde.png" width="160" alt="Netwerk Digitaal Erfgoed logo" /><br />
+        <strong>Netwerk Digitaal Erfgoed</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="https://nadd.network">
+        <img src="docs/logos/nadd.png" width="160" alt="NADD logo" /><br />
+        <strong>NADD</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="https://www.razu.nl/">
+        <img src="docs/logos/razu.png" width="160" alt="Regionaal Archief Zuid-Utrecht logo" /><br />
+        <strong>Regionaal Archief Zuid-Utrecht</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="https://www.hetutrechtsarchief.nl/">
+        <img src="docs/logos/hua.png" width="160" alt="Het Utrechts Archief logo" /><br />
+        <strong>Het Utrechts Archief</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="https://www.kasteelamerongen.nl/">
+        <img src="docs/logos/kasteel-amerongen.jpg" width="160" alt="Kasteel Amerongen logo" /><br />
+        <strong>Kasteel Amerongen</strong>
+      </a>
+    </td>
+  </tr>
+</table>
+
 ## License
 
 See [LICENSE.md](LICENSE.md)
