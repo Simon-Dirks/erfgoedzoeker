@@ -10,6 +10,7 @@ Erfgoedzoeker is a **reusable, flexible heritage data browser**: an off-the-shel
 | <img alt="image" src="https://github.com/user-attachments/assets/0d77f250-e13e-4a7a-83fd-3393f7314286" /> | <img alt="image" src="https://github.com/user-attachments/assets/83ec9766-b701-4517-b349-4f15bef45815" /> |
 
 Erfgoedzoeker is built to conform to two [NDE behavior profiles](https://zenodo.org/records/14938780):
+
 1. Targeted search
 2. Browsing and discovery
 
@@ -72,32 +73,32 @@ Erfgoedzoeker is developed with the generous support of:
     <td align="center" width="200">
       <a href="https://netwerkdigitaalerfgoed.nl/">
         <img src="docs/logos/nde.png" width="160" alt="Netwerk Digitaal Erfgoed logo" /><br />
-        <strong>Netwerk Digitaal Erfgoed</strong>
       </a>
+      <span>Netwerk Digitaal Erfgoed</span>
     </td>
     <td align="center" width="200">
       <a href="https://nadd.network">
         <img src="docs/logos/nadd.png" width="160" alt="NADD logo" /><br />
-        <strong>NADD</strong>
       </a>
+      <span>NADD</span>
     </td>
     <td align="center" width="200">
       <a href="https://www.razu.nl/">
         <img src="docs/logos/razu.png" width="160" alt="Regionaal Archief Zuid-Utrecht logo" /><br />
-        <strong>Regionaal Archief Zuid-Utrecht</strong>
       </a>
+      <span>Regionaal Archief Zuid-Utrecht</span>
     </td>
     <td align="center" width="200">
       <a href="https://www.hetutrechtsarchief.nl/">
         <img src="docs/logos/hua.png" width="160" alt="Het Utrechts Archief logo" /><br />
-        <strong>Het Utrechts Archief</strong>
       </a>
+        <span>Het Utrechts Archief</span>
     </td>
     <td align="center" width="200">
       <a href="https://www.kasteelamerongen.nl/">
         <img src="docs/logos/kasteel-amerongen.jpg" width="160" alt="Kasteel Amerongen logo" /><br />
-        <strong>Kasteel Amerongen</strong>
       </a>
+      <span>Kasteel Amerongen</span>
     </td>
   </tr>
 </table>
