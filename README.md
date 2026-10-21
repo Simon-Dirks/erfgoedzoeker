@@ -7,7 +7,7 @@ Erfgoedzoeker is a **reusable, flexible heritage data browser**: an off-the-shel
 
 | Search interface                                                                                          | Configurator                                                                                              |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| <img alt="image" src="https://github.com/user-attachments/assets/27c2adbd-d500-4b90-8bdc-46e7a0b3807a" /> | <img alt="image" src="https://github.com/user-attachments/assets/622b0c74-0739-41af-8aa0-62f60287a312" /> |
+| <img alt="image" src="https://github.com/user-attachments/assets/0d77f250-e13e-4a7a-83fd-3393f7314286" /> | <img alt="image" src="https://github.com/user-attachments/assets/83ec9766-b701-4517-b349-4f15bef45815" /> |
 
 Erfgoedzoeker is built to conform to two [NDE behavior profiles](https://zenodo.org/records/14938780):
 1. Targeted search
