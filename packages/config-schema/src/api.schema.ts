@@ -13,7 +13,7 @@ export const ApiConfigSchema = z
         title: 'Data layer URL',
         examples: [
           'http://localhost:4000/graphql',
-          'https://datalaag.valeros.nl/v1',
+          'https://datalaag.erfgoedzoeker.nl/v1',
         ],
         description:
           'Required when type is "graphql" or "rest". Not used when type is "mock".',

@@ -2,8 +2,8 @@ import { Form } from '@rjsf/daisyui';
 import type { RJSFSchema, UiSchema } from '@rjsf/utils';
 import validator from '@rjsf/validator-ajv8';
 
-import defaultConfig from '../../valeros/public/config/valeros.config.json';
-import rawSchema from '../../valeros/public/config/valeros.config.schema.json';
+import defaultConfig from '../../erfgoedzoeker/public/config/erfgoedzoeker.config.json';
+import rawSchema from '../../erfgoedzoeker/public/config/erfgoedzoeker.config.schema.json';
 import { FacetRowTemplate } from './FacetRowTemplate';
 import {
   arrowIndicatorHelp,
@@ -180,7 +180,7 @@ function downloadConfig(data: object) {
   );
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'valeros.config.json';
+  link.download = 'erfgoedzoeker.config.json';
   link.click();
   URL.revokeObjectURL(url);
 }

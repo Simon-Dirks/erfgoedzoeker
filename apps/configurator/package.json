@@ -1,5 +1,5 @@
 {
-  "name": "@valeros/configurator",
+  "name": "@erfgoedzoeker/configurator",
   "version": "0.6.0",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
     "@rjsf/daisyui": "^6.8.0",
     "@rjsf/utils": "^6.8.0",
     "@rjsf/validator-ajv8": "^6.8.0",
-    "@valeros/icon-registry": "workspace:*",
+    "@erfgoedzoeker/icon-registry": "workspace:*",
     "clsx": "^2.1.1",
     "daisyui": "^5.7.28",
     "react": "^19.2.8",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
-    "@valeros/config-schema": "workspace:*",
+    "@erfgoedzoeker/config-schema": "workspace:*",
     "@vitejs/plugin-react": "^6.1.1",
     "typescript": "~6.0.3",
     "vite": "^8.2.2"

@@ -1,5 +1,5 @@
 {
-  "apps/valeros": "0.17.0",
+  "apps/erfgoedzoeker": "0.17.0",
   "apps/configurator": "0.6.0",
   "packages/config-schema": "0.4.0"
 }

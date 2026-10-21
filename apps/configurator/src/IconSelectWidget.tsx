@@ -1,6 +1,6 @@
 import type { WidgetProps } from '@rjsf/utils';
-import type { IconKey } from '@valeros/config-schema';
-import { getIcon, isRegisteredIcon } from '@valeros/icon-registry';
+import type { IconKey } from '@erfgoedzoeker/config-schema';
+import { getIcon, isRegisteredIcon } from '@erfgoedzoeker/icon-registry';
 import { clsx } from 'clsx';
 import { useRef } from 'react';
 

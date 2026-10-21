@@ -133,6 +133,9 @@ importers:
       '@dnd-kit/utilities':
         specifier: 3.2.2
         version: 3.2.2(react@19.2.8)
+      '@erfgoedzoeker/icon-registry':
+        specifier: workspace:*
+        version: link:../../packages/icon-registry
       '@rjsf/core':
         specifier: ^6.8.0
         version: 6.8.0(@rjsf/utils@6.8.0(react@19.2.8))(react@19.2.8)(vue@3.5.42(typescript@6.0.3))
@@ -145,9 +148,6 @@ importers:
       '@rjsf/validator-ajv8':
         specifier: ^6.8.0
         version: 6.8.0(@rjsf/utils@6.8.0(react@19.2.8))
-      '@valeros/icon-registry':
-        specifier: workspace:*
-        version: link:../../packages/icon-registry
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -164,15 +164,15 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
     devDependencies:
+      '@erfgoedzoeker/config-schema':
+        specifier: workspace:*
+        version: link:../../packages/config-schema
       '@types/react':
         specifier: ^19.2.18
         version: 19.2.18
       '@types/react-dom':
         specifier: ^19.2.7
         version: 19.2.7(@types/react@19.2.18)
-      '@valeros/config-schema':
-        specifier: workspace:*
-        version: link:../../packages/config-schema
       '@vitejs/plugin-react':
         specifier: ^6.1.1
         version: 6.1.1(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass@1.101.0)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))
@@ -183,7 +183,7 @@ importers:
         specifier: ^8.2.2
         version: 8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass@1.101.0)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0)
 
-  apps/valeros:
+  apps/erfgoedzoeker:
     dependencies:
       '@angular/cdk':
         specifier: ^22.1.3
@@ -206,18 +206,18 @@ importers:
       '@angular/router':
         specifier: ^22.1.3
         version: 22.1.5(@angular/common@22.1.5(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2))(@angular/platform-browser@22.1.5(@angular/common@22.1.5(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@erfgoedzoeker/config-schema':
+        specifier: workspace:*
+        version: link:../../packages/config-schema
+      '@erfgoedzoeker/icon-registry':
+        specifier: workspace:*
+        version: link:../../packages/icon-registry
       '@ng-icons/core':
         specifier: ^35.0.1
         version: 35.1.0(@angular-devkit/schematics@22.1.7(chokidar@5.0.0))(@angular/common@22.1.5(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2))(@schematics/angular@22.1.7(chokidar@5.0.0))(rxjs@7.8.2)
       '@ng-icons/feather-icons':
         specifier: ^35.0.1
         version: 35.1.0
-      '@valeros/config-schema':
-        specifier: workspace:*
-        version: link:../../packages/config-schema
-      '@valeros/icon-registry':
-        specifier: workspace:*
-        version: link:../../packages/icon-registry
       graphql:
         specifier: ^16.14.2
         version: 16.14.2
@@ -324,12 +324,12 @@ importers:
 
   packages/icon-registry:
     dependencies:
+      '@erfgoedzoeker/config-schema':
+        specifier: workspace:*
+        version: link:../config-schema
       '@ng-icons/feather-icons':
         specifier: ^35.0.1
         version: 35.1.0
-      '@valeros/config-schema':
-        specifier: workspace:*
-        version: link:../config-schema
     devDependencies:
       typescript:
         specifier: ~6.0.3

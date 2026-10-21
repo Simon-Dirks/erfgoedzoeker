@@ -1,6 +1,6 @@
-# Styling Valeros
+# Styling Erfgoedzoeker
 
-Valeros uses [TailwindCSS](https://tailwindcss.com/) for styling, with [DaisyUI](https://daisyui.com/) as the component library.
+Erfgoedzoeker uses [TailwindCSS](https://tailwindcss.com/) for styling, with [DaisyUI](https://daisyui.com/) as the component library.
 
 ## Using Tailwind Classes
 
@@ -24,7 +24,7 @@ DaisyUI provides pre-styled components like buttons, cards, and modals. Refer to
 
 ## Themes
 
-Valeros includes three pre-configured themes: **light** (default), **dark**, and **valeros-purple**.
+Erfgoedzoeker includes three pre-configured themes: **light** (default), **dark**, and **erfgoedzoeker-purple**.
 
 <video controls>
   <source src="./theme-switching.mp4" type="video/mp4">
@@ -46,7 +46,7 @@ Each theme is registered with the `@plugin "daisyui"` block, then defined with i
   themes:
     light --default,
     dark,
-    valeros-purple;
+    erfgoedzoeker-purple;
 }
 
 @plugin 'daisyui/theme' {

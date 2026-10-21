@@ -1,5 +1,5 @@
 import { getUiOptions, type ObjectFieldTemplateProps } from '@rjsf/utils';
-import type { FacetConfig } from '@valeros/config-schema';
+import type { FacetConfig } from '@erfgoedzoeker/config-schema';
 import { clsx } from 'clsx';
 import { ConfigRowTitle } from './ConfigRowTitle';
 import { HelpMedia } from './help/HelpMedia';

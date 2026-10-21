@@ -21,7 +21,7 @@ import {
   featherUser,
   featherUsers,
 } from '@ng-icons/feather-icons';
-import type { IconKey } from '@valeros/config-schema';
+import type { IconKey } from '@erfgoedzoeker/config-schema';
 
 export const ICON_REGISTRY: Record<IconKey, string> = {
   'alert-triangle': featherAlertTriangle,

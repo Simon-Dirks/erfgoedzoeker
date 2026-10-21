@@ -1,0 +1,126 @@
+@import url('https://fonts.bunny.net/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-xs: 375px;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --color-app-bg: var(--app-bg);
+  --color-app-bg-dark: var(--app-bg-dark);
+}
+
+@plugin 'daisyui' {
+  themes:
+    light --default,
+    dark,
+    erfgoedzoeker-purple;
+}
+
+@plugin 'daisyui/theme' {
+  name: 'light';
+  default: true;
+  --color-primary: #007994;
+  --color-primary-content: #ffffff;
+  --color-neutral: #2d343f;
+  --radius-field: 9999px;
+}
+
+@plugin 'daisyui/theme' {
+  name: 'dark';
+  --color-primary: #059e7a;
+  --color-primary-content: black;
+  --radius-field: 9999px;
+}
+
+@plugin 'daisyui/theme' {
+  name: 'erfgoedzoeker-purple';
+  color-scheme: light;
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0 0);
+  --color-base-300: oklch(95% 0 0);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: #6e388f;
+  --color-primary-content: #ffffff;
+  --color-secondary: oklch(65% 0.241 354.308);
+  --color-secondary-content: oklch(94% 0.028 342.258);
+  --color-accent: oklch(77% 0.152 181.912);
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 0.5rem;
+  --radius-field: 9999px;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+[data-theme='light'] {
+  --font-sans: 'Familjen Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --app-bg: #e1ecf2;
+  --app-bg-dark: #d1dce2;
+}
+
+[data-theme='dark'] {
+  --font-sans: 'Space Mono', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --app-bg: #262626;
+  --app-bg-dark: #212121;
+}
+
+[data-theme='erfgoedzoeker-purple'] {
+  --font-sans: 'Nunito', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --app-bg: #e8e0f0;
+  --app-bg-dark: #d8cfe0;
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  html {
+    font-size: 125%;
+  }
+}
+
+html,
+body {
+  @apply min-h-screen bg-app-bg;
+}
+
+.btn,
+.select {
+  box-shadow: none;
+}
+
+.btn:not(.btn-outline),
+.select {
+  border: none;
+}
+
+.badge {
+  @apply rounded-full;
+}
+
+.btn:focus-visible,
+.input:focus,
+.input:focus-within,
+.select:focus,
+.select:focus-within,
+.select:open,
+.checkbox:focus-visible,
+.collapse:focus-visible,
+.collapse:has(> input:is([type='checkbox'], [type='radio']):focus-visible),
+.collapse:has(summary:focus-visible) {
+  outline-color: #bcc5cc;
+}

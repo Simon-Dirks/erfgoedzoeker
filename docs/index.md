@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: Valeros
+  name: Erfgoedzoeker
   text: Reusable, flexible heritage data browser
 
   actions:
@@ -11,7 +11,7 @@ hero:
       link: /guide/index.md
     - theme: alt
       text: View on GitHub
-      link: https://github.com/Valeros-LD/Valeros-NDE
+      link: https://github.com/Simon-Dirks/erfgoedzoeker
 ---
 
-<a href="https://valeros.nl" target="_blank">![Valeros Homepage](./valeros.png)</a>
+<a href="https://erfgoedzoeker.nl" target="_blank">![Erfgoedzoeker Homepage](./erfgoedzoeker.png)</a>

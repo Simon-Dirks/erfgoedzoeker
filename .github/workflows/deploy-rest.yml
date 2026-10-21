@@ -33,7 +33,7 @@ jobs:
 
       - name: Package build artifacts
         run: |
-          tar -czf app.tar.gz -C apps/valeros/dist/valeros-nde/browser .
+          tar -czf app.tar.gz -C apps/erfgoedzoeker/dist/erfgoedzoeker/browser .
           tar -czf docs.tar.gz -C docs/.vitepress/dist .
 
       - name: Upload artifacts to VPS
@@ -44,7 +44,7 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_PORT }}
           source: 'app.tar.gz,docs.tar.gz'
-          target: '/tmp/valeros-deploy'
+          target: '/tmp/erfgoedzoeker-deploy'
           strip_components: 0
 
       - name: Extract and publish on VPS
@@ -56,11 +56,11 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             set -e
-            APP_DIR=/var/www/valeros
-            DOCS_DIR=/var/www/valeros-docs
+            APP_DIR=/var/www/erfgoedzoeker
+            DOCS_DIR=/var/www/erfgoedzoeker-docs
             mkdir -p "$APP_DIR" "$DOCS_DIR"
             find "$APP_DIR" -mindepth 1 -delete
             find "$DOCS_DIR" -mindepth 1 -delete
-            tar -xzf /tmp/valeros-deploy/app.tar.gz -C "$APP_DIR"
-            tar -xzf /tmp/valeros-deploy/docs.tar.gz -C "$DOCS_DIR"
-            rm -rf /tmp/valeros-deploy
+            tar -xzf /tmp/erfgoedzoeker-deploy/app.tar.gz -C "$APP_DIR"
+            tar -xzf /tmp/erfgoedzoeker-deploy/docs.tar.gz -C "$DOCS_DIR"
+            rm -rf /tmp/erfgoedzoeker-deploy

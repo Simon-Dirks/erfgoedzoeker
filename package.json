@@ -1,23 +1,23 @@
 {
-  "name": "valeros-workspace",
+  "name": "erfgoedzoeker-workspace",
   "private": true,
   "version": "0.13.0",
   "imports": {
     "#styles.css": "./src/styles.css"
   },
   "scripts": {
-    "start": "pnpm --filter @valeros/app run start",
-    "build": "pnpm --filter @valeros/app run build",
+    "start": "pnpm --filter @erfgoedzoeker/app run start",
+    "build": "pnpm --filter @erfgoedzoeker/app run build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "generate:config-schema": "pnpm --filter @valeros/config-schema run generate:config-schema",
-    "test:unit": "pnpm --filter @valeros/app run test:unit",
-    "test:e2e": "pnpm --filter @valeros/app run test:e2e",
-    "test:e2e:install": "pnpm --filter @valeros/app run test:e2e:install",
-    "format": "pnpm --filter @valeros/app run format",
-    "configurator:dev": "pnpm --filter @valeros/configurator run dev",
-    "configurator:build": "pnpm --filter @valeros/configurator run build"
+    "generate:config-schema": "pnpm --filter @erfgoedzoeker/config-schema run generate:config-schema",
+    "test:unit": "pnpm --filter @erfgoedzoeker/app run test:unit",
+    "test:e2e": "pnpm --filter @erfgoedzoeker/app run test:e2e",
+    "test:e2e:install": "pnpm --filter @erfgoedzoeker/app run test:e2e:install",
+    "format": "pnpm --filter @erfgoedzoeker/app run format",
+    "configurator:dev": "pnpm --filter @erfgoedzoeker/configurator run dev",
+    "configurator:build": "pnpm --filter @erfgoedzoeker/configurator run build"
   },
   "devDependencies": {
     "vitepress": "^1.5.0",

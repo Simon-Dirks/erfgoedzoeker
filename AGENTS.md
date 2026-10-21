@@ -4,35 +4,35 @@ Guidance for AI coding agents working in this repository.
 
 ## Project Overview
 
-Valeros is a reusable, flexible heritage data browser (Angular SPA). The purpose of this project is to be a standard, reusable solution for two Netwerk Digitaal Erfgoed (NDE) [behavior profiles](https://zenodo.org/records/14938780/files/Gedragprofielen-digitaal-erfgoed.pdf):
+Erfgoedzoeker is a reusable, flexible heritage data browser (Angular SPA). The purpose of this project is to be a standard, reusable solution for two Netwerk Digitaal Erfgoed (NDE) [behavior profiles](https://zenodo.org/records/14938780/files/Gedragprofielen-digitaal-erfgoed.pdf):
 
 1. Targeted search: users arrive with a concrete question and search/filter/sort to it.
 2. Browsing and discovery: users have no specific query and are drawn along by visual/narrative triggers, related-content links, timelines/maps, etc.
 
-Valeros is pre-1.0 and under active development. Do not overinvest in backward compatibility unless asked.
+Erfgoedzoeker is pre-1.0 and under active development. Do not overinvest in backward compatibility unless asked.
 
-Valeros as a presentation layer consumes a "data layer", which is the term NDE uses for the API this app talks to. The data layer is currently protocol-agnostic and may end up being GraphQL, REST, or something else. Do not assume or hardcode GraphQL-specific behavior outside `src/app/api/graphql/`, which is today's implementation, not the contract.
+Erfgoedzoeker as a presentation layer consumes a "data layer", which is the term NDE uses for the API this app talks to. The data layer is currently protocol-agnostic and may end up being GraphQL, REST, or something else. Do not assume or hardcode GraphQL-specific behavior outside `src/app/api/graphql/`, which is today's implementation, not the contract.
 
 ## Monorepo Structure
 
 This is a pnpm workspace with the following packages:
 
-- `apps/valeros` — the Angular SPA (main app)
+- `apps/erfgoedzoeker` — the Angular SPA (main app)
 - `apps/configurator` — a standalone React app for editing the JSON config
 - `packages/config-schema` — Zod schemas that are the single source of truth for config types and the JSON Schema
 - `packages/icon-registry` — shared icon registry package
 
 ## Configuration System
 
-Valeros is configured through a single JSON file at `apps/valeros/public/config/valeros.config.json`. The Zod schemas in `packages/config-schema/src/` are the authoritative definition of every configurable property. The JSON Schema at `apps/valeros/public/config/valeros.config.schema.json` is auto-generated from those Zod schemas. Never edit it by hand.
+Erfgoedzoeker is configured through a single JSON file at `apps/erfgoedzoeker/public/config/erfgoedzoeker.config.json`. The Zod schemas in `packages/config-schema/src/` are the authoritative definition of every configurable property. The JSON Schema at `apps/erfgoedzoeker/public/config/erfgoedzoeker.config.schema.json` is auto-generated from those Zod schemas. Never edit it by hand.
 
 When adding or changing a configurable property:
 
 1. Update the Zod schema in `packages/config-schema/src/`
 2. Run `pnpm run generate:config-schema` to regenerate the JSON Schema
-3. Update `apps/valeros/public/config/valeros.config.json` if needed
+3. Update `apps/erfgoedzoeker/public/config/erfgoedzoeker.config.json` if needed
 
-End-users configure Valeros via the Configurator app (`pnpm run configurator:dev`). They download the resulting JSON and drop it into `apps/valeros/public/config/valeros.config.json`.
+End-users configure Erfgoedzoeker via the Configurator app (`pnpm run configurator:dev`). They download the resulting JSON and drop it into `apps/erfgoedzoeker/public/config/erfgoedzoeker.config.json`.
 
 ## Testing
 
@@ -41,7 +41,7 @@ End-users configure Valeros via the Configurator app (`pnpm run configurator:dev
 The project uses [Vitest](https://vitest.dev/) for unit tests. Test files live alongside the source they cover and use the `.spec.ts` suffix.
 
 - Run all unit tests: `pnpm run test:unit`
-- Run a single file: `pnpm --filter @valeros/app exec vitest run <path/to/file.spec.ts>`
+- Run a single file: `pnpm --filter @erfgoedzoeker/app exec vitest run <path/to/file.spec.ts>`
 
 ### E2E / Accessibility tests (Playwright)
 
@@ -58,7 +58,7 @@ The app must conform to **WCAG 2.2 Level AA** across the board.
 
 ## Documentation
 
-The VitePress site in `docs/guide/` (published at [docs.valeros.nl](https://docs.valeros.nl)) is the source of truth for developer-facing documentation.
+The VitePress site in `docs/guide/` (published at [docs.erfgoedzoeker.nl](https://docs.erfgoedzoeker.nl)) is the source of truth for developer-facing documentation.
 
 - When a change affects developer-facing behavior (config schema, widget/view APIs, the data layer contract), update the relevant page(s) in `docs/guide/` in the same change. Don't leave docs to a follow-up.
 - The configuration UI (what properties mean, how to use facets/views/widgets) is documented inside the Configurator app itself, don't duplicate it in `docs/guide/`.

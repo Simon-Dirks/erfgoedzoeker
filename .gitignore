@@ -39,12 +39,12 @@ testem.log
 Thumbs.db
 
 # Angular
-/apps/valeros/.angular/cache
+/apps/erfgoedzoeker/.angular/cache
 
 # VitePress
 docs/.vitepress/dist
 docs/.vitepress/cache
 
 # Playwright
-/apps/valeros/e2e/playwright-report
-/apps/valeros/e2e/test-results
+/apps/erfgoedzoeker/e2e/playwright-report
+/apps/erfgoedzoeker/e2e/test-results

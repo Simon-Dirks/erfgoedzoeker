@@ -26,7 +26,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build shared packages
-        run: pnpm --filter @valeros/config-schema --filter @valeros/icon-registry run build
+        run: pnpm --filter @erfgoedzoeker/config-schema --filter @erfgoedzoeker/icon-registry run build
 
       - name: Run unit tests
         run: pnpm run test:unit
@@ -48,7 +48,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build shared packages
-        run: pnpm --filter @valeros/config-schema --filter @valeros/icon-registry run build
+        run: pnpm --filter @erfgoedzoeker/config-schema --filter @erfgoedzoeker/icon-registry run build
 
       - name: Install Playwright browsers
         run: pnpm run test:e2e:install
@@ -61,7 +61,7 @@ jobs:
         if: always()
         with:
           name: playwright-report
-          path: apps/valeros/e2e/playwright-report/
+          path: apps/erfgoedzoeker/e2e/playwright-report/
           retention-days: 14
 
       - name: Upload test results (screenshots, videos, traces)
@@ -69,6 +69,6 @@ jobs:
         if: always()
         with:
           name: playwright-test-results
-          path: apps/valeros/e2e/test-results/
+          path: apps/erfgoedzoeker/e2e/test-results/
           retention-days: 14
           if-no-files-found: ignore

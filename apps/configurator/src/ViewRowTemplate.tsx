@@ -3,7 +3,7 @@ import {
   getUiOptions,
   type ObjectFieldTemplateProps,
 } from '@rjsf/utils';
-import type { ViewDefinition } from '@valeros/config-schema';
+import type { ViewDefinition } from '@erfgoedzoeker/config-schema';
 import { clsx } from 'clsx';
 import { Collapse, getFieldTitle } from './Collapse';
 import { ConfigRowTitle } from './ConfigRowTitle';

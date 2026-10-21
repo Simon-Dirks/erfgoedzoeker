@@ -1,9 +1,9 @@
 {
   "packages": {
-    "apps/valeros": {
+    "apps/erfgoedzoeker": {
       "release-type": "node",
-      "package-name": "@valeros/app",
-      "component": "valeros-nde",
+      "package-name": "@erfgoedzoeker/app",
+      "component": "erfgoedzoeker",
       "include-component-in-tag": true,
       "changelog-sections": [
         { "type": "feat", "section": "Features" },
@@ -21,7 +21,7 @@
     },
     "apps/configurator": {
       "release-type": "node",
-      "package-name": "@valeros/configurator",
+      "package-name": "@erfgoedzoeker/configurator",
       "component": "configurator",
       "include-component-in-tag": true,
       "changelog-sections": [
@@ -40,7 +40,7 @@
     },
     "packages/config-schema": {
       "release-type": "node",
-      "package-name": "@valeros/config-schema",
+      "package-name": "@erfgoedzoeker/config-schema",
       "component": "config-schema",
       "include-component-in-tag": true,
       "changelog-sections": [

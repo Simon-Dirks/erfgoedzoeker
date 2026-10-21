@@ -1,5 +1,5 @@
 import type { ObjectFieldTemplateProps } from '@rjsf/utils';
-import type { Widget } from '@valeros/config-schema';
+import type { Widget } from '@erfgoedzoeker/config-schema';
 
 import { Collapse, getFieldTitle } from './Collapse';
 import { Dialog } from './Dialog';

@@ -1,6 +1,6 @@
 # Creating Custom Views
 
-While Valeros provides built-in views (list, grid, map, timeline), you can create custom views for specialized search result presentations.
+While Erfgoedzoeker provides built-in views (list, grid, map, timeline), you can create custom views for specialized search result presentations.
 
 ## When to Create a Custom View
 
@@ -84,7 +84,7 @@ export const VIEW_COMPONENT_REGISTRY = {
 
 ### 6. Use in Configuration
 
-Once registered, reference your view by its `componentId` in `valeros.config.json` (or via the [Configurator](/guide/configuration-system)):
+Once registered, reference your view by its `componentId` in `erfgoedzoeker.config.json` (or via the [Configurator](/guide/configuration-system)):
 
 ```json
 {

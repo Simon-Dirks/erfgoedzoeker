@@ -1,5 +1,5 @@
-import type { IconKey } from '@valeros/config-schema';
-import { getIcon } from '@valeros/icon-registry';
+import type { IconKey } from '@erfgoedzoeker/config-schema';
+import { getIcon } from '@erfgoedzoeker/icon-registry';
 
 type ConfigRowTitleProps = {
   icon?: IconKey;

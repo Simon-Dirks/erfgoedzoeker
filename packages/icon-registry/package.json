@@ -1,5 +1,5 @@
 {
-  "name": "@valeros/icon-registry",
+  "name": "@erfgoedzoeker/icon-registry",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ng-icons/feather-icons": "^35.0.1",
-    "@valeros/config-schema": "workspace:*"
+    "@erfgoedzoeker/config-schema": "workspace:*"
   },
   "devDependencies": {
     "typescript": "~6.0.3"

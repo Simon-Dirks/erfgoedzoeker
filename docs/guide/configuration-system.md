@@ -1,25 +1,25 @@
 # Configuration System
 
-Valeros is configured through a single JSON file. A [Zod](https://zod.dev/) schema is the single source of truth from which both the JSON Schema and Valeros TypeScript types are derived.
+Erfgoedzoeker is configured through a single JSON file. A [Zod](https://zod.dev/) schema is the single source of truth from which both the JSON Schema and Erfgoedzoeker TypeScript types are derived.
 
-<img src="../valeros-configurator.jpg" alt="Valeros Configurator" />
+<img src="../erfgoedzoeker-configurator.jpg" alt="Erfgoedzoeker Configurator" />
 
-<span class="media-caption">The Valeros Configurator allows you to generate a Valeros configuration file (<code>valeros.config.json</code>) through an intuitive web interface.</span>
+<span class="media-caption">The Erfgoedzoeker Configurator allows you to generate a Erfgoedzoeker configuration file (<code>erfgoedzoeker.config.json</code>) through an intuitive web interface.</span>
 
-## Configuring Valeros
+## Configuring Erfgoedzoeker
 
 Use the **Configurator** app (a standalone React app) to edit configuration:
 
 1. Run the Configurator: `pnpm run configurator:dev`
 2. Open `http://localhost:5173/` and adjust settings
 3. Download the generated JSON
-4. Replace `apps/valeros/public/config/valeros.config.json` with the downloaded file
+4. Replace `apps/erfgoedzoeker/public/config/erfgoedzoeker.config.json` with the downloaded file
 
-If you prefer, you can also edit the JSON config file (`valeros.config.json`) directly in your editor. The `$schema` reference at the top provides autocompletion and validation in your editor:
+If you prefer, you can also edit the JSON config file (`erfgoedzoeker.config.json`) directly in your editor. The `$schema` reference at the top provides autocompletion and validation in your editor:
 
 ```json
 {
-  "$schema": "./valeros.config.schema.json",
+  "$schema": "./erfgoedzoeker.config.schema.json",
   "api": {
     "type": "graphql",
     "baseUrl": "http://localhost:4000/graphql"
@@ -34,10 +34,10 @@ If you prefer, you can also edit the JSON config file (`valeros.config.json`) di
 ```mermaid
 flowchart TD
     ZOD["Zod schema\n(source of truth)\n<code>packages/config-schema/src/</code>"]
-    JSON_SCHEMA["JSON Schema (generated)\n<code>valeros.config.schema.json</code>"]
-    CONFIG["Config file\n<code>valeros.config.json</code>"]
+    JSON_SCHEMA["JSON Schema (generated)\n<code>erfgoedzoeker.config.schema.json</code>"]
+    CONFIG["Config file\n<code>erfgoedzoeker.config.json</code>"]
     CONF(["Configurator\n<code>apps/configurator</code>"])
-    APP(["Valeros app\n<code>apps/valeros</code>"])
+    APP(["Erfgoedzoeker app\n<code>apps/erfgoedzoeker</code>"])
 
     ZOD -->|"pnpm run generate:config-schema"| JSON_SCHEMA
     ZOD -->|"TS types + runtime validation"| APP
@@ -49,13 +49,13 @@ flowchart TD
     classDef default padding:0px 1px
 ```
 
-The Zod schema is the single source of truth. It generates the JSON Schema and provides TypeScript types and runtime validation directly to the Valeros app. The Configurator uses the JSON Schema to render its form UI and outputs a JSON config file that the app loads at startup.
+The Zod schema is the single source of truth. It generates the JSON Schema and provides TypeScript types and runtime validation directly to the Erfgoedzoeker app. The Configurator uses the JSON Schema to render its form UI and outputs a JSON config file that the app loads at startup.
 
 ## Modifying the Schema
 
 When adding or changing a configurable property, update the Zod schema in `packages/config-schema/src/`, then run `pnpm run generate:config-schema` to regenerate the JSON Schema. The Configurator and editor tooling pick up the changes automatically.
 
-If your schema change affects the shape of the config (new required fields, renamed keys, etc.), you might need to update `valeros.config.json` accordingly (see [Configuring Valeros](#configuring-valeros)).
+If your schema change affects the shape of the config (new required fields, renamed keys, etc.), you might need to update `erfgoedzoeker.config.json` accordingly (see [Configuring Erfgoedzoeker](#configuring-erfgoedzoeker)).
 
 ## Icon Registry
 
@@ -63,7 +63,7 @@ The icon registry (`packages/icon-registry/src/index.ts`) maps string icon keys 
 
 <img src="../configurator-icons.jpg" alt="Configurator Icons" />
 
-<span class="media-caption">Selecting a facet icon from the icon registry through the Valeros Configurator.</span>
+<span class="media-caption">Selecting a facet icon from the icon registry through the Erfgoedzoeker Configurator.</span>
 
 ### Adding a New Icon
 

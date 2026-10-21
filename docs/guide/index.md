@@ -1,12 +1,12 @@
-# What is Valeros?
+# What is Erfgoedzoeker?
 
-Valeros is a **reusable, flexible heritage data browser**.
+Erfgoedzoeker is a **reusable, flexible heritage data browser**.
 
 It is designed as a standard solution for **targeted search** and **browsing and discovery** of heritage data. See the [Netwerk Digitaal Erfgoed](https://netwerkdigitaalerfgoed.nl/en/) (NDE) [behavior profiles publication](https://zenodo.org/records/14938780) for more information about these types of users and their needs.
 
-As a developer, Valeros lets you control what, how, and when data is shown to end users through a **JSON configuration file** (see [Configuration System](/guide/configuration-system)).
+As a developer, Erfgoedzoeker lets you control what, how, and when data is shown to end users through a **JSON configuration file** (see [Configuration System](/guide/configuration-system)).
 
-<a href="https://valeros.nl" target="_blank">![Valeros Homepage](../valeros.png)</a>
+<a href="https://erfgoedzoeker.nl" target="_blank">![Erfgoedzoeker Homepage](../erfgoedzoeker.png)</a>
 
 ## Key Features
 
@@ -30,14 +30,14 @@ As a developer, Valeros lets you control what, how, and when data is shown to en
 
 ### Tech Stack
 
-Valeros is built with [Angular](https://angular.dev/) following the [Angular style guide](https://angular.dev/style-guide). We use modern Angular features including [signals](https://angular.dev/essentials/signals) for reactive state management, [standalone components](https://angular.dev/essentials/components), and [control flow syntax](https://angular.dev/guide/templates/control-flow). For styling, we use [**TailwindCSS**](https://tailwindcss.com/) with [**DaisyUI**](https://daisyui.com/) as the component library.
+Erfgoedzoeker is built with [Angular](https://angular.dev/) following the [Angular style guide](https://angular.dev/style-guide). We use modern Angular features including [signals](https://angular.dev/essentials/signals) for reactive state management, [standalone components](https://angular.dev/essentials/components), and [control flow syntax](https://angular.dev/guide/templates/control-flow). For styling, we use [**TailwindCSS**](https://tailwindcss.com/) with [**DaisyUI**](https://daisyui.com/) as the component library.
 
 ### Data & Presentation Layers
 
-Valeros follows the [NDE vision](https://zenodo.org/records/17541400) of **explicit separation between data and presentation layers**:
+Erfgoedzoeker follows the [NDE vision](https://zenodo.org/records/17541400) of **explicit separation between data and presentation layers**:
 
 - The **data layer** retrieves datasets registered in the [**NDE Dataset Register**](https://datasetregister.netwerkdigitaalerfgoed.nl/) and provides a standardized API. NDE's data layer specification is still in development, so both GraphQL and REST implementations are supported. See [Getting Started](/guide/getting-started) for available implementations and how to configure them.
-- The **presentation layer** (this project, Valeros) consumes the API and allows configuration of how data is displayed.
+- The **presentation layer** (this project, Erfgoedzoeker) consumes the API and allows configuration of how data is displayed.
 
 ```mermaid
 flowchart TD

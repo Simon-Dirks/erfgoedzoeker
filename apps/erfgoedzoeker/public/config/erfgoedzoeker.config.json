@@ -1,0 +1,462 @@
+{
+  "$schema": "./erfgoedzoeker.config.schema.json",
+  "api": {
+    "type": "graphql",
+    "baseUrl": "http://localhost:4000/graphql"
+  },
+  "facets": [
+    { "name": "dataset", "label": "Collectie", "icon": "archive" },
+    { "name": "contentLocation", "label": "Locatie", "icon": "map-pin" },
+    { "name": "creator", "label": "Vervaardiger", "icon": "user" },
+    { "name": "locationCreated", "label": "Locatie", "icon": "map-pin" },
+    { "name": "subject", "label": "Onderwerp", "icon": "tag" },
+    { "name": "genre", "label": "Genre", "icon": "tag" },
+    { "name": "material", "label": "Materiaal", "icon": "package" },
+    { "name": "type", "label": "Soort", "icon": "grid", "hidden": true },
+    { "name": "additionalType", "label": "Soort", "icon": "grid" },
+    { "name": "publisher", "label": "Uitgever", "icon": "users" },
+    { "name": "license", "label": "Licentie", "icon": "file-text" },
+    { "name": "about", "label": "Over", "icon": "info" },
+    { "name": "hasMedia", "label": "Met afbeelding", "icon": "image" },
+    { "name": "isPartOf", "label": "-", "hidden": true }
+  ],
+  "views": {
+    "defaultView": "list",
+    "views": [
+      {
+        "type": "list",
+        "componentId": "list-view",
+        "icon": "list",
+        "label": "Lijst weergave",
+        "options": {
+          "pageSize": 10,
+          "showPagination": true,
+          "showResultsCount": true
+        },
+        "presentationConfig": {
+          "showArrowIndicator": true,
+          "widgets": [
+            {
+              "id": "image-thumb-left",
+              "properties": ["associatedMedia"],
+              "componentId": "image-gallery-widget",
+              "options": {
+                "showPropertyLabel": false,
+                "position": "left",
+                "maxThumbnails": 1,
+                "enableLightbox": false,
+                "noPadding": true
+              }
+            },
+            {
+              "id": "name",
+              "properties": ["name"],
+              "componentId": "link-widget",
+              "options": {
+                "showPropertyLabel": false,
+                "asH2": true,
+                "bold": true
+              }
+            },
+            {
+              "id": "description-without-label",
+              "properties": ["description"],
+              "componentId": "link-widget",
+              "options": {
+                "propertyLabel": "Beschrijving",
+                "showPropertyLabel": false,
+                "maxLength": 200
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "grid",
+        "componentId": "grid-view",
+        "icon": "grid",
+        "label": "Grid weergave",
+        "options": {
+          "pageSize": 20,
+          "showPagination": true,
+          "showResultsCount": true
+        },
+        "presentationConfig": {
+          "showArrowIndicator": true,
+          "widgets": [
+            {
+              "id": "image-thumb",
+              "properties": ["associatedMedia"],
+              "componentId": "image-gallery-widget",
+              "options": {
+                "showPropertyLabel": false,
+                "position": "top",
+                "maxThumbnails": 1,
+                "enableLightbox": false,
+                "noPadding": true
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "map",
+        "componentId": "map-view",
+        "icon": "map",
+        "label": "Kaart weergave",
+        "options": {
+          "pageSize": 100,
+          "showPagination": false,
+          "showResultsCount": true,
+          "showSort": false
+        },
+        "presentationConfig": {
+          "widgets": [
+            {
+              "id": "image-thumb",
+              "properties": ["associatedMedia"],
+              "componentId": "image-gallery-widget",
+              "options": {
+                "showPropertyLabel": false,
+                "position": "top",
+                "maxThumbnails": 1,
+                "enableLightbox": false,
+                "noPadding": true
+              }
+            },
+            {
+              "id": "name",
+              "properties": ["name"],
+              "componentId": "link-widget",
+              "options": {
+                "showPropertyLabel": false,
+                "asH2": true,
+                "bold": true
+              }
+            },
+            {
+              "id": "description-without-label",
+              "properties": ["description"],
+              "componentId": "link-widget",
+              "options": {
+                "propertyLabel": "Beschrijving",
+                "showPropertyLabel": false,
+                "maxLength": 200
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "timeline",
+        "componentId": "timeline-view",
+        "icon": "calendar",
+        "label": "Tijdlijn weergave",
+        "options": {
+          "pageSize": 10,
+          "showPagination": true,
+          "showResultsCount": true,
+          "defaultSort": "dateCreated:asc"
+        },
+        "presentationConfig": {
+          "showArrowIndicator": true,
+          "widgets": [
+            {
+              "id": "image-thumb-left",
+              "properties": ["associatedMedia"],
+              "componentId": "image-gallery-widget",
+              "options": {
+                "showPropertyLabel": false,
+                "position": "left",
+                "maxThumbnails": 1,
+                "enableLightbox": false,
+                "noPadding": true
+              }
+            },
+            {
+              "id": "name",
+              "properties": ["name"],
+              "componentId": "link-widget",
+              "options": {
+                "showPropertyLabel": false,
+                "asH2": true,
+                "bold": true
+              }
+            },
+            {
+              "id": "description-without-label",
+              "properties": ["description"],
+              "componentId": "link-widget",
+              "options": {
+                "propertyLabel": "Beschrijving",
+                "showPropertyLabel": false,
+                "maxLength": 200
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "imagePaths": ["image", "thumbnailUrl", "associatedMedia.thumbnailUrl"],
+  "detailsPresentation": {
+    "widgets": [
+      {
+        "id": "hideProperties",
+        "properties": [
+          "label",
+          "sdDatePublished",
+          "hasMedia",
+          "identifier",
+          "isPartOf",
+          "iiifManifest",
+          "associatedMedia",
+          "type"
+        ],
+        "componentId": "text-widget",
+        "hidden": true
+      },
+      {
+        "id": "name",
+        "properties": ["name"],
+        "componentId": "link-widget",
+        "options": {
+          "showPropertyLabel": false,
+          "asH2": true,
+          "bold": true
+        }
+      },
+      {
+        "id": "description-header",
+        "properties": ["description"],
+        "componentId": "link-widget",
+        "options": {
+          "showPropertyLabel": false,
+          "largeFont": true
+        }
+      },
+      {
+        "id": "text",
+        "properties": ["text"],
+        "componentId": "text-widget",
+        "options": {
+          "propertyLabel": "Tekst",
+          "icon": "file-text"
+        }
+      },
+      {
+        "id": "media",
+        "properties": ["iiifManifest"],
+        "componentId": "media-widget",
+        "options": {
+          "showPropertyLabel": false,
+          "position": "left",
+          "iiifViewer": "tify"
+        }
+      },
+      {
+        "id": "additional-type",
+        "properties": ["additionalType"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Soort",
+          "icon": "grid"
+        }
+      },
+      {
+        "id": "license",
+        "properties": ["license"],
+        "componentId": "literal-link-widget",
+        "options": {
+          "propertyLabel": "Licentie",
+          "icon": "file-text",
+          "isExternal": true
+        }
+      },
+      {
+        "id": "publisher",
+        "properties": ["publisher"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Uitgever",
+          "icon": "users"
+        }
+      },
+      {
+        "id": "has-occupation",
+        "properties": ["hasOccupation"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Beroep",
+          "icon": "briefcase"
+        }
+      },
+      {
+        "id": "genre",
+        "properties": ["genre"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Genre",
+          "icon": "tag"
+        }
+      },
+      {
+        "id": "about",
+        "properties": ["about"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Over",
+          "icon": "info"
+        }
+      },
+      {
+        "id": "location",
+        "properties": ["location", "contentLocation", "locationCreated"],
+        "componentId": "map-widget",
+        "options": {
+          "propertyLabel": "Locatie",
+          "icon": "map-pin",
+          "showOriginalLink": true
+        }
+      },
+      {
+        "id": "birth-place",
+        "properties": ["birthPlace"],
+        "componentId": "map-widget",
+        "options": {
+          "propertyLabel": "Geboorteplaats",
+          "icon": "map-pin",
+          "showOriginalLink": true
+        }
+      },
+      {
+        "id": "death-place",
+        "properties": ["deathPlace"],
+        "componentId": "map-widget",
+        "options": {
+          "propertyLabel": "Plaats van overlijden",
+          "icon": "map-pin",
+          "showOriginalLink": true
+        }
+      },
+      {
+        "id": "material",
+        "properties": ["material"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Materiaal",
+          "icon": "package"
+        }
+      },
+      {
+        "id": "creator",
+        "properties": ["creator"],
+        "componentId": "creator-widget",
+        "options": {
+          "propertyLabel": "Vervaardiger",
+          "icon": "user"
+        }
+      },
+      {
+        "id": "date-created",
+        "properties": ["dateCreated"],
+        "componentId": "date-widget",
+        "options": {
+          "propertyLabel": "Vervaardigingsdatum",
+          "icon": "calendar"
+        }
+      },
+      {
+        "id": "birth-date",
+        "properties": ["birthDate"],
+        "componentId": "date-widget",
+        "options": {
+          "propertyLabel": "Geboortedatum",
+          "icon": "calendar"
+        }
+      },
+      {
+        "id": "death-date",
+        "properties": ["deathDate"],
+        "componentId": "date-widget",
+        "options": {
+          "propertyLabel": "Overlijdensdatum",
+          "icon": "calendar"
+        }
+      },
+      {
+        "id": "geo",
+        "properties": ["geo"],
+        "componentId": "map-widget",
+        "options": {}
+      },
+      {
+        "id": "address",
+        "properties": ["address"],
+        "componentId": "address-widget",
+        "options": {
+          "propertyLabel": "Adres",
+          "icon": "home"
+        }
+      },
+      {
+        "id": "fallback",
+        "componentId": "link-widget",
+        "isFallback": true
+      },
+      {
+        "id": "is-based-on",
+        "properties": ["isBasedOn"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Gebaseerd op",
+          "icon": "external-link"
+        }
+      },
+      {
+        "id": "referring-nodes",
+        "properties": ["id"],
+        "componentId": "referring-nodes-widget",
+        "options": {
+          "propertyLabel": "Verwijzende objecten",
+          "icon": "link"
+        }
+      },
+      {
+        "id": "size",
+        "properties": ["size"],
+        "componentId": "text-widget",
+        "options": {
+          "propertyLabel": "Grootte",
+          "icon": "maximize"
+        }
+      },
+      {
+        "id": "separator",
+        "componentId": "separator-widget",
+        "options": {
+          "showPropertyLabel": false
+        }
+      },
+      {
+        "id": "dataset",
+        "properties": ["dataset"],
+        "componentId": "link-widget",
+        "options": {
+          "propertyLabel": "Collectie",
+          "icon": "archive"
+        }
+      },
+      {
+        "id": "idAsLink",
+        "properties": ["id"],
+        "componentId": "literal-link-widget",
+        "options": {
+          "propertyLabel": "Gebaseerd op",
+          "icon": "external-link",
+          "isExternal": true
+        }
+      }
+    ]
+  }
+}

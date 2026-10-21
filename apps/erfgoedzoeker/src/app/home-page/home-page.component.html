@@ -1,0 +1,55 @@
+<app-header-banner [hideSubtitle]="true" />
+
+<div
+  class="mt-8 flex flex-col items-center gap-8 sm:gap-12 max-w-7xl mx-auto px-4 sm:px-6"
+>
+  <h1 class="text-center text-3xl sm:text-5xl font-bold md:w-3/4">
+    Zoek door
+    <span class="text-primary">verbonden erfgoed</span> uit verschillende
+    collecties
+  </h1>
+
+  <app-search-bar class="w-full" />
+
+  <div class="text-center sm:text-lg max-w-3xl space-y-6">
+    <p>
+      <span>Hier zoek je binnen de gecombineerde collecties van </span>
+      <a href="https://www.limburgsmuseum.nl/" target="_blank" class="link"
+        >Limburgs Museum</a
+      >,
+      <a href="https://www.discoverymuseum.nl/" target="_blank" class="link"
+        >Discovery Museum</a
+      >, en
+      <a href="https://www.tracelimburg.nl/" target="_blank" class="link"
+        >Tracé</a
+      >.
+    </p>
+
+    <div class="flex gap-4 justify-center flex-wrap">
+      <a
+        href="https://docs.erfgoedzoeker.nl/guide/"
+        target="_blank"
+        class="btn btn-primary"
+      >
+        <ng-icon name="featherBook" size="20" />
+        Documentatie
+      </a>
+      <a
+        href="https://github.com/Simon-Dirks/erfgoedzoeker"
+        target="_blank"
+        class="btn btn-outline btn-neutral"
+      >
+        <ng-icon name="featherGithub" size="20" />
+        GitHub
+      </a>
+    </div>
+  </div>
+</div>
+
+<a
+  class="btn fixed left-6 bottom-6 px-2"
+  href="https://netwerkdigitaalerfgoed.nl"
+  target="_blank"
+>
+  <img src="img/NDE-partner-logo.png" class="h-12" alt="NDE Partner Logo" />
+</a>

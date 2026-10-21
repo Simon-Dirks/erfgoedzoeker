@@ -107,7 +107,7 @@ export const widgetComponentHelp = {
       component-specific options. See{' '}
       <a
         className="link link-primary"
-        href="https://docs.valeros.nl/guide/built-in-widgets.html"
+        href="https://docs.erfgoedzoeker.nl/guide/built-in-widgets.html"
         target="_blank"
       >
         the built-in widgets documentation
@@ -171,7 +171,7 @@ export const isFallbackHelp = {
       property that has no dedicated widget assigned to it. The{' '}
       <a
         className="link link-primary"
-        href="https://docs.valeros.nl/guide/built-in-widgets.html#linkwidget"
+        href="https://docs.erfgoedzoeker.nl/guide/built-in-widgets.html#linkwidget"
         target="_blank"
       >
         link widget
@@ -179,7 +179,7 @@ export const isFallbackHelp = {
       or{' '}
       <a
         className="link link-primary"
-        href="https://docs.valeros.nl/guide/built-in-widgets.html#jsonwidget"
+        href="https://docs.erfgoedzoeker.nl/guide/built-in-widgets.html#jsonwidget"
         target="_blank"
       >
         JSON widget

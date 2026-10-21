@@ -1,6 +1,6 @@
 # Built-in Widgets
 
-Valeros comes with a comprehensive set of built-in widgets for common use cases. Each widget can be configured using base options (available to all widgets) or component-specific options.
+Erfgoedzoeker comes with a comprehensive set of built-in widgets for common use cases. Each widget can be configured using base options (available to all widgets) or component-specific options.
 
 To create your own custom widget components, see [Creating Custom Widgets](/guide/custom-widgets).
 

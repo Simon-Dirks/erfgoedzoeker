@@ -31,7 +31,7 @@ export function TabbedObjectFieldTemplate({
         <div className="mx-auto flex w-72 items-center rounded-b-lg bg-neutral px-6 pt-3 pb-4 text-white sm:w-96">
           <div>
             <h1 className="text-xl font-semibold sm:text-2xl">
-              Valeros Configurator
+              Erfgoedzoeker Configurator
             </h1>
             <p className="text-base opacity-75">
               Configure how data is displayed

@@ -1,6 +1,6 @@
 # Creating Custom Widgets
 
-While Valeros provides [built-in widgets](/guide/built-in-widgets) for common use cases, you can create custom widgets for domain-specific or specialized data presentation needs.
+While Erfgoedzoeker provides [built-in widgets](/guide/built-in-widgets) for common use cases, you can create custom widgets for domain-specific or specialized data presentation needs.
 
 ## When to Create a Custom Widget
 
@@ -119,7 +119,7 @@ export const WIDGET_COMPONENT_REGISTRY = {
 
 ### 7. Use in Configuration
 
-Once registered, reference your widget by its `componentId` in `valeros.config.json` (or via the [Configurator](/guide/configuration-system)):
+Once registered, reference your widget by its `componentId` in `erfgoedzoeker.config.json` (or via the [Configurator](/guide/configuration-system)):
 
 ```json
 {

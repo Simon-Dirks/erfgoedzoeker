@@ -1,7 +1,7 @@
 import { withMermaid } from 'vitepress-plugin-mermaid';
 
 export default withMermaid({
-  title: 'Valeros',
+  title: 'Erfgoedzoeker',
   description: 'Reusable, flexible heritage data browser',
 
   themeConfig: {
@@ -13,7 +13,7 @@ export default withMermaid({
 
     nav: [
       { text: 'Guide', link: '/guide/' },
-      { text: 'Live Demo', link: 'https://valeros.nl' },
+      { text: 'Live Demo', link: 'https://erfgoedzoeker.nl' },
     ],
 
     sidebar: {
@@ -21,7 +21,7 @@ export default withMermaid({
         {
           text: 'Introduction',
           items: [
-            { text: 'What is Valeros?', link: '/guide/' },
+            { text: 'What is Erfgoedzoeker?', link: '/guide/' },
             { text: 'Getting Started', link: '/guide/getting-started' },
           ],
         },
@@ -49,7 +49,7 @@ export default withMermaid({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/Valeros-LD/Valeros-NDE',
+        link: 'https://github.com/Simon-Dirks/erfgoedzoeker',
       },
     ],
 
