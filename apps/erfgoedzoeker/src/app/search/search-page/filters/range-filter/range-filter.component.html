@@ -1,0 +1,40 @@
+<app-filter-panel
+  [label]="label()"
+  [icon]="icon()"
+  [activeBadge]="activeBadge()"
+>
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-1">
+      <label
+        [for]="name() + '-min'"
+        class="text-xs text-base-content/60 font-medium"
+        >Van</label
+      >
+      <input
+        [id]="name() + '-min'"
+        [type]="filterType() === 'numberRange' ? 'number' : 'text'"
+        class="input input-sm input-bordered w-full"
+        [placeholder]="filterType() === 'numberRange' ? '0' : 'bijv. 1900'"
+        [value]="range().min ?? ''"
+        (blur)="onMinChange($any($event.target).value)"
+        (keydown)="onKeydown($event, $event.target)"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label
+        [for]="name() + '-max'"
+        class="text-xs text-base-content/60 font-medium"
+        >Tot</label
+      >
+      <input
+        [id]="name() + '-max'"
+        [type]="filterType() === 'numberRange' ? 'number' : 'text'"
+        class="input input-sm input-bordered w-full"
+        [placeholder]="filterType() === 'numberRange' ? '9999' : 'bijv. 2000'"
+        [value]="range().max ?? ''"
+        (blur)="onMaxChange($any($event.target).value)"
+        (keydown)="onKeydown($event, $event.target)"
+      />
+    </div>
+  </div>
+</app-filter-panel>

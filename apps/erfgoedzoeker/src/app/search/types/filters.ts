@@ -1,6 +1,5 @@
-type FacetName = string;
-type FacetValue = string;
+import { RangeValue } from './range-value';
 
-export type Filters = Record<FacetName, Set<FacetValue>>;
-
-export type SerializableFilters = Record<FacetName, FacetValue[]>;
+export type FilterValue = Set<string> | RangeValue;
+export type Filters = Record<string, FilterValue>;
+export type SerializableFilters = Record<string, string[] | RangeValue>;

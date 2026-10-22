@@ -1,0 +1,29 @@
+<div class="collapse collapse-arrow rounded-none bg-base-100">
+  <input
+    type="checkbox"
+    class="peer"
+    [attr.aria-label]="'Filter ' + label() + ' in-/uitklappen'"
+  />
+  <div
+    class="collapse-title flex items-center justify-between font-semibold text-sm capitalize"
+  >
+    <span class="flex items-center gap-2">
+      @if (icon()) {
+        <ng-icon
+          class="flex-shrink-0 inline-flex items-center"
+          [svg]="icon()!"
+          size="16"
+        />
+      }
+      <span>{{ label() }}</span>
+    </span>
+    @if (activeBadge()) {
+      <span class="badge badge-primary badge-sm lowercase">{{
+        activeBadge()
+      }}</span>
+    }
+  </div>
+  <div class="collapse-content min-w-0">
+    <ng-content />
+  </div>
+</div>

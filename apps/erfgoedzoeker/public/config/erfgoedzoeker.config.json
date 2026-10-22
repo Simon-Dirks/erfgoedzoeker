@@ -4,21 +4,78 @@
     "type": "graphql",
     "baseUrl": "http://localhost:4000/graphql"
   },
-  "facets": [
-    { "name": "dataset", "label": "Collectie", "icon": "archive" },
-    { "name": "contentLocation", "label": "Locatie", "icon": "map-pin" },
-    { "name": "creator", "label": "Vervaardiger", "icon": "user" },
-    { "name": "locationCreated", "label": "Locatie", "icon": "map-pin" },
-    { "name": "subject", "label": "Onderwerp", "icon": "tag" },
-    { "name": "genre", "label": "Genre", "icon": "tag" },
-    { "name": "material", "label": "Materiaal", "icon": "package" },
-    { "name": "type", "label": "Soort", "icon": "grid", "hidden": true },
-    { "name": "additionalType", "label": "Soort", "icon": "grid" },
-    { "name": "publisher", "label": "Uitgever", "icon": "users" },
-    { "name": "license", "label": "Licentie", "icon": "file-text" },
-    { "name": "about", "label": "Over", "icon": "info" },
-    { "name": "hasMedia", "label": "Met afbeelding", "icon": "image" },
-    { "name": "isPartOf", "label": "-", "hidden": true }
+  "filters": [
+    {
+      "type": "facet",
+      "name": "dataset",
+      "label": "Collectie",
+      "icon": "archive"
+    },
+    {
+      "type": "facet",
+      "name": "contentLocation",
+      "label": "Locatie",
+      "icon": "map-pin"
+    },
+    {
+      "type": "facet",
+      "name": "creator",
+      "label": "Vervaardiger",
+      "icon": "user"
+    },
+    {
+      "type": "facet",
+      "name": "locationCreated",
+      "label": "Locatie",
+      "icon": "map-pin"
+    },
+    { "type": "facet", "name": "subject", "label": "Onderwerp", "icon": "tag" },
+    { "type": "facet", "name": "genre", "label": "Genre", "icon": "tag" },
+    {
+      "type": "facet",
+      "name": "material",
+      "label": "Materiaal",
+      "icon": "package"
+    },
+    {
+      "type": "facet",
+      "name": "type",
+      "label": "Soort",
+      "icon": "grid",
+      "hidden": true
+    },
+    {
+      "type": "facet",
+      "name": "additionalType",
+      "label": "Soort",
+      "icon": "grid"
+    },
+    {
+      "type": "facet",
+      "name": "publisher",
+      "label": "Uitgever",
+      "icon": "users"
+    },
+    {
+      "type": "facet",
+      "name": "license",
+      "label": "Licentie",
+      "icon": "file-text"
+    },
+    { "type": "facet", "name": "about", "label": "Over", "icon": "info" },
+    {
+      "type": "facet",
+      "name": "hasMedia",
+      "label": "Met afbeelding",
+      "icon": "image"
+    },
+    { "type": "facet", "name": "isPartOf", "label": "-", "hidden": true },
+    {
+      "type": "dateRange",
+      "name": "dateCreated",
+      "label": "Datum vervaardiging",
+      "icon": "calendar"
+    }
   ],
   "views": {
     "defaultView": "list",

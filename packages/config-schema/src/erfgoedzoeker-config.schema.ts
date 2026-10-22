@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { ApiConfigSchema } from './api.schema';
-import { FacetConfigSchema } from './facet.schema';
+import { FilterConfigSchema } from './filter.schema';
 import { ViewsConfigSchema } from './view.schema';
 import { NodePresentationConfigSchema } from './widget.schema';
 
@@ -12,7 +12,7 @@ export const ErfgoedzoekerConfigSchema = z
       readOnly: true,
     }),
     api: ApiConfigSchema,
-    facets: z.array(FacetConfigSchema).meta({
+    filters: z.array(FilterConfigSchema).meta({
       title: 'Filters',
       description: 'Filters visitors can use to refine the results.',
     }),

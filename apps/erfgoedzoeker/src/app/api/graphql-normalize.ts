@@ -1,6 +1,7 @@
 import { NodeModel } from '../node/types/node.model';
-import { Facet } from '../search/types/facet';
+import { Facet, isFacetValue } from '../search/types/facet';
 import { Filters } from '../search/types/filters';
+import { hasActiveBounds, RangeValue } from '../search/types/range-value';
 import { ReferringNodesResponse } from '../search/types/referring-node';
 import { SearchQuery } from '../search/types/search-query';
 import { SearchResponse } from '../search/types/search-response';
@@ -147,17 +148,22 @@ export function toSearchResponse<TItem>(
 }
 
 export function toCreativeWorkWhere(filters: Filters): CreativeWorkWhere {
-  const where: Record<string, KeywordFilter | boolean> = {};
+  const where: Record<string, KeywordFilter | boolean | RangeValue> = {};
 
-  for (const [facetName, values] of Object.entries(filters)) {
-    if (values.size === 0) continue;
+  for (const [filterName, value] of Object.entries(filters)) {
+    if (isFacetValue(value)) {
+      if (value.size === 0) continue;
 
-    if (facetName === 'hasMedia') {
-      where[facetName] = values.has('true');
-      continue;
+      // TODO: Find a more sustainable/generic way to handle boolean filters
+      if (filterName === 'hasMedia') {
+        where[filterName] = value.has('true');
+        continue;
+      }
+
+      where[filterName] = { in: Array.from(value) };
+    } else if (hasActiveBounds(value)) {
+      where[filterName] = { min: value.min, max: value.max };
     }
-
-    where[facetName] = { in: Array.from(values) };
   }
 
   return where as CreativeWorkWhere;

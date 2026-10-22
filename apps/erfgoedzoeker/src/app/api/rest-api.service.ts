@@ -3,6 +3,7 @@ import { inject, Injectable, Signal } from '@angular/core';
 import { map, Observable, throwError } from 'rxjs';
 import { ConfigService } from '../config/config.service';
 import { NodeModel } from '../node/types/node.model';
+import { isFacetValue } from '../search/types/facet';
 import { Filters } from '../search/types/filters';
 import { ReferringNodesResponse } from '../search/types/referring-node';
 import { SearchQuery } from '../search/types/search-query';
@@ -105,11 +106,16 @@ export class RestApiService extends ApiService {
   private buildFilterStrings(filters: Filters): string[] {
     const filterStrings: string[] = [];
 
-    for (const [facetName, values] of Object.entries(filters)) {
-      for (const value of values) {
-        const decodedValue = decodeURIComponent(value);
+    for (const [filterName, value] of Object.entries(filters)) {
+      if (!isFacetValue(value)) {
+        // TODO: Support non-facet filters (eg range filters)
+        continue;
+      }
+
+      for (const v of value) {
+        const decodedValue = decodeURIComponent(v);
         const escapedValue = decodedValue.replace(/`/g, '\\`');
-        filterStrings.push(`${facetName}:\`${escapedValue}\``);
+        filterStrings.push(`${filterName}:\`${escapedValue}\``);
       }
     }
 

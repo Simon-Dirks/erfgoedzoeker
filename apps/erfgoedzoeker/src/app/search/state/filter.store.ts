@@ -1,6 +1,16 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { isFacetValue } from '../types/facet';
 import { Filters, SerializableFilters } from '../types/filters';
+import { hasActiveBounds, RangeValue } from '../types/range-value';
+
+export function deepCopyFilters(filters: Filters): Filters {
+  const copy: Filters = {};
+  for (const [key, value] of Object.entries(filters)) {
+    copy[key] = isFacetValue(value) ? new Set(value) : { ...value };
+  }
+  return copy;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -12,38 +22,16 @@ export class FilterStore {
 
   activeFilterCount = computed(() => {
     const filters = this.selectedFilters();
-    return Object.values(filters).reduce(
-      (total, values) => total + values.size,
-      0,
-    );
+    return Object.values(filters).reduce((total, value) => {
+      if (isFacetValue(value)) return total + value.size;
+      const hasRange = hasActiveBounds(value);
+      return total + (hasRange ? 1 : 0);
+    }, 0);
   });
 
-  private deepCopyFilters(filters: Filters): Filters {
-    const copy: Filters = {};
-    for (const [key, values] of Object.entries(filters)) {
-      copy[key] = new Set(values);
-    }
-    return copy;
-  }
-
-  toggleFilter(facetName: string, value: string): void {
-    const currentFilters = this.deepCopyFilters(this.selectedFilters());
-
-    if (!currentFilters[facetName]) {
-      currentFilters[facetName] = new Set<string>();
-    }
-
-    if (currentFilters[facetName].has(value)) {
-      currentFilters[facetName].delete(value);
-      if (currentFilters[facetName].size === 0) {
-        delete currentFilters[facetName];
-      }
-    } else {
-      currentFilters[facetName].add(value);
-    }
-
-    this.selectedFilters.set(currentFilters);
-    this.updateUrlWithFilters(currentFilters);
+  apply(filters: Filters): void {
+    this.selectedFilters.set(filters);
+    this.updateUrlWithFilters(filters);
   }
 
   private updateUrlWithFilters(filters: Filters): void {
@@ -53,10 +41,6 @@ export class FilterStore {
       queryParams: { filters: filterParam || undefined, page: 1 },
       queryParamsHandling: 'merge',
     });
-  }
-
-  isFilterSelected(facetName: string, value: string): boolean {
-    return this.selectedFilters()[facetName]?.has(value) ?? false;
   }
 
   clearFilters(): void {
@@ -76,8 +60,18 @@ export class FilterStore {
     }
 
     const serializableFilters: SerializableFilters = {};
-    for (const [facetName, values] of Object.entries(filters)) {
-      serializableFilters[facetName] = Array.from(values).sort();
+    for (const [name, value] of Object.entries(filters)) {
+      if (isFacetValue(value)) {
+        if (value.size > 0) {
+          serializableFilters[name] = Array.from(value).sort();
+        }
+      } else if (hasActiveBounds(value)) {
+        serializableFilters[name] = value;
+      }
+    }
+
+    if (Object.keys(serializableFilters).length === 0) {
+      return null;
     }
 
     return JSON.stringify(serializableFilters);
@@ -90,8 +84,12 @@ export class FilterStore {
     try {
       const parsed: SerializableFilters = JSON.parse(filterParam);
       const filters: Filters = {};
-      for (const [facetName, values] of Object.entries(parsed)) {
-        filters[facetName] = new Set(values);
+      for (const [name, value] of Object.entries(parsed)) {
+        if (Array.isArray(value)) {
+          filters[name] = new Set(value);
+        } else {
+          filters[name] = value as RangeValue;
+        }
       }
       return filters;
     } catch {

@@ -1,5 +1,8 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { ErfgoedzoekerConfig } from '@erfgoedzoeker/config-schema';
+import {
+  ErfgoedzoekerConfig,
+  FilterConfig,
+} from '@erfgoedzoeker/config-schema';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
@@ -9,7 +12,9 @@ export class ConfigService {
 
   readonly apiType = computed(() => this.config()?.api.type ?? 'graphql');
   readonly apiBaseUrl = computed(() => this.config()?.api.baseUrl ?? '');
-  readonly facets = computed(() => this.config()?.facets ?? []);
+  readonly filters = computed(
+    (): FilterConfig[] => this.config()?.filters ?? [],
+  );
   readonly imagePaths = computed(() => this.config()?.imagePaths ?? ['image']);
   readonly detailsPresentation = computed(
     () => this.config()?.detailsPresentation,

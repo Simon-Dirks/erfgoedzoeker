@@ -1,0 +1,29 @@
+<app-filter-panel [label]="label()" [icon]="icon()" [activeBadge]="activeBadge()">
+  <div class="mb-3 relative">
+    <input
+      type="text"
+      placeholder="Filter..."
+      class="input input-sm input-bordered w-full"
+    />
+  </div>
+  <div class="space-y-1 max-h-48 overflow-y-scroll">
+    @for (facetItem of facet().orderedItems; track facetItem.value) {
+      <label
+        class="flex justify-between items-center text-sm cursor-pointer hover:bg-base-200 p-1 rounded gap-1"
+      >
+        <div class="flex items-center gap-2 min-w-0 w-full">
+          <input
+            type="checkbox"
+            class="checkbox checkbox-sm"
+            [checked]="isSelected(facetItem.value)"
+            (click)="onFacetToggle(facetItem.value)"
+          />
+          <span class="text-base-content/80 select-none">
+            {{ formatFacetLabel(facetItem) }}
+          </span>
+        </div>
+        <span class="text-base-content/60 text-xs">{{ facetItem.count }}</span>
+      </label>
+    }
+  </div>
+</app-filter-panel>

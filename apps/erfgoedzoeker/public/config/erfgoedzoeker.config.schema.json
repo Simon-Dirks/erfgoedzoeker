@@ -40,43 +40,140 @@
       "title": "Data layer",
       "description": "Connection to the data layer."
     },
-    "facets": {
+    "filters": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "title": "Name",
-            "description": "Facet property name in the data layer.",
-            "examples": [
-              "creator"
-            ]
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "Filter property name in the data layer.",
+                "examples": [
+                  "creator"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "title": "Label",
+                "description": "Name shown to visitors for this filter.",
+                "examples": [
+                  "Creator"
+                ]
+              },
+              "icon": {
+                "$ref": "#/$defs/iconKey"
+              },
+              "hidden": {
+                "title": "Hidden",
+                "description": "Hide this filter from visitors.",
+                "type": "boolean"
+              },
+              "type": {
+                "type": "string",
+                "const": "facet",
+                "title": "Type",
+                "description": "Checkbox facet filter."
+              }
+            },
+            "required": [
+              "name",
+              "label",
+              "type"
+            ],
+            "additionalProperties": false,
+            "title": "Facet filter",
+            "description": "Checkbox filter visitors can use to refine the results."
           },
-          "label": {
-            "type": "string",
-            "title": "Label",
-            "description": "Name shown to visitors for this filter.",
-            "examples": [
-              "Creator"
-            ]
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "Filter property name in the data layer.",
+                "examples": [
+                  "creator"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "title": "Label",
+                "description": "Name shown to visitors for this filter.",
+                "examples": [
+                  "Creator"
+                ]
+              },
+              "icon": {
+                "$ref": "#/$defs/iconKey"
+              },
+              "hidden": {
+                "title": "Hidden",
+                "description": "Hide this filter from visitors.",
+                "type": "boolean"
+              },
+              "type": {
+                "type": "string",
+                "const": "dateRange",
+                "title": "Type",
+                "description": "Date range filter (min/max year or date string)."
+              }
+            },
+            "required": [
+              "name",
+              "label",
+              "type"
+            ],
+            "additionalProperties": false,
+            "title": "Date range filter",
+            "description": "Date range filter (min/max) visitors can use to refine the results."
           },
-          "icon": {
-            "$ref": "#/$defs/iconKey"
-          },
-          "hidden": {
-            "title": "Hidden",
-            "description": "Hide this filter from visitors.",
-            "type": "boolean"
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "Filter property name in the data layer.",
+                "examples": [
+                  "creator"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "title": "Label",
+                "description": "Name shown to visitors for this filter.",
+                "examples": [
+                  "Creator"
+                ]
+              },
+              "icon": {
+                "$ref": "#/$defs/iconKey"
+              },
+              "hidden": {
+                "title": "Hidden",
+                "description": "Hide this filter from visitors.",
+                "type": "boolean"
+              },
+              "type": {
+                "type": "string",
+                "const": "numberRange",
+                "title": "Type",
+                "description": "Numeric range filter (min/max number)."
+              }
+            },
+            "required": [
+              "name",
+              "label",
+              "type"
+            ],
+            "additionalProperties": false,
+            "title": "Number range filter",
+            "description": "Numeric range filter (min/max) visitors can use to refine the results."
           }
-        },
-        "required": [
-          "name",
-          "label"
-        ],
-        "additionalProperties": false,
-        "title": "Filter",
-        "description": "Filter visitors can use to refine the results."
+        ]
       },
       "title": "Filters",
       "description": "Filters visitors can use to refine the results."
@@ -295,7 +392,7 @@
   },
   "required": [
     "api",
-    "facets",
+    "filters",
     "views",
     "detailsPresentation",
     "imagePaths"

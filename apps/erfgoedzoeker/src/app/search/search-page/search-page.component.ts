@@ -26,7 +26,7 @@ import { SearchStore } from '../state/search.store';
 import { ViewService } from '../views/view.service';
 import { DrawerLayoutComponent } from './drawer-layout/drawer-layout.component';
 import { DrawerToggleButtonComponent } from './drawer-layout/drawer-toggle-button/drawer-toggle-button.component';
-import { FacetsComponent } from './facets/facets.component';
+import { FiltersComponent } from './filters/filters.component';
 import { Pagination } from './pagination/pagination';
 import { ResultsCount } from './results-count/results-count';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -38,7 +38,7 @@ import { ViewSwitcherComponent } from './view-switcher/view-switcher.component';
   imports: [
     CommonModule,
     SearchBarComponent,
-    FacetsComponent,
+    FiltersComponent,
     DrawerLayoutComponent,
     DrawerToggleButtonComponent,
     SearchSort,
