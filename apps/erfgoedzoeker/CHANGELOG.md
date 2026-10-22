@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.17.0...erfgoedzoeker-v0.18.0) (2026-10-22)
+
+
+### Features
+
+* support range filters ([4d977a7](https://github.com/Simon-Dirks/erfgoedzoeker/commit/4d977a71bc797673bf94ded03ad32d201f276558))
+
 ## [0.17.0](https://github.com/Valeros-LD/valeros-NDE/compare/valeros-nde-v0.16.0...valeros-nde-v0.17.0) (2026-09-22)
 
 
