@@ -18,7 +18,7 @@ export type BooleanBucket = {
 
 export type ContributorRole = {
   __typename?: 'ContributorRole';
-  contributor?: Maybe<PersonReference>;
+  contributor?: Maybe<PersonOrOrganizationReference>;
   role?: Maybe<Scalars['String']['output']>;
 };
 
@@ -30,7 +30,7 @@ export type ContributorRoleFilter = {
 
 /** Sibling keys are combined with AND, and all of them must hold of the SAME entry. */
 export type ContributorRoleWhere = {
-  contributor?: InputMaybe<PersonFilter>;
+  contributor?: InputMaybe<PersonOrOrganizationFilter>;
   role?: InputMaybe<KeywordFilter>;
 };
 
@@ -47,6 +47,8 @@ export type CreativeWork = {
   dateCreated?: Maybe<Scalars['String']['output']>;
   description: Array<LanguageString>;
   genre: Array<TermReference>;
+  /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
+  hasCoordinates: Scalars['Boolean']['output'];
   hasMedia: Scalars['Boolean']['output'];
   id: Scalars['IRI']['output'];
   identifier: Array<Scalars['String']['output']>;
@@ -73,6 +75,8 @@ export type CreativeWorkCriterion = {
   dataset?: InputMaybe<DatasetFilter>;
   dateCreated?: InputMaybe<DateRange>;
   genre?: InputMaybe<TermFilter>;
+  /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
+  hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
   hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
   identifier?: InputMaybe<KeywordFilter>;
@@ -94,6 +98,7 @@ export type CreativeWorkFacets = {
   creator: Array<IriBucket>;
   dataset: Array<IriBucket>;
   genre: Array<IriBucket>;
+  hasCoordinates: Array<BooleanBucket>;
   hasMedia: Array<BooleanBucket>;
   isPartOf: Array<IriBucket>;
   license: Array<IriBucket>;
@@ -139,6 +144,8 @@ export type CreativeWorkWhere = {
   dataset?: InputMaybe<DatasetFilter>;
   dateCreated?: InputMaybe<DateRange>;
   genre?: InputMaybe<TermFilter>;
+  /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
+  hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
   hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
   identifier?: InputMaybe<KeywordFilter>;
@@ -155,7 +162,7 @@ export type CreativeWorkWhere = {
 
 export type CreatorRole = {
   __typename?: 'CreatorRole';
-  creator?: Maybe<PersonReference>;
+  creator?: Maybe<PersonOrOrganizationReference>;
   role?: Maybe<Scalars['String']['output']>;
 };
 
@@ -167,7 +174,7 @@ export type CreatorRoleFilter = {
 
 /** Sibling keys are combined with AND, and all of them must hold of the SAME entry. */
 export type CreatorRoleWhere = {
-  creator?: InputMaybe<PersonFilter>;
+  creator?: InputMaybe<PersonOrOrganizationFilter>;
   role?: InputMaybe<KeywordFilter>;
 };
 
@@ -369,6 +376,14 @@ export type OrganizationOrderBy = {
   field: OrganizationSortField;
 };
 
+export type OrganizationReference = PersonOrOrganizationReference & {
+  __typename?: 'OrganizationReference';
+  dataset?: Maybe<DatasetReference>;
+  id?: Maybe<Scalars['IRI']['output']>;
+  location: Array<PlaceReference>;
+  name: Array<LanguageString>;
+};
+
 export type OrganizationSearchResult = {
   __typename?: 'OrganizationSearchResult';
   facets: OrganizationFacets;
@@ -437,12 +452,30 @@ export type PersonFilter = {
   in?: InputMaybe<Array<Scalars['IRI']['input']>>;
 };
 
+/** Matches a field holding IRIs of Person or Organization. */
+export type PersonOrOrganizationFilter = {
+  in?: InputMaybe<Array<Scalars['IRI']['input']>>;
+};
+
+/** A reference whose target is Person or Organization; select `__typename` to tell which, and the fields of one through an inline fragment on its type. */
+export type PersonOrOrganizationReference = {
+  id?: Maybe<Scalars['IRI']['output']>;
+  name: Array<LanguageString>;
+};
+
+/** A reference whose target is Person or Organization, but that no collection this API serves holds – a dangling IRI, or one whose lookup failed – so only its `id` is known. */
+export type PersonOrOrganizationUnresolvedReference = PersonOrOrganizationReference & {
+  __typename?: 'PersonOrOrganizationUnresolvedReference';
+  id?: Maybe<Scalars['IRI']['output']>;
+  name: Array<LanguageString>;
+};
+
 export type PersonOrderBy = {
   direction?: SortDirection;
   field: PersonSortField;
 };
 
-export type PersonReference = {
+export type PersonReference = PersonOrOrganizationReference & {
   __typename?: 'PersonReference';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;

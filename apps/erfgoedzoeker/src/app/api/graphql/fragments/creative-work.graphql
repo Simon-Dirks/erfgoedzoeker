@@ -15,7 +15,13 @@ fragment CreativeWorkFields on CreativeWork {
   creator {
     role
     creator {
-      ...PersonReferenceFields
+      ...PersonOrOrganizationReferenceFields
+    }
+  }
+  contributor {
+    role
+    contributor {
+      ...PersonOrOrganizationReferenceFields
     }
   }
   identifier
@@ -60,6 +66,7 @@ fragment CreativeWorkFields on CreativeWork {
   }
   iiifManifest
   hasMedia
+  hasCoordinates
 }
 
 fragment CreativeWorkFacetFields on CreativeWorkFacets {
@@ -88,6 +95,14 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
     }
   }
   creator {
+    value
+    count
+    label {
+      value
+      language
+    }
+  }
+  contributor {
     value
     count
     label {
@@ -160,6 +175,10 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
     }
   }
   hasMedia {
+    value
+    count
+  }
+  hasCoordinates {
     value
     count
   }

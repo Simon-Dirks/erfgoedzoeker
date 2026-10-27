@@ -15,4 +15,10 @@ fragment PersonFields on Person {
   hasOccupation {
     ...OccupationReferenceFields
   }
+  alternateName {
+    value
+    language
+  }
+  authority
+  fetchedAt
 }

@@ -4,5 +4,14 @@ fragment TermFields on Term {
     value
     language
   }
+  alternateName {
+    value
+    language
+  }
   sameAs
+  authority
+  fetchedAt
+  dataset {
+    ...DatasetReferenceFields
+  }
 }

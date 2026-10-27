@@ -4,4 +4,7 @@ fragment OccupationFields on Occupation {
     value
     language
   }
+  dataset {
+    ...DatasetReferenceFields
+  }
 }

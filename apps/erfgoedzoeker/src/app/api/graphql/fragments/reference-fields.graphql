@@ -40,6 +40,34 @@ fragment PersonReferenceFields on PersonReference {
   fetchedAt
 }
 
+fragment OrganizationReferenceFields on OrganizationReference {
+  id
+  name {
+    value
+    language
+  }
+  location {
+    ...PlaceReferenceFields
+  }
+  dataset {
+    ...DatasetReferenceFields
+  }
+}
+
+fragment PersonOrOrganizationReferenceFields on PersonOrOrganizationReference {
+  id
+  name {
+    value
+    language
+  }
+  ... on PersonReference {
+    ...PersonReferenceFields
+  }
+  ... on OrganizationReference {
+    ...OrganizationReferenceFields
+  }
+}
+
 fragment PlaceReferenceFields on PlaceReference {
   id
   latitude
@@ -63,6 +91,16 @@ fragment TermReferenceFields on TermReference {
     value
     language
   }
+  alternateName {
+    value
+    language
+  }
+  sameAs
+  authority
+  fetchedAt
+  dataset {
+    ...DatasetReferenceFields
+  }
 }
 
 fragment PublisherReferenceFields on PublisherReference {
@@ -78,5 +116,8 @@ fragment OccupationReferenceFields on OccupationReference {
   name {
     value
     language
+  }
+  dataset {
+    ...DatasetReferenceFields
   }
 }
