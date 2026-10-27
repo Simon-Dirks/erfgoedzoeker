@@ -95,7 +95,8 @@
       "name": "hasCoordinates",
       "label": "Met coördinaten",
       "icon": "map-pin",
-      "type": "facet"
+      "type": "facet",
+      "hidden": true
     },
     {
       "name": "isPartOf",
@@ -197,7 +198,10 @@
           "pageSize": 100,
           "showPagination": false,
           "showResultsCount": true,
-          "showSort": false
+          "showSort": false,
+          "forcedFilters": {
+            "hasCoordinates": ["true"]
+          }
         },
         "presentationConfig": {
           "widgets": [
