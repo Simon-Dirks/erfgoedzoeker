@@ -6,79 +6,104 @@
   },
   "filters": [
     {
-      "type": "facet",
       "name": "dataset",
       "label": "Collectie",
-      "icon": "archive"
+      "icon": "archive",
+      "type": "facet"
     },
     {
-      "type": "facet",
       "name": "contentLocation",
       "label": "Locatie",
-      "icon": "map-pin"
+      "icon": "map-pin",
+      "type": "facet"
     },
     {
-      "type": "facet",
       "name": "creator",
       "label": "Vervaardiger",
-      "icon": "user"
+      "icon": "user",
+      "type": "facet"
     },
     {
-      "type": "facet",
+      "name": "contributor",
+      "label": "Bijdrager",
+      "icon": "user",
+      "type": "facet"
+    },
+    {
       "name": "locationCreated",
       "label": "Locatie",
-      "icon": "map-pin"
+      "icon": "map-pin",
+      "type": "facet"
     },
-    { "type": "facet", "name": "subject", "label": "Onderwerp", "icon": "tag" },
-    { "type": "facet", "name": "genre", "label": "Genre", "icon": "tag" },
     {
-      "type": "facet",
+      "name": "subject",
+      "label": "Onderwerp",
+      "icon": "tag",
+      "type": "facet"
+    },
+    {
+      "name": "genre",
+      "label": "Genre",
+      "icon": "tag",
+      "type": "facet"
+    },
+    {
       "name": "material",
       "label": "Materiaal",
-      "icon": "package"
+      "icon": "package",
+      "type": "facet"
     },
     {
-      "type": "facet",
       "name": "type",
       "label": "Soort",
       "icon": "grid",
-      "hidden": true
+      "hidden": true,
+      "type": "facet"
     },
     {
-      "type": "facet",
       "name": "additionalType",
       "label": "Soort",
-      "icon": "grid"
+      "icon": "grid",
+      "type": "facet"
     },
     {
-      "type": "facet",
       "name": "publisher",
       "label": "Uitgever",
-      "icon": "users"
+      "icon": "users",
+      "type": "facet"
     },
     {
-      "type": "facet",
       "name": "license",
       "label": "Licentie",
-      "icon": "file-text"
+      "icon": "file-text",
+      "type": "facet"
     },
-    { "type": "facet", "name": "about", "label": "Over", "icon": "info" },
     {
-      "type": "facet",
+      "name": "about",
+      "label": "Over",
+      "icon": "info",
+      "type": "facet"
+    },
+    {
       "name": "hasMedia",
       "label": "Met afbeelding",
-      "icon": "image"
+      "icon": "image",
+      "type": "facet"
     },
-    { "type": "facet", "name": "isPartOf", "label": "-", "hidden": true },
     {
-      "type": "dateRange",
+      "name": "isPartOf",
+      "label": "-",
+      "hidden": true,
+      "type": "facet"
+    },
+    {
       "name": "dateCreated",
       "label": "Datum vervaardiging",
-      "icon": "calendar"
+      "icon": "calendar",
+      "type": "dateRange"
     }
   ],
   "views": {
-    "defaultView": "list",
     "views": [
       {
         "type": "list",
@@ -253,9 +278,9 @@
           ]
         }
       }
-    ]
+    ],
+    "defaultView": "list"
   },
-  "imagePaths": ["image", "thumbnailUrl", "associatedMedia.thumbnailUrl"],
   "detailsPresentation": {
     "widgets": [
       {
@@ -268,7 +293,8 @@
           "isPartOf",
           "iiifManifest",
           "associatedMedia",
-          "type"
+          "type",
+          "hasCoordinates"
         ],
         "componentId": "text-widget",
         "hidden": true
@@ -415,6 +441,18 @@
         }
       },
       {
+        "id": "contributor",
+        "componentId": "link-widget",
+        "properties": ["contributor"],
+        "options": {
+          "showPropertyLabel": true,
+          "propertyLabel": "Bijdrager",
+          "icon": "user",
+          "position": "main",
+          "propertyPath": "contributor"
+        }
+      },
+      {
         "id": "date-created",
         "properties": ["dateCreated"],
         "componentId": "date-widget",
@@ -515,5 +553,6 @@
         }
       }
     ]
-  }
+  },
+  "imagePaths": ["image", "thumbnailUrl", "associatedMedia.thumbnailUrl"]
 }
