@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/config-schema-v0.4.0...config-schema-v0.5.0) (2026-10-27)
+
+
+### Features
+
+* support forced (invisible) filters per view ([9271644](https://github.com/Simon-Dirks/erfgoedzoeker/commit/9271644b29c48f6bbbed73ee80584b5f02cf193c))
+* support range filters ([4d977a7](https://github.com/Simon-Dirks/erfgoedzoeker/commit/4d977a71bc797673bf94ded03ad32d201f276558))
+
 ## [0.4.0](https://github.com/Valeros-LD/valeros-NDE/compare/config-schema-v0.3.0...config-schema-v0.4.0) (2026-09-22)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/configurator-v0.6.0...configurator-v0.7.0) (2026-10-27)
+
+
+### Features
+
+* add filter type to configurator ([b5cf540](https://github.com/Simon-Dirks/erfgoedzoeker/commit/b5cf540273c1a2cd5bf3a1b804665ac47de8d728))
+* style forcedFilters in configurator ([4a02ce2](https://github.com/Simon-Dirks/erfgoedzoeker/commit/4a02ce2ad180512a621c84716a3f796a9a37aa0c))
+
 ## [0.6.0](https://github.com/Valeros-LD/valeros-NDE/compare/configurator-v0.5.0...configurator-v0.6.0) (2026-09-22)
 
 
