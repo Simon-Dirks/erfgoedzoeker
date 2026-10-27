@@ -76,7 +76,8 @@
       "name": "license",
       "label": "Licentie",
       "icon": "file-text",
-      "type": "facet"
+      "type": "facet",
+      "hidden": true
     },
     {
       "name": "about",
