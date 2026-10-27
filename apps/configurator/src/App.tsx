@@ -7,8 +7,13 @@ import rawSchema from '../../erfgoedzoeker/public/config/erfgoedzoeker.config.sc
 import { FilterRowTemplate } from './FilterRowTemplate';
 import { FilterTypeSelectorTemplate } from './FilterTypeSelectorTemplate';
 import {
+  forcedFilterValuesUiSchema,
+  ViewOptionsTemplate,
+} from './ForcedFiltersTemplate';
+import {
   arrowIndicatorHelp,
   filtersHelp,
+  forcedFiltersHelp,
   isFallbackHelp,
   noPaddingHelp,
   paginationHelp,
@@ -146,6 +151,7 @@ const uiSchema: UiSchema = {
         icon: iconUiSchema,
         options: {
           'ui:title': '',
+          'ui:ObjectFieldTemplate': ViewOptionsTemplate,
           showPagination: {
             'ui:FieldTemplate': HelpFieldTemplate,
             'ui:options': {
@@ -163,6 +169,14 @@ const uiSchema: UiSchema = {
             'ui:options': {
               helpMedia: sortingHelp,
             },
+          },
+          forcedFilters: {
+            'ui:title': '',
+            'ui:FieldTemplate': HelpFieldTemplate,
+            'ui:options': {
+              helpMedia: forcedFiltersHelp,
+            },
+            additionalProperties: forcedFilterValuesUiSchema,
           },
         },
         presentationConfig: {

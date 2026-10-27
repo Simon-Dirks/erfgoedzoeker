@@ -163,6 +163,21 @@ export const noPaddingHelp = {
   ],
 } satisfies FieldHelp;
 
+export const forcedFiltersHelp = {
+  title: 'Forced filters',
+  description: (
+    <>
+      Filters that stay active for as long as visitors use this view, on top
+      of anything they select themselves. They never appear in the filter
+      panel and are not carried over when visitors switch to another view.
+      The filter name must match the &quot;Name&quot; of a facet filter
+      configured in the Filters tab, and the value(s) must match exactly.
+    </>
+  ),
+  media: [],
+  linkLabel: 'How does this work?',
+} satisfies FieldHelp;
+
 export const isFallbackHelp = {
   title: 'Fallback widget',
   description: (
