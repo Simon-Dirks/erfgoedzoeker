@@ -234,6 +234,27 @@
                       "dateCreated:asc"
                     ],
                     "type": "string"
+                  },
+                  "forcedFilters": {
+                    "title": "Forced filters",
+                    "description": "Facet filters always applied while this view is active, in addition to any filters chosen by the visitor. Not shown or togglable in the filter panel, and not kept when switching to another view.",
+                    "examples": [
+                      {
+                        "hasCoordinates": [
+                          "true"
+                        ]
+                      }
+                    ],
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
                   }
                 },
                 "additionalProperties": {}

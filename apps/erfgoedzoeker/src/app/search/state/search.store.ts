@@ -1,8 +1,8 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ViewType } from '@erfgoedzoeker/config-schema';
 import { distinctUntilChanged, filter, map } from 'rxjs';
 import { ApiService } from '../../api/api.service';
-import { ViewType } from '@erfgoedzoeker/config-schema';
 import { NodeModel } from '../../node/types/node.model';
 import { Facet } from '../types/facet';
 import { SearchResponse } from '../types/search-response';
@@ -132,7 +132,10 @@ export class SearchStore {
 
     const pageSize = this.pageSize();
     const sort = this.currentSort();
-    const filters = this.filterStore.selectedFilters();
+    const forcedFilters = this.viewService.getViewOptions(
+      this.currentView(),
+    ).forcedFilters;
+    const filters = this.filterStore.withForcedFilters(forcedFilters);
     const searchKey = this.searchCache.setSearchKey(
       trimmedTerm,
       page,

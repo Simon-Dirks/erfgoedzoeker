@@ -34,6 +34,18 @@ export class FilterStore {
     this.updateUrlWithFilters(filters);
   }
 
+  withForcedFilters(forcedFilters?: Record<string, string[]>): Filters {
+    if (!forcedFilters || Object.keys(forcedFilters).length === 0) {
+      return this.selectedFilters();
+    }
+
+    const filters = deepCopyFilters(this.selectedFilters());
+    for (const [name, values] of Object.entries(forcedFilters)) {
+      filters[name] = new Set(values);
+    }
+    return filters;
+  }
+
   private updateUrlWithFilters(filters: Filters): void {
     const filterParam = this.serialize(filters);
 

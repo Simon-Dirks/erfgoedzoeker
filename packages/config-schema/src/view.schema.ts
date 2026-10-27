@@ -42,6 +42,16 @@ export const BaseViewOptionsSchema = z
         description: 'Sorting applied when this view opens.',
         examples: ['dateCreated:asc'],
       }),
+    // TODO: Support non-facet filters (eg date/number range filter)
+    forcedFilters: z
+      .record(z.string(), z.array(z.string()))
+      .optional()
+      .meta({
+        title: 'Forced filters',
+        description:
+          'Facet filters always applied while this view is active, in addition to any filters chosen by the visitor. Not shown or togglable in the filter panel, and not kept when switching to another view.',
+        examples: [{ hasCoordinates: ['true'] }],
+      }),
   })
   .meta({
     title: 'Options',
