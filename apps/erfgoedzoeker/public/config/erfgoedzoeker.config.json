@@ -91,6 +91,12 @@
       "type": "facet"
     },
     {
+      "name": "hasCoordinates",
+      "label": "Met coördinaten",
+      "icon": "map-pin",
+      "type": "facet"
+    },
+    {
       "name": "isPartOf",
       "label": "-",
       "hidden": true,
