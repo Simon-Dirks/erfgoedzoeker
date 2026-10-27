@@ -4,7 +4,8 @@ import validator from '@rjsf/validator-ajv8';
 
 import defaultConfig from '../../erfgoedzoeker/public/config/erfgoedzoeker.config.json';
 import rawSchema from '../../erfgoedzoeker/public/config/erfgoedzoeker.config.schema.json';
-import { FacetRowTemplate } from './FacetRowTemplate';
+import { FilterRowTemplate } from './FilterRowTemplate';
+import { FilterTypeSelectorTemplate } from './FilterTypeSelectorTemplate';
 import {
   arrowIndicatorHelp,
   filtersHelp,
@@ -122,10 +123,11 @@ const uiSchema: UiSchema = {
   'ui:submitButtonOptions': {
     norender: true,
   },
-  facets: {
+  filters: {
     'ui:ArrayFieldItemTemplate': ViewArrayItemTemplate,
     items: {
-      'ui:ObjectFieldTemplate': FacetRowTemplate,
+      'ui:label': false,
+      'ui:ObjectFieldTemplate': FilterRowTemplate,
       'ui:options': {
         helpMedia: filtersHelp,
       },
@@ -196,6 +198,7 @@ export function App() {
           ArrayFieldItemTemplate: SortableArrayItemTemplate,
           ArrayFieldTemplate: SortableArrayFieldTemplate,
           DescriptionFieldTemplate: HiddenDescriptionFieldTemplate,
+          MultiSchemaFieldTemplate: FilterTypeSelectorTemplate,
         }}
         validator={validator}
         onSubmit={({ formData: data }) => downloadConfig(data)}
