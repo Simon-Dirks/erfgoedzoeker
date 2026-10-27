@@ -32,28 +32,28 @@ As a developer, Erfgoedzoeker lets you control what, how, and when data is shown
 
 Erfgoedzoeker is built with [Angular](https://angular.dev/) following the [Angular style guide](https://angular.dev/style-guide). We use modern Angular features including [signals](https://angular.dev/essentials/signals) for reactive state management, [standalone components](https://angular.dev/essentials/components), and [control flow syntax](https://angular.dev/guide/templates/control-flow). For styling, we use [**TailwindCSS**](https://tailwindcss.com/) with [**DaisyUI**](https://daisyui.com/) as the component library.
 
-### Data & Presentation Layers
+### Integration & Presentation Layers
 
-Erfgoedzoeker follows the [NDE vision](https://zenodo.org/records/17541400) of **explicit separation between data and presentation layers**:
+Erfgoedzoeker follows the [NDE vision](https://zenodo.org/records/17541400) of **explicit separation between integration and presentation layers**:
 
-- The **data layer** retrieves datasets registered in the [**NDE Dataset Register**](https://datasetregister.netwerkdigitaalerfgoed.nl/) and provides a standardized API. NDE's data layer specification is still in development, so both GraphQL and REST implementations are supported. See [Getting Started](/guide/getting-started) for available implementations and how to configure them.
+- The **integration layer** retrieves datasets registered in the [**NDE Dataset Register**](https://datasetregister.netwerkdigitaalerfgoed.nl/) and provides a standardized API. NDE's integration layer specification is still in development, so both GraphQL and REST implementations are supported. See [Getting Started](/guide/getting-started) for available implementations and how to configure them.
 - The **presentation layer** (this project, Erfgoedzoeker) consumes the API and allows configuration of how data is displayed.
 
 ```mermaid
 flowchart TD
   presentation_layer(Presentation layer)
-  data_layer(Data layer)
+  integration_layer(Integration layer)
   publication_layers(Publication layers)
   dataset_register(Dataset Register)
 
   style presentation_layer fill:#D5E8D4,stroke:#82B366
-  style data_layer fill:#FFF2CC,stroke:#D6B656
+  style integration_layer fill:#FFF2CC,stroke:#D6B656
   style publication_layers fill:#DAE8FC,stroke:#6C8EBF;
 
-  presentation_layer -->|Query data| data_layer
+  presentation_layer -->|Query data| integration_layer
 
-  data_layer -->|Retrieve datasets| publication_layers
-  data_layer -->|Retrieve dataset descriptions| dataset_register
+  integration_layer -->|Retrieve datasets| publication_layers
+  integration_layer -->|Retrieve dataset descriptions| dataset_register
 
   publication_layers -->|Register dataset descriptions| dataset_register
 ```

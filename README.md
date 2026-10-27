@@ -14,15 +14,15 @@ Erfgoedzoeker is built to conform to two [NDE behavior profiles](https://zenodo.
 1. Targeted search
 2. Browsing and discovery
 
-Connect it to an [NDE-compatible data layer](https://docs.erfgoedzoeker.nl/guide/getting-started.html#data-layer-dependency) (GraphQL or REST) to go from a raw linked data dump (.ttl, .trig, .jsonld, ...) to a fully featured search interface in a couple of minutes.
+Connect it to an [NDE-compatible integration layer](https://docs.erfgoedzoeker.nl/guide/getting-started.html#integration-layer-dependency) (GraphQL or REST) to go from a raw linked data dump (.ttl, .trig, .jsonld, ...) to a fully featured search interface in a couple of minutes.
 
 ## Prerequisites
 
 > [!IMPORTANT]
-> Erfgoedzoeker requires a **data layer** endpoint to function. NDE's specification is still in development, so both GraphQL and REST are supported. See [Getting Started](https://docs.erfgoedzoeker.nl/guide/getting-started.html) for available implementations.
+> Erfgoedzoeker requires an **integration layer** endpoint to function. NDE's specification is still in development, so both GraphQL and REST are supported. See [Getting Started](https://docs.erfgoedzoeker.nl/guide/getting-started.html) for available implementations.
 
 - [Node.js](https://nodejs.org/) v20.19.0 (or newer) and [pnpm](https://pnpm.io/)
-- A data layer endpoint (see above)
+- An integration layer endpoint (see above)
 
 ## Installation
 
@@ -36,7 +36,7 @@ npm install
 
 ## Configuration
 
-Erfgoedzoeker is configured through `apps/erfgoedzoeker/public/config/erfgoedzoeker.config.json`. To get started, set the data layer protocol and URL:
+Erfgoedzoeker is configured through `apps/erfgoedzoeker/public/config/erfgoedzoeker.config.json`. To get started, set the integration layer protocol and URL:
 
 ```json
 {

@@ -11,7 +11,7 @@ Erfgoedzoeker is a reusable, flexible heritage data browser (Angular SPA). The p
 
 Erfgoedzoeker is pre-1.0 and under active development. Do not overinvest in backward compatibility unless asked.
 
-Erfgoedzoeker as a presentation layer consumes a "data layer", which is the term NDE uses for the API this app talks to. The data layer is currently protocol-agnostic and may end up being GraphQL, REST, or something else. Do not assume or hardcode GraphQL-specific behavior outside `src/app/api/graphql/`, which is today's implementation, not the contract.
+Erfgoedzoeker as a presentation layer consumes an "integration layer", which is the term NDE uses for the API this app talks to. The integration layer is currently protocol-agnostic and may end up being GraphQL, REST, or something else. Do not assume or hardcode GraphQL-specific behavior outside `src/app/api/graphql/`, which is today's implementation, not the contract.
 
 ## Monorepo Structure
 
@@ -60,7 +60,7 @@ The app must conform to **WCAG 2.2 Level AA** across the board.
 
 The VitePress site in `docs/guide/` (published at [docs.erfgoedzoeker.nl](https://docs.erfgoedzoeker.nl)) is the source of truth for developer-facing documentation.
 
-- When a change affects developer-facing behavior (config schema, widget/view APIs, the data layer contract), update the relevant page(s) in `docs/guide/` in the same change. Don't leave docs to a follow-up.
+- When a change affects developer-facing behavior (config schema, widget/view APIs, the integration layer contract), update the relevant page(s) in `docs/guide/` in the same change. Don't leave docs to a follow-up.
 - The configuration UI (what properties mean, how to use facets/views/widgets) is documented inside the Configurator app itself, don't duplicate it in `docs/guide/`.
 - Adding a new custom widget or view type needs a note in `docs/guide/custom-widgets.md` or `docs/guide/custom-views.md`.
 - Validate docs changes with `pnpm run docs:build` before considering the task done. VitePress will fail on broken links/structure.

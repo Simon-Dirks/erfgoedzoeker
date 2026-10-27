@@ -91,18 +91,18 @@ export const WidgetSchema = z
       .meta({
         title: 'Properties',
         description:
-          'Data layer properties that cause this widget to render. Example: show an image-gallery-widget for the associatedMedia property. If no properties are listed, the widget is always shown.',
+          'Integration layer properties that cause this widget to render. Example: show an image-gallery-widget for the associatedMedia property. If no properties are listed, the widget is always shown.',
       }),
     options: WidgetOptionsSchema.optional(),
     isFallback: z.boolean().optional().meta({
       title: 'Fallback widget',
       description:
-        'Use this widget for data layer properties that are not handled by other widgets.',
+        'Use this widget for integration layer properties that are not handled by other widgets.',
     }),
     hidden: z.boolean().optional().meta({
       title: 'Hidden',
       description:
-        'Hide this widget from visitors, even when its configured properties are present in the data layer.',
+        'Hide this widget from visitors, even when its configured properties are present in the integration layer.',
     }),
   })
   .meta({
@@ -115,7 +115,7 @@ export const NodePresentationConfigSchema = z
     widgets: z.array(WidgetSchema).meta({
       title: 'Widgets',
       description:
-        'Widgets are displayed in this order. A widget is shown for each of its configured data layer properties. For example, a map widget might be used to visualize data for the location, contentLocation, and locationCreated properties.',
+        'Widgets are displayed in this order. A widget is shown for each of its configured integration layer properties. For example, a map widget might be used to visualize data for the location, contentLocation, and locationCreated properties.',
     }),
     showArrowIndicator: z.boolean().optional().meta({
       title: 'Show arrow indicator on clickable objects',

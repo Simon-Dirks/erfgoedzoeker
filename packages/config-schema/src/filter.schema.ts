@@ -4,7 +4,7 @@ import { IconKeySchema } from './icon.schema';
 const baseFilterFields = {
   name: z.string().meta({
     title: 'Name',
-    description: 'Filter property name in the data layer.',
+    description: 'Filter property name in the integration layer.',
     examples: ['creator'],
   }),
   label: z.string().meta({

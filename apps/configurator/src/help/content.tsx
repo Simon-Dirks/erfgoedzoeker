@@ -167,8 +167,9 @@ export const isFallbackHelp = {
   title: 'Fallback widget',
   description: (
     <>
-      When enabled, this widget acts as a catch-all: it renders any data layer
-      property that has no dedicated widget assigned to it. The{' '}
+      When enabled, this widget acts as a catch-all: it renders any
+      integration layer property that has no dedicated widget assigned to
+      it. The{' '}
       <a
         className="link link-primary"
         href="https://docs.erfgoedzoeker.nl/guide/built-in-widgets.html#linkwidget"

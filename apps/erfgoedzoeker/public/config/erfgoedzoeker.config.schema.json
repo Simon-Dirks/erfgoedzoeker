@@ -15,7 +15,7 @@
         "type": {
           "default": "graphql",
           "title": "API type",
-          "description": "The protocol used by the data layer.",
+          "description": "The protocol used by the integration layer.",
           "type": "string",
           "enum": [
             "graphql",
@@ -24,7 +24,7 @@
           ]
         },
         "baseUrl": {
-          "title": "Data layer URL",
+          "title": "Integration layer URL",
           "examples": [
             "http://localhost:4000/graphql",
             "https://datalaag.erfgoedzoeker.nl/v1"
@@ -37,8 +37,8 @@
         "type"
       ],
       "additionalProperties": false,
-      "title": "Data layer",
-      "description": "Connection to the data layer."
+      "title": "Integration layer",
+      "description": "Connection to the integration layer."
     },
     "filters": {
       "type": "array",
@@ -50,7 +50,7 @@
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "Filter property name in the data layer.",
+                "description": "Filter property name in the integration layer.",
                 "examples": [
                   "creator"
                 ]
@@ -93,7 +93,7 @@
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "Filter property name in the data layer.",
+                "description": "Filter property name in the integration layer.",
                 "examples": [
                   "creator"
                 ]
@@ -136,7 +136,7 @@
               "name": {
                 "type": "string",
                 "title": "Name",
-                "description": "Filter property name in the data layer.",
+                "description": "Filter property name in the integration layer.",
                 "examples": [
                   "creator"
                 ]
@@ -294,7 +294,7 @@
               },
               "properties": {
                 "title": "Properties",
-                "description": "Data layer properties that cause this widget to render. Example: show an image-gallery-widget for the associatedMedia property. If no properties are listed, the widget is always shown.",
+                "description": "Integration layer properties that cause this widget to render. Example: show an image-gallery-widget for the associatedMedia property. If no properties are listed, the widget is always shown.",
                 "type": "array",
                 "items": {
                   "type": "string",
@@ -349,12 +349,12 @@
               },
               "isFallback": {
                 "title": "Fallback widget",
-                "description": "Use this widget for data layer properties that are not handled by other widgets.",
+                "description": "Use this widget for integration layer properties that are not handled by other widgets.",
                 "type": "boolean"
               },
               "hidden": {
                 "title": "Hidden",
-                "description": "Hide this widget from visitors, even when its configured properties are present in the data layer.",
+                "description": "Hide this widget from visitors, even when its configured properties are present in the integration layer.",
                 "type": "boolean"
               }
             },
@@ -367,7 +367,7 @@
             "description": "Component that displays one or more data properties."
           },
           "title": "Widgets",
-          "description": "Widgets are displayed in this order. A widget is shown for each of its configured data layer properties. For example, a map widget might be used to visualize data for the location, contentLocation, and locationCreated properties."
+          "description": "Widgets are displayed in this order. A widget is shown for each of its configured integration layer properties. For example, a map widget might be used to visualize data for the location, contentLocation, and locationCreated properties."
         }
       },
       "required": [
@@ -399,7 +399,7 @@
   ],
   "additionalProperties": false,
   "title": "Erfgoedzoeker configuration",
-  "description": "Settings for how Erfgoedzoeker presents information from the data layer to end users.",
+  "description": "Settings for how Erfgoedzoeker presents information from the integration layer to end users.",
   "$defs": {
     "iconKey": {
       "type": "string",
@@ -504,7 +504,7 @@
               },
               "properties": {
                 "title": "Properties",
-                "description": "Data layer properties that cause this widget to render. Example: show an image-gallery-widget for the associatedMedia property. If no properties are listed, the widget is always shown.",
+                "description": "Integration layer properties that cause this widget to render. Example: show an image-gallery-widget for the associatedMedia property. If no properties are listed, the widget is always shown.",
                 "type": "array",
                 "items": {
                   "type": "string",
@@ -559,12 +559,12 @@
               },
               "isFallback": {
                 "title": "Fallback widget",
-                "description": "Use this widget for data layer properties that are not handled by other widgets.",
+                "description": "Use this widget for integration layer properties that are not handled by other widgets.",
                 "type": "boolean"
               },
               "hidden": {
                 "title": "Hidden",
-                "description": "Hide this widget from visitors, even when its configured properties are present in the data layer.",
+                "description": "Hide this widget from visitors, even when its configured properties are present in the integration layer.",
                 "type": "boolean"
               }
             },
@@ -577,7 +577,7 @@
             "description": "Component that displays one or more data properties."
           },
           "title": "Widgets",
-          "description": "Widgets are displayed in this order. A widget is shown for each of its configured data layer properties. For example, a map widget might be used to visualize data for the location, contentLocation, and locationCreated properties."
+          "description": "Widgets are displayed in this order. A widget is shown for each of its configured integration layer properties. For example, a map widget might be used to visualize data for the location, contentLocation, and locationCreated properties."
         },
         "showArrowIndicator": {
           "title": "Show arrow indicator on clickable objects",

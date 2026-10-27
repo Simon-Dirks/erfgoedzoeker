@@ -40,7 +40,7 @@ export const ErfgoedzoekerConfigSchema = z
   .meta({
     title: 'Erfgoedzoeker configuration',
     description:
-      'Settings for how Erfgoedzoeker presents information from the data layer to end users.',
+      'Settings for how Erfgoedzoeker presents information from the integration layer to end users.',
   });
 
 export type ErfgoedzoekerConfig = z.infer<typeof ErfgoedzoekerConfigSchema>;
