@@ -74,12 +74,19 @@
             [pageSize]="store.pageSize()"
           />
         }
-      } @else if (!store.loading() && store.searchTerm()) {
+      } @else if (
+        !store.loading() &&
+        (store.searchTerm() || filterStore.activeFilterCount() > 0)
+      ) {
         <div
           tabindex="-1"
           class="text-center py-12 text-base-content/60 outline-none"
         >
-          <p>Geen resultaten gevonden voor "{{ store.searchTerm() }}"</p>
+          @if (store.searchTerm()) {
+            <p>Geen resultaten gevonden voor "{{ store.searchTerm() }}"</p>
+          } @else {
+            <p>Geen resultaten gevonden voor de geselecteerde filters</p>
+          }
         </div>
       }
     </div>
