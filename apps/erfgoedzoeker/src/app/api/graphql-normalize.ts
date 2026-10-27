@@ -155,7 +155,7 @@ export function toCreativeWorkWhere(filters: Filters): CreativeWorkWhere {
       if (value.size === 0) continue;
 
       // TODO: Find a more sustainable/generic way to handle boolean filters
-      if (filterName === 'hasMedia') {
+      if (filterName === 'hasMedia' || filterName === 'hasCoordinates') {
         where[filterName] = value.has('true');
         continue;
       }
