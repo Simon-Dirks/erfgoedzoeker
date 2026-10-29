@@ -5,12 +5,10 @@ on:
 
 jobs:
   test:
-    if: github.ref == 'refs/heads/rest'
     uses: ./.github/workflows/test.yml
 
   build-and-deploy:
     needs: test
-    if: github.ref == 'refs/heads/rest'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
