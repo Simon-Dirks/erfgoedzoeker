@@ -32,6 +32,7 @@ import { ResultsCount } from './results-count/results-count';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchSort } from './search-sort/search-sort';
 import { ViewSwitcherComponent } from './view-switcher/view-switcher.component';
+import { WipBannerComponent } from '../../ui/wip-banner/wip-banner.component';
 
 @Component({
   selector: 'app-search-page',
@@ -47,7 +48,8 @@ import { ViewSwitcherComponent } from './view-switcher/view-switcher.component';
     ViewSwitcherComponent,
     HeaderBannerComponent,
     ErrorAlertComponent,
-  ],
+    WipBannerComponent
+],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './search-page.component.html',
 })

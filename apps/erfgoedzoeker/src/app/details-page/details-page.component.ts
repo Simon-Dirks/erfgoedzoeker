@@ -25,6 +25,7 @@ import { PageTitleService } from '../ui/page-title/page-title.service';
 import { BackToSearchComponent } from './back-to-search/back-to-search.component';
 import { BreadcrumbService } from './breadcrumbs/breadcrumb.service';
 import { BreadcrumbComponent } from './breadcrumbs/breadcrumb/breadcrumb.component';
+import { WipBannerComponent } from '../ui/wip-banner/wip-banner.component';
 
 @Component({
   selector: 'app-details-page',
@@ -35,7 +36,8 @@ import { BreadcrumbComponent } from './breadcrumbs/breadcrumb/breadcrumb.compone
     BackToSearchComponent,
     LoadingSpinnerComponent,
     ErrorAlertComponent,
-  ],
+    WipBannerComponent
+],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './details-page.component.html',
 })
