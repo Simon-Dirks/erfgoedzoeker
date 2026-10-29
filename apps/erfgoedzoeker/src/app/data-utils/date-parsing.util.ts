@@ -28,7 +28,22 @@ export function parseIsoDate(value: string): ParsedIsoDate | undefined {
     return undefined;
   }
 
-  return { year: (isNegativeYear ? -1 : 1) * Number(yearPart), month, day };
+  const year = (isNegativeYear ? -1 : 1) * Number(yearPart);
+  if (!Number.isFinite(year)) {
+    return undefined;
+  }
+
+  return { year, month, day };
+}
+
+/**
+ * Builds a UTC `Date` for the given year/month/day, or `undefined` if the
+ * year is outside the range that `Date` can handle, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#the_epoch_timestamps_and_invalid_date
+ */
+function toUtcDate(year: number, month = 1, day = 1): Date | undefined {
+  const date = new Date(0);
+  date.setUTCFullYear(year, month - 1, day);
+  return Number.isNaN(date.getTime()) ? undefined : date;
 }
 
 export function formatParsedIsoDate(
@@ -44,19 +59,43 @@ export function formatParsedIsoDate(
   if (day) options.day = 'numeric';
   if (year <= 0) options.era = 'short';
 
-  const date = new Date(0);
-  date.setUTCFullYear(year, (month ?? 1) - 1, day ?? 1);
+  const date = toUtcDate(year, month, day);
+  if (!date) {
+    return formatIsoYear(parsed, locale);
+  }
 
   return new Intl.DateTimeFormat(locale, options).format(date);
 }
 
 export function formatIsoYear(parsed: ParsedIsoDate, locale: string): string {
-  const date = new Date(0);
-  date.setUTCFullYear(parsed.year, 0, 1);
+  const date = toUtcDate(parsed.year);
+  if (!date) {
+    return formatYearOutsideJsDateRange(parsed.year, locale);
+  }
 
   return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     era: parsed.year <= 0 ? 'short' : undefined,
     timeZone: 'UTC',
   }).format(date);
+}
+
+function formatYearOutsideJsDateRange(year: number, locale: string): string {
+  const magnitude = new Intl.NumberFormat(locale, {
+    useGrouping: false,
+  }).format(Math.abs(year));
+
+  if (year > 0) return magnitude;
+
+  const placeholder = new Date(0);
+  placeholder.setUTCFullYear(-1, 0, 1);
+  const parts = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    era: 'short',
+    timeZone: 'UTC',
+  }).formatToParts(placeholder);
+
+  return parts
+    .map((part) => (part.type === 'year' ? magnitude : part.value))
+    .join('');
 }
