@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.19.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.18.0...erfgoedzoeker-v0.19.0) (2026-10-29)
+
+
+### Features
+
+* add acknowledgements to home page ([76120b0](https://github.com/Simon-Dirks/erfgoedzoeker/commit/76120b04535b5c5444f0a15b23207d4939a23c57))
+* add meta tags ([c1a06bf](https://github.com/Simon-Dirks/erfgoedzoeker/commit/c1a06bf307e9bb5fcd2d5940dafa53839ceeda0d))
+* add work-in-progress banner ([f00bdd5](https://github.com/Simon-Dirks/erfgoedzoeker/commit/f00bdd5708623bd85d3b2107d8185631ca02bc8e))
+* block search engine crawling ([c63d542](https://github.com/Simon-Dirks/erfgoedzoeker/commit/c63d542b9afa60e92c72a22fadbbcb8cfa02970c))
+* dynamically add padding at bottom of page based on wip-banner height ([fea953c](https://github.com/Simon-Dirks/erfgoedzoeker/commit/fea953c0aedd4ab069c1e715e23e0528af693409))
+* tweak acknowledgements styling ([b9f363d](https://github.com/Simon-Dirks/erfgoedzoeker/commit/b9f363d1536a2bc81d8436552b3468fa5bf41045))
+* update acknowledgements text ([a97cb4c](https://github.com/Simon-Dirks/erfgoedzoeker/commit/a97cb4cffd370e10e592a59192111c2222fc0bb9))
+* update acknowledgements text ([092b473](https://github.com/Simon-Dirks/erfgoedzoeker/commit/092b4732e28fd97f0f609af52ed4b0912d4cdf1e))
+* update banner GitHub link ([24a452b](https://github.com/Simon-Dirks/erfgoedzoeker/commit/24a452b7de1b1c051da3711db9a274f8294eb229))
+* update GraphQL schema ([814f0dc](https://github.com/Simon-Dirks/erfgoedzoeker/commit/814f0dc710fb34344b47111de48ddbd43848a8a7))
+* use live GraphQL endpoint ([52e8c57](https://github.com/Simon-Dirks/erfgoedzoeker/commit/52e8c573125cf76eb14ad1e4c0ddb99a29a88210))
+
+
+### Bug Fixes
+
+* resolve issue with parsing dates outside of JS Date range ([0275dce](https://github.com/Simon-Dirks/erfgoedzoeker/commit/0275dce99de49efb34ecb64744b8a8824ee68dea))
+* tweak acknowledgements text opacity for WCAG contrast requirements ([c2f8611](https://github.com/Simon-Dirks/erfgoedzoeker/commit/c2f861176c6d7c70eaf4616fb2dacc24c93baed2))
+
 ## [0.18.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.17.0...erfgoedzoeker-v0.18.0) (2026-10-27)
 
 
