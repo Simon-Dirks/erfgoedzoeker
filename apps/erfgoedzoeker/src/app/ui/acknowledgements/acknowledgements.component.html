@@ -1,15 +1,17 @@
 <section class="w-full p-6 flex flex-col items-center gap-4 bg-app-bg-dark">
-  <span class="opacity-70 text-sm text-center"
+  <span class="opacity-70 text-xs text-center"
     >Erfgoedzoeker is mede mogelijk gemaakt door de steun en samenwerking van:
   </span>
-  <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+  <ul
+    class="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-8 gap-y-3 sm:gap-y-5"
+  >
     @for (ack of acknowledgements; track ack.name) {
       <li>
         <a [href]="ack.url" target="_blank">
           <img
             [src]="ack.logoSrc"
             [alt]="ack.name + ' logo'"
-            class="h-11 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+            class="h-8 sm:h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
           />
         </a>
       </li>
