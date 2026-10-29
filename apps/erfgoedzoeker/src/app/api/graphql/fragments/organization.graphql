@@ -7,7 +7,10 @@ fragment OrganizationFields on Organization {
   location {
     ...PlaceReferenceFields
   }
-  dataset {
-    ...DatasetReferenceFields
+  alternateName {
+    value
+    language
   }
+  authority
+  fetchedAt
 }

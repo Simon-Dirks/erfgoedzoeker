@@ -347,7 +347,9 @@ export type OccupationWhere = {
 
 export type Organization = {
   __typename?: 'Organization';
-  dataset?: Maybe<DatasetReference>;
+  alternateName: Array<LanguageString>;
+  authority?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['String']['output']>;
   id: Scalars['IRI']['output'];
   location: Array<PlaceReference>;
   name: Array<LanguageString>;
@@ -355,15 +357,15 @@ export type Organization = {
 
 /** A condition on exactly one field. Used inside `or`, where the criteria are alternatives. */
 export type OrganizationCriterion = {
-  dataset?: InputMaybe<DatasetFilter>;
+  authority?: InputMaybe<KeywordFilter>;
+  fetchedAt?: InputMaybe<DateRange>;
   id?: InputMaybe<OrganizationFilter>;
   location?: InputMaybe<PlaceFilter>;
 };
 
 export type OrganizationFacets = {
   __typename?: 'OrganizationFacets';
-  dataset: Array<IriBucket>;
-  location: Array<IriBucket>;
+  authority: Array<ValueBucket>;
 };
 
 /** Matches a field holding IRIs of Organization. */
@@ -378,7 +380,9 @@ export type OrganizationOrderBy = {
 
 export type OrganizationReference = PersonOrOrganizationReference & {
   __typename?: 'OrganizationReference';
-  dataset?: Maybe<DatasetReference>;
+  alternateName: Array<LanguageString>;
+  authority?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   location: Array<PlaceReference>;
   name: Array<LanguageString>;
@@ -392,6 +396,7 @@ export type OrganizationSearchResult = {
 };
 
 export enum OrganizationSortField {
+  FetchedAt = 'FETCHED_AT',
   Name = 'NAME',
   Relevance = 'RELEVANCE'
 }
@@ -400,7 +405,8 @@ export enum OrganizationSortField {
 export type OrganizationWhere = {
   /** Further groups of conditions, all of which apply. The way to carry a second `or` disjunction alongside the first. */
   and?: InputMaybe<Array<OrganizationWhere>>;
-  dataset?: InputMaybe<DatasetFilter>;
+  authority?: InputMaybe<KeywordFilter>;
+  fetchedAt?: InputMaybe<DateRange>;
   id?: InputMaybe<OrganizationFilter>;
   location?: InputMaybe<PlaceFilter>;
   /** A disjunction: a document matches when ANY of these criteria holds. Combined with the sibling keys by AND, so it widens across fields without widening the query as a whole. */
@@ -459,6 +465,9 @@ export type PersonOrOrganizationFilter = {
 
 /** A reference whose target is Person or Organization; select `__typename` to tell which, and the fields of one through an inline fragment on its type. */
 export type PersonOrOrganizationReference = {
+  alternateName: Array<LanguageString>;
+  authority?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
 };
@@ -466,6 +475,9 @@ export type PersonOrOrganizationReference = {
 /** A reference whose target is Person or Organization, but that no collection this API serves holds – a dangling IRI, or one whose lookup failed – so only its `id` is known. */
 export type PersonOrOrganizationUnresolvedReference = PersonOrOrganizationReference & {
   __typename?: 'PersonOrOrganizationUnresolvedReference';
+  alternateName: Array<LanguageString>;
+  authority?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
 };
@@ -574,7 +586,7 @@ export type PlaceReference = {
   addressRegion: Array<Scalars['String']['output']>;
   authority?: Maybe<Scalars['String']['output']>;
   fetchedAt?: Maybe<Scalars['String']['output']>;
-  id: Scalars['IRI']['output'];
+  id?: Maybe<Scalars['IRI']['output']>;
   latitude?: Maybe<Scalars['Float']['output']>;
   longitude?: Maybe<Scalars['Float']['output']>;
   name: Array<LanguageString>;

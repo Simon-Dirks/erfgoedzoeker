@@ -41,7 +41,7 @@ query ReferringNodes($id: IRI!, $perPage: Int) {
     }
   }
   organizations(
-    where: { or: [{ dataset: { in: [$id] } }, { location: { in: [$id] } }] }
+    where: { location: { in: [$id] } }
     page: 1
     perPage: $perPage
   ) {

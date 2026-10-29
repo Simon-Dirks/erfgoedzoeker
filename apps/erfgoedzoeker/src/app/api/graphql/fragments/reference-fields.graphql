@@ -49,9 +49,12 @@ fragment OrganizationReferenceFields on OrganizationReference {
   location {
     ...PlaceReferenceFields
   }
-  dataset {
-    ...DatasetReferenceFields
+  alternateName {
+    value
+    language
   }
+  authority
+  fetchedAt
 }
 
 fragment PersonOrOrganizationReferenceFields on PersonOrOrganizationReference {
