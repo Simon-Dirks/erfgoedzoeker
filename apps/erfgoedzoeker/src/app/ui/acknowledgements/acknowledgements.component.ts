@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 interface Acknowledgement {
@@ -9,7 +8,7 @@ interface Acknowledgement {
 
 @Component({
   selector: 'app-acknowledgements',
-  imports: [NgOptimizedImage],
+  imports: [],
   templateUrl: './acknowledgements.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
