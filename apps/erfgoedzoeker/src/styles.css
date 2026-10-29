@@ -98,6 +98,11 @@ body {
   @apply min-h-screen bg-app-bg;
 }
 
+:root {
+  /* Default height for the work-in-progress banner, this is overridden by the component */
+  --wip-banner-height: 3.5rem;
+}
+
 .btn,
 .select {
   box-shadow: none;
