@@ -23,6 +23,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build shared packages
+        run: pnpm --filter @erfgoedzoeker/config-schema --filter @erfgoedzoeker/icon-registry run build
+
       - name: Build app
         run: pnpm run build
 
