@@ -1,3 +1,4 @@
+import { DecimalPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,7 +12,7 @@ import { FilterPanelComponent } from '../filter-panel/filter-panel.component';
 
 @Component({
   selector: 'app-facet-filter',
-  imports: [FilterPanelComponent],
+  imports: [FilterPanelComponent, DecimalPipe],
   templateUrl: './facet-filter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,4 +1,8 @@
-<app-filter-panel [label]="label()" [icon]="icon()" [activeBadge]="activeBadge()">
+<app-filter-panel
+  [label]="label()"
+  [icon]="icon()"
+  [activeBadge]="activeBadge()"
+>
   <div class="mb-3 relative">
     <input
       type="text"
@@ -22,7 +26,9 @@
             {{ formatFacetLabel(facetItem) }}
           </span>
         </div>
-        <span class="text-base-content/60 text-xs">{{ facetItem.count }}</span>
+        <span class="text-base-content/60 text-xs">{{
+          facetItem.count | number: '1.0-0' : 'nl-NL'
+        }}</span>
       </label>
     }
   </div>
