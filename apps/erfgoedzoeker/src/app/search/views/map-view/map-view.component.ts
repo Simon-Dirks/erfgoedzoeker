@@ -103,7 +103,8 @@ export class MapViewComponent
       );
     });
 
-    this.markerCluster = L.markerClusterGroup({
+    const leafletWithPlugin = (window as Window & { L: typeof L }).L;
+    this.markerCluster = leafletWithPlugin.markerClusterGroup({
       showCoverageOnHover: false,
       spiderfyDistanceMultiplier: 1.5,
     });
