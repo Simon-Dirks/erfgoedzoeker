@@ -1,24 +1,24 @@
-@if (hasManifest()) {
+@if (displayMode() === 'iiif') {
   @switch (viewerType()) {
     @case ('tify') {
       <app-tify-iiif-widget
         [node]="node()"
-        [property]="property()"
+        [property]="iiifProperty()"
         [options]="options()"
       />
     }
     @case ('universalviewer') {
       <app-universalviewer-iiif-widget
         [node]="node()"
-        [property]="property()"
+        [property]="iiifProperty()"
         [options]="options()"
       />
     }
   }
-} @else {
+} @else if (displayMode() === 'image') {
   <app-image-gallery-widget
     [node]="node()"
-    property="associatedMedia"
+    [property]="imageProperty()"
     [options]="options()"
   />
 }

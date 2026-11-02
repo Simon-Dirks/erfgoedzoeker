@@ -4,4 +4,6 @@ export type IIIFViewerType = 'tify' | 'universalviewer';
 
 export interface MediaWidgetOptions extends WidgetOptions {
   iiifViewer?: IIIFViewerType;
+  iiifProperty?: string;
+  imageProperty?: string;
 }

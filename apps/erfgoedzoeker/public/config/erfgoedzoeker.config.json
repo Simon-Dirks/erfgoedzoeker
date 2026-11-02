@@ -340,12 +340,14 @@
       },
       {
         "id": "media",
-        "properties": ["iiifManifest"],
+        "properties": ["iiifManifest", "associatedMedia"],
         "componentId": "media-widget",
         "options": {
           "showPropertyLabel": false,
           "position": "left",
-          "iiifViewer": "tify"
+          "iiifViewer": "tify",
+          "iiifProperty": "iiifManifest",
+          "imageProperty": "associatedMedia"
         }
       },
       {

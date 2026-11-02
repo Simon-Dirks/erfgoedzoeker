@@ -133,7 +133,7 @@ Geographic visualization with [Leaflet](https://github.com/Leaflet/Leaflet).
 
 Orchestrator widget that selects the appropriate media viewer based on available data.
 
-**Example Properties**: `associatedMedia`
+**Example Properties**: `iiifManifest`, `associatedMedia`
 
 **Automatically selects**:
 
@@ -145,21 +145,27 @@ Orchestrator widget that selects the appropriate media viewer based on available
 - `iiifViewer` (optional): Specify which IIIF viewer to use when a manifest is available
   - `'tify'` (default) - Tify IIIF viewer
   - `'universalviewer'` - UniversalViewer IIIF viewer
+- `iiifProperty` (optional, defaults to `iiifManifest`): Integration layer property containing the IIIF Presentation manifest
+- `imageProperty` (optional, defaults to `associatedMedia`): Integration layer property containing images to show when no IIIF manifest is available
 
 **Example**:
 
 ```ts
 {
   id: 'media',
-  properties: ['associatedMedia'],
+  properties: ['iiifManifest', 'associatedMedia'],
   componentId: 'media-widget',
   options: {
     showPropertyLabel: false,
     position: 'left',
     iiifViewer: 'tify',
+    iiifProperty: 'iiifManifest',
+    imageProperty: 'associatedMedia',
   },
 }
 ```
+
+The widget's `properties` list must include both configured property names so the widget can render for either kind of media. If a manifest is present, the IIIF viewer takes precedence over the image gallery.
 
 ## JsonWidget
 
