@@ -18,9 +18,15 @@
       <span>{{ label() }}</span>
     </span>
     @if (activeBadge()) {
-      <span class="badge badge-primary badge-sm lowercase">{{
-        activeBadge()
-      }}</span>
+      <button
+        type="button"
+        class="badge badge-primary badge-sm relative z-10 cursor-pointer gap-1 lowercase hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-content"
+        [attr.aria-label]="'Wis filter ' + label() + ' (' + activeBadge() + ')'"
+        (click)="clear.emit()"
+      >
+        <span>{{ activeBadge() }}</span>
+        <ng-icon [svg]="featherX" size="12" aria-hidden="true" />
+      </button>
     }
   </div>
   <div class="collapse-content min-w-0">

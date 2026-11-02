@@ -34,6 +34,12 @@ export class FilterStore {
     this.updateUrlWithFilters(filters);
   }
 
+  clearFilter(name: string): void {
+    const filters = deepCopyFilters(this.selectedFilters());
+    delete filters[name];
+    this.apply(filters);
+  }
+
   withForcedFilters(forcedFilters?: Record<string, string[]>): Filters {
     if (!forcedFilters || Object.keys(forcedFilters).length === 0) {
       return this.selectedFilters();
@@ -56,10 +62,7 @@ export class FilterStore {
   }
 
   clearFilters(): void {
-    this.router.navigate([], {
-      queryParams: { filters: undefined, page: 1 },
-      queryParamsHandling: 'merge',
-    });
+    this.apply({});
   }
 
   hasActiveFilters(): boolean {

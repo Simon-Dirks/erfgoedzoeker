@@ -6,6 +6,7 @@
   [sidebarTitleBadge]="
     activeFilterCount() ? activeFilterCount() + ' actief' : undefined
   "
+  (clearAllFilters)="filterStore.clearFilters()"
 >
   <div drawer-content class="pb-[var(--wip-banner-height)]">
     <app-header-banner />

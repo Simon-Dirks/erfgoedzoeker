@@ -1,21 +1,23 @@
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   effect,
   ElementRef,
   input,
+  output,
   signal,
   viewChild,
-  ChangeDetectionStrategy,
 } from '@angular/core';
+import { NgIcon } from '@ng-icons/core';
 import { featherX } from '@ng-icons/feather-icons';
 import { DrawerToggleButtonComponent } from './drawer-toggle-button/drawer-toggle-button.component';
 
 @Component({
   selector: 'app-drawer-layout',
 
-  imports: [CommonModule, DrawerToggleButtonComponent],
+  imports: [CommonModule, DrawerToggleButtonComponent, NgIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './drawer-layout.component.html',
 })
@@ -25,6 +27,7 @@ export class DrawerLayoutComponent implements AfterViewInit {
   forceOpen = input<boolean>(true);
   sidebarTitle = input<string>('');
   sidebarTitleBadge = input<string>();
+  clearAllFilters = output<void>();
 
   drawerCheckbox = viewChild<ElementRef<HTMLInputElement>>('drawerCheckbox');
 

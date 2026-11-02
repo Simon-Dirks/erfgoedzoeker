@@ -24,9 +24,7 @@ export class RangeFilterService {
   }
 
   clearRange(name: string): void {
-    const currentFilters = deepCopyFilters(this.filterStore.selectedFilters());
-    delete currentFilters[name];
-    this.filterStore.apply(currentFilters);
+    this.filterStore.clearFilter(name);
   }
 
   getRange(name: string): RangeValue {

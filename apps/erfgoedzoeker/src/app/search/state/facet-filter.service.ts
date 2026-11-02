@@ -28,6 +28,10 @@ export class FacetFilterService {
     this.filterStore.apply(filters);
   }
 
+  clearFacet(name: string): void {
+    this.filterStore.clearFilter(name);
+  }
+
   isFacetSelected(name: string, value: string): boolean {
     const filterValue = this.filterStore.selectedFilters()[name];
     return isFacetValue(filterValue) ? filterValue.has(value) : false;

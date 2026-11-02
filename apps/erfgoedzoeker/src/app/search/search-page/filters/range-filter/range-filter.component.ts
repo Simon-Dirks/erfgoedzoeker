@@ -37,6 +37,10 @@ export class RangeFilterComponent {
     this.rangeFilter.setRange(this.name(), min, value || undefined);
   }
 
+  clearFilter(): void {
+    this.rangeFilter.clearRange(this.name());
+  }
+
   onKeydown(event: KeyboardEvent, target: EventTarget | null): void {
     if (event.key === 'Enter' && target instanceof HTMLInputElement) {
       target.blur();

@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
+import { featherX } from '@ng-icons/feather-icons';
 
 @Component({
   selector: 'app-filter-panel',
@@ -12,4 +18,7 @@ export class FilterPanelComponent {
   label = input.required<string>();
   icon = input<string | undefined>(undefined);
   activeBadge = input<string | undefined>(undefined);
+  clear = output<void>();
+
+  protected readonly featherX = featherX;
 }

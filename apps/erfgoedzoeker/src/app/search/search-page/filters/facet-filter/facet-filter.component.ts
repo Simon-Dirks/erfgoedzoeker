@@ -32,6 +32,10 @@ export class FacetFilterComponent {
     this.facetFilter.toggleFacet(this.facet().name, String(value));
   }
 
+  clearFilter(): void {
+    this.facetFilter.clearFacet(this.facet().name);
+  }
+
   isSelected(value: string | boolean): boolean {
     return this.facetFilter.isFacetSelected(this.facet().name, String(value));
   }

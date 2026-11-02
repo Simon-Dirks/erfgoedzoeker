@@ -20,9 +20,17 @@
             <h2 class="text-lg font-bold">{{ sidebarTitle() }}</h2>
 
             @if (sidebarTitleBadge()) {
-              <span class="badge badge-primary badge-sm">{{
-                sidebarTitleBadge()
-              }}</span>
+              <button
+                type="button"
+                class="badge badge-primary badge-sm cursor-pointer gap-1 hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-content"
+                [attr.aria-label]="
+                  'Wis alle filters (' + sidebarTitleBadge() + ')'
+                "
+                (click)="clearAllFilters.emit()"
+              >
+                <span>{{ sidebarTitleBadge() }}</span>
+                <ng-icon [svg]="featherX" size="12" aria-hidden="true" />
+              </button>
             }
           </div>
           <app-drawer-toggle-button
