@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.20.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.19.0...erfgoedzoeker-v0.20.0) (2026-11-04)
+
+
+### Features
+
+* clear (all) filters through UI ([08ff930](https://github.com/Simon-Dirks/erfgoedzoeker/commit/08ff930f6a1a4d6490b5dd4ea11c5d25f01e0843))
+* format facet counts ([e8b0250](https://github.com/Simon-Dirks/erfgoedzoeker/commit/e8b0250f14062ee0cdccdbb616fab9880ad9683d))
+* tweak size property label ([160aeda](https://github.com/Simon-Dirks/erfgoedzoeker/commit/160aedaaab90b97a8a84103e966cfcc279f0564c))
+* use associatedMedia if no IIIF manifest is present in media widget ([2fc8a53](https://github.com/Simon-Dirks/erfgoedzoeker/commit/2fc8a5331008bd61729c649bc03e23d6849a901e))
+
+
+### Bug Fixes
+
+* fix issue with Leaflet marker cluster group plugin not working in production environments ([a2c8cac](https://github.com/Simon-Dirks/erfgoedzoeker/commit/a2c8cac0ff1a25547e1d175959841c20bba64713))
+
 ## [0.19.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.18.0...erfgoedzoeker-v0.19.0) (2026-10-29)
 
 
