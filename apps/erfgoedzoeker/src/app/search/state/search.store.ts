@@ -169,7 +169,10 @@ export class SearchStore {
           console.log('Search results:', response);
         },
         error: (err) => {
-          this.error.set('Failed to search: ' + err.message);
+          this.error.set(
+            'De server is tijdelijk niet beschikbaar, dus we konden je zoekopdracht niet uitvoeren. Probeer het later opnieuw.',
+          );
+          console.error('Search error:', err);
           this.loading.set(false);
           this.results.set([]);
           this.totalResults.set(0);
