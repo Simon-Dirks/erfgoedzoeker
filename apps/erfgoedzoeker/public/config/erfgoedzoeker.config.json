@@ -332,6 +332,15 @@
         }
       },
       {
+        "id": "alternate-name",
+        "properties": ["alternateName"],
+        "componentId": "text-widget",
+        "options": {
+          "propertyLabel": "Alternatieve naam",
+          "largeFont": true
+        }
+      },
+      {
         "id": "text",
         "properties": ["text"],
         "componentId": "text-widget",
