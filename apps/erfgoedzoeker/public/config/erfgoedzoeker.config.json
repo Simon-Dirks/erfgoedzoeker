@@ -305,7 +305,9 @@
           "iiifManifest",
           "associatedMedia",
           "type",
-          "hasCoordinates"
+          "hasCoordinates",
+          "authority",
+          "fetchedAt"
         ],
         "componentId": "text-widget",
         "hidden": true
