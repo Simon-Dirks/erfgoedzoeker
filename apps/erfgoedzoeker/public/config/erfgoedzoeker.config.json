@@ -7,14 +7,33 @@
   "filters": [
     {
       "name": "dataset",
-      "label": "Collectie",
+      "label": "Organisatie",
       "icon": "archive",
       "type": "facet"
     },
     {
-      "name": "contentLocation",
-      "label": "Locatie",
-      "icon": "map-pin",
+      "name": "type",
+      "label": "Soort object",
+      "icon": "grid",
+      "hidden": true,
+      "type": "facet"
+    },
+    {
+      "name": "additionalType",
+      "label": "Soort object",
+      "icon": "grid",
+      "type": "facet"
+    },
+    {
+      "name": "about",
+      "label": "Onderwerp",
+      "icon": "info",
+      "type": "facet"
+    },
+    {
+      "name": "material",
+      "label": "Materiaal",
+      "icon": "package",
       "type": "facet"
     },
     {
@@ -27,10 +46,23 @@
       "name": "contributor",
       "label": "Bijdrager",
       "icon": "user",
-      "type": "facet"
+      "type": "facet",
+      "hidden": true
+    },
+    {
+      "name": "dateCreated",
+      "label": "Vervaardigingsdatum",
+      "icon": "calendar",
+      "type": "dateRange"
     },
     {
       "name": "locationCreated",
+      "label": "Vervaardigingsplaats",
+      "icon": "map-pin",
+      "type": "facet"
+    },
+    {
+      "name": "contentLocation",
       "label": "Locatie",
       "icon": "map-pin",
       "type": "facet"
@@ -47,25 +79,7 @@
       "icon": "tag",
       "type": "facet"
     },
-    {
-      "name": "material",
-      "label": "Materiaal",
-      "icon": "package",
-      "type": "facet"
-    },
-    {
-      "name": "type",
-      "label": "Soort",
-      "icon": "grid",
-      "hidden": true,
-      "type": "facet"
-    },
-    {
-      "name": "additionalType",
-      "label": "Soort",
-      "icon": "grid",
-      "type": "facet"
-    },
+
     {
       "name": "publisher",
       "label": "Uitgever",
@@ -78,12 +92,6 @@
       "icon": "file-text",
       "type": "facet",
       "hidden": true
-    },
-    {
-      "name": "about",
-      "label": "Over",
-      "icon": "info",
-      "type": "facet"
     },
     {
       "name": "hasMedia",
@@ -103,12 +111,6 @@
       "label": "-",
       "hidden": true,
       "type": "facet"
-    },
-    {
-      "name": "dateCreated",
-      "label": "Datum vervaardiging",
-      "icon": "calendar",
-      "type": "dateRange"
     }
   ],
   "views": {
