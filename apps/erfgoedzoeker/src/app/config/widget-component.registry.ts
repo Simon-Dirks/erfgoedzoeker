@@ -2,7 +2,6 @@ import { Type } from '@angular/core';
 import { WidgetComponentKey } from '@erfgoedzoeker/config-schema';
 import { BaseWidget } from '../widgets/base-widget';
 import { AddressWidget } from '../widgets/domain-specific/address-widget/address-widget.component';
-import { CreatorWidget } from '../widgets/domain-specific/creator-widget/creator-widget.component';
 import { DatasetWidget } from '../widgets/domain-specific/dataset-widget/dataset-widget.component';
 import { DateWidget } from '../widgets/domain-specific/date-widget/date-widget.component';
 import { ImageGalleryWidget } from '../widgets/generic/image-gallery-widget/image-gallery-widget.component';
@@ -27,7 +26,6 @@ export const WIDGET_COMPONENT_REGISTRY: Record<
   'map-widget': MapWidget,
   'media-widget': MediaWidget,
   'dataset-widget': DatasetWidget,
-  'creator-widget': CreatorWidget,
   'address-widget': AddressWidget,
   'date-widget': DateWidget,
   'referring-nodes-widget': ReferringNodesWidget,

@@ -11,7 +11,6 @@ export const WidgetComponentKeySchema = z
     'map-widget',
     'media-widget',
     'dataset-widget',
-    'creator-widget',
     'address-widget',
     'date-widget',
     'referring-nodes-widget',

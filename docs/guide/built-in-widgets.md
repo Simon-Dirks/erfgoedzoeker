@@ -285,25 +285,3 @@ Shows [dataset](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf) infor
   },
 }
 ```
-
-## CreatorWidget
-
-**Component ID**: `creator-widget`
-
-Shows the [creator](https://docs.nde.nl/schema-profile/#CreativeWork-creator) of a `CreativeWork`, including the creator's role (e.g. "fotograaf"). Reuses [`LinkWidget`](#linkwidget) internally for the creator links.
-
-**Example Properties**: `creator`
-
-**Example**:
-
-```ts
-{
-  id: 'creator',
-  properties: ['creator'],
-  componentId: 'creator-widget',
-  options: {
-    propertyLabel: 'Vervaardiger',
-    icon: 'user',
-  },
-}
-```

@@ -447,7 +447,7 @@
       {
         "id": "creator",
         "properties": ["creator"],
-        "componentId": "creator-widget",
+        "componentId": "link-widget",
         "options": {
           "propertyLabel": "Vervaardiger",
           "icon": "user"

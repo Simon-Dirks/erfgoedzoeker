@@ -7,6 +7,9 @@ const config: CodegenConfig = {
     'src/app/api/graphql/generated-schema-types.ts': {
       plugins: ['typescript'],
       config: {
+        scalars: {
+          ISO8601Date: 'string',
+        },
         skipTypename: false,
         avoidOptionals: false,
       },
@@ -14,6 +17,9 @@ const config: CodegenConfig = {
     'src/app/api/graphql/generated.ts': {
       plugins: ['typescript-operations', 'typed-document-node'],
       config: {
+        scalars: {
+          ISO8601Date: 'string',
+        },
         skipTypename: false,
         avoidOptionals: false,
         importSchemaTypesFrom: 'src/app/api/graphql/generated-schema-types',
