@@ -8,6 +8,7 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   IRI: { input: unknown; output: unknown; }
+  ISO8601Date: { input: string; output: string; }
 };
 
 export type BooleanBucket = {
@@ -42,9 +43,9 @@ export type CreativeWork = {
   associatedMedia: Array<MediaObject>;
   contentLocation: Array<PlaceReference>;
   contributor: Array<ContributorRole>;
-  creator: Array<CreatorRole>;
+  creator: Array<PersonOrOrganizationReference>;
   dataset?: Maybe<DatasetReference>;
-  dateCreated?: Maybe<Scalars['String']['output']>;
+  dateCreated?: Maybe<Scalars['ISO8601Date']['output']>;
   description: Array<LanguageString>;
   genre: Array<TermReference>;
   /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
@@ -58,7 +59,9 @@ export type CreativeWork = {
   locationCreated: Array<PlaceReference>;
   material: Array<TermReference>;
   name: Array<LanguageString>;
-  sdDatePublished: Scalars['String']['output'];
+  /** The image that represents the work, read from its IIIF manifest: its `url` and full `width` and `height`, and `sizes` a client can request without knowing the IIIF Image API, smallest first. A static image, one without an image service, has no `sizes`: `url` is the only version. Absent where the work has no manifest in `associatedMedia` (the older `isBasedOn` shape `iiifManifest` also reads is not used), the manifest has no usable image, or it could not be read yet; fall back to `associatedMedia[].thumbnailUrl`, which has no dimensions. */
+  representativeImage?: Maybe<IiifImage>;
+  sdDatePublished: Scalars['ISO8601Date']['output'];
   size: Array<LanguageString>;
   temporalCoverage: Array<Scalars['String']['output']>;
   text: Array<LanguageString>;
@@ -71,7 +74,7 @@ export type CreativeWorkCriterion = {
   additionalType?: InputMaybe<TermFilter>;
   contentLocation?: InputMaybe<PlaceFilter>;
   contributor?: InputMaybe<ContributorRoleFilter>;
-  creator?: InputMaybe<CreatorRoleFilter>;
+  creator?: InputMaybe<PersonOrOrganizationFilter>;
   dataset?: InputMaybe<DatasetFilter>;
   dateCreated?: InputMaybe<DateRange>;
   genre?: InputMaybe<TermFilter>;
@@ -140,7 +143,7 @@ export type CreativeWorkWhere = {
   and?: InputMaybe<Array<CreativeWorkWhere>>;
   contentLocation?: InputMaybe<PlaceFilter>;
   contributor?: InputMaybe<ContributorRoleFilter>;
-  creator?: InputMaybe<CreatorRoleFilter>;
+  creator?: InputMaybe<PersonOrOrganizationFilter>;
   dataset?: InputMaybe<DatasetFilter>;
   dateCreated?: InputMaybe<DateRange>;
   genre?: InputMaybe<TermFilter>;
@@ -158,24 +161,6 @@ export type CreativeWorkWhere = {
   sdDatePublished?: InputMaybe<DateRange>;
   temporalCoverage?: InputMaybe<KeywordFilter>;
   type?: InputMaybe<KeywordFilter>;
-};
-
-export type CreatorRole = {
-  __typename?: 'CreatorRole';
-  creator?: Maybe<PersonOrOrganizationReference>;
-  role?: Maybe<Scalars['String']['output']>;
-};
-
-/** A condition on CreatorRole: the ids its entries reference, or a condition on one entry. */
-export type CreatorRoleFilter = {
-  in?: InputMaybe<Array<Scalars['IRI']['input']>>;
-  where?: InputMaybe<CreatorRoleWhere>;
-};
-
-/** Sibling keys are combined with AND, and all of them must hold of the SAME entry. */
-export type CreatorRoleWhere = {
-  creator?: InputMaybe<PersonOrOrganizationFilter>;
-  role?: InputMaybe<KeywordFilter>;
 };
 
 export type Dataset = {
@@ -247,8 +232,8 @@ export type DatasetWhere = {
 };
 
 export type DateRange = {
-  max?: InputMaybe<Scalars['String']['input']>;
-  min?: InputMaybe<Scalars['String']['input']>;
+  max?: InputMaybe<Scalars['ISO8601Date']['input']>;
+  min?: InputMaybe<Scalars['ISO8601Date']['input']>;
 };
 
 export type FloatRange = {
@@ -266,6 +251,27 @@ export type IriBucket = {
 /** Matches a field holding IRIs that belong to no collection this API serves. */
 export type IriFilter = {
   in?: InputMaybe<Array<Scalars['IRI']['input']>>;
+};
+
+export type IiifImage = {
+  __typename?: 'IiifImage';
+  height?: Maybe<Scalars['Int']['output']>;
+  service?: Maybe<IiifImageService>;
+  sizes: Array<IiifImageSize>;
+  url?: Maybe<Scalars['IRI']['output']>;
+  width?: Maybe<Scalars['Int']['output']>;
+};
+
+export type IiifImageService = {
+  __typename?: 'IiifImageService';
+  url?: Maybe<Scalars['IRI']['output']>;
+};
+
+export type IiifImageSize = {
+  __typename?: 'IiifImageSize';
+  height?: Maybe<Scalars['Int']['output']>;
+  url?: Maybe<Scalars['IRI']['output']>;
+  width?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Matches a field holding literal values. */
@@ -349,7 +355,7 @@ export type Organization = {
   __typename?: 'Organization';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id: Scalars['IRI']['output'];
   location: Array<PlaceReference>;
   name: Array<LanguageString>;
@@ -382,7 +388,7 @@ export type OrganizationReference = PersonOrOrganizationReference & {
   __typename?: 'OrganizationReference';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   location: Array<PlaceReference>;
   name: Array<LanguageString>;
@@ -424,11 +430,11 @@ export type Person = {
   __typename?: 'Person';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  birthDate?: Maybe<Scalars['String']['output']>;
+  birthDate?: Maybe<Scalars['ISO8601Date']['output']>;
   birthPlace: Array<PlaceReference>;
-  deathDate?: Maybe<Scalars['String']['output']>;
+  deathDate?: Maybe<Scalars['ISO8601Date']['output']>;
   deathPlace: Array<PlaceReference>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   hasOccupation: Array<OccupationReference>;
   id: Scalars['IRI']['output'];
   name: Array<LanguageString>;
@@ -451,6 +457,7 @@ export type PersonFacets = {
   authority: Array<ValueBucket>;
   birthPlace: Array<IriBucket>;
   deathPlace: Array<IriBucket>;
+  hasOccupation: Array<IriBucket>;
 };
 
 /** Matches a field holding IRIs of Person. */
@@ -467,7 +474,7 @@ export type PersonOrOrganizationFilter = {
 export type PersonOrOrganizationReference = {
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
 };
@@ -477,7 +484,7 @@ export type PersonOrOrganizationUnresolvedReference = PersonOrOrganizationRefere
   __typename?: 'PersonOrOrganizationUnresolvedReference';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
 };
@@ -491,11 +498,11 @@ export type PersonReference = PersonOrOrganizationReference & {
   __typename?: 'PersonReference';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  birthDate?: Maybe<Scalars['String']['output']>;
+  birthDate?: Maybe<Scalars['ISO8601Date']['output']>;
   birthPlace: Array<PlaceReference>;
-  deathDate?: Maybe<Scalars['String']['output']>;
+  deathDate?: Maybe<Scalars['ISO8601Date']['output']>;
   deathPlace: Array<PlaceReference>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   hasOccupation: Array<OccupationReference>;
   id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
@@ -538,7 +545,7 @@ export type Place = {
   addressLocality: Array<Scalars['String']['output']>;
   addressRegion: Array<Scalars['String']['output']>;
   authority?: Maybe<Scalars['String']['output']>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id: Scalars['IRI']['output'];
   latitude?: Maybe<Scalars['Float']['output']>;
   longitude?: Maybe<Scalars['Float']['output']>;
@@ -585,7 +592,7 @@ export type PlaceReference = {
   addressLocality: Array<Scalars['String']['output']>;
   addressRegion: Array<Scalars['String']['output']>;
   authority?: Maybe<Scalars['String']['output']>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   latitude?: Maybe<Scalars['Float']['output']>;
   longitude?: Maybe<Scalars['Float']['output']>;
@@ -766,7 +773,7 @@ export type Term = {
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
   dataset?: Maybe<DatasetReference>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id: Scalars['IRI']['output'];
   name: Array<LanguageString>;
   sameAs: Array<Scalars['String']['output']>;
@@ -803,7 +810,7 @@ export type TermReference = {
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
   dataset?: Maybe<DatasetReference>;
-  fetchedAt?: Maybe<Scalars['String']['output']>;
+  fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id: Scalars['IRI']['output'];
   name: Array<LanguageString>;
   sameAs: Array<Scalars['String']['output']>;

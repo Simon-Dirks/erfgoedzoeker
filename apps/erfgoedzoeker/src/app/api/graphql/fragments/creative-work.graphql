@@ -13,10 +13,7 @@ fragment CreativeWorkFields on CreativeWork {
     ...DatasetReferenceFields
   }
   creator {
-    role
-    creator {
-      ...PersonOrOrganizationReferenceFields
-    }
+    ...PersonOrOrganizationReferenceFields
   }
   contributor {
     role
