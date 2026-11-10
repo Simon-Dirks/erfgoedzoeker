@@ -311,3 +311,27 @@ Thin passthrough to [`TextWidget`](#textwidget) for [identifier](https://docs.nd
   },
 }
 ```
+
+## SizeWidget
+
+**Component ID**: `size-widget`
+
+Thin passthrough to [`TextWidget`](#textwidget) for [size](https://docs.nde.nl/schema-profile/#CreativeWork-size) quantities. It turns each quantity into a readable text label, such as "Height: 10 cm".
+
+**Example Properties**: `size`
+
+Accepts the [TextWidget](#textwidget) options.
+
+**Example**:
+
+```ts
+{
+  id: 'size',
+  properties: ['size'],
+  componentId: 'size-widget',
+  options: {
+    propertyLabel: 'Dimensions',
+    icon: 'maximize',
+  },
+}
+```

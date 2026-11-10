@@ -546,7 +546,7 @@
       {
         "id": "size",
         "properties": ["size"],
-        "componentId": "text-widget",
+        "componentId": "size-widget",
         "options": {
           "propertyLabel": "Afmetingen",
           "icon": "maximize"

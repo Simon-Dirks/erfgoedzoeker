@@ -14,6 +14,7 @@ export const WidgetComponentKeySchema = z
     'address-widget',
     'date-widget',
     'identifier-widget',
+    'size-widget',
     'referring-nodes-widget',
     'separator-widget',
   ])
