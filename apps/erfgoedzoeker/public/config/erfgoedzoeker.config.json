@@ -564,7 +564,7 @@
         "properties": ["dataset"],
         "componentId": "link-widget",
         "options": {
-          "propertyLabel": "Collectie",
+          "propertyLabel": "Organisatie",
           "icon": "archive"
         }
       },
@@ -573,7 +573,7 @@
         "properties": ["id"],
         "componentId": "literal-link-widget",
         "options": {
-          "propertyLabel": "Gebaseerd op",
+          "propertyLabel": "Bron link",
           "icon": "external-link",
           "isExternal": true
         }
