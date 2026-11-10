@@ -475,7 +475,8 @@
           "icon": "user",
           "position": "main",
           "propertyPath": "contributor"
-        }
+        },
+        "hidden": true
       },
       {
         "id": "date-created",
