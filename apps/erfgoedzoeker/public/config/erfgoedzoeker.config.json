@@ -302,7 +302,6 @@
           "label",
           "sdDatePublished",
           "hasMedia",
-          "identifier",
           "isPartOf",
           "iiifManifest",
           "associatedMedia",
@@ -557,6 +556,16 @@
         "componentId": "separator-widget",
         "options": {
           "showPropertyLabel": false
+        }
+      },
+      {
+        "id": "identifier",
+        "properties": ["identifier"],
+        "componentId": "identifier-widget",
+        "options": {
+          "propertyLabel": "ID",
+          "icon": "hash",
+          "excludePropertyIds": ["https://data.axiell.com/vocabulary#Priref"]
         }
       },
       {
