@@ -51,9 +51,12 @@ export class DynamicWidgetComponent implements AfterViewInit {
   );
 
   onClick(event: MouseEvent) {
-    if (this.stopClickPropagation()) {
+    if (!this.stopClickPropagation()) {
+      return;
+    }
+    event.stopPropagation();
+    if (!(event.target as Element).closest('a[href]')) {
       event.preventDefault();
-      event.stopPropagation();
     }
   }
 
