@@ -4,6 +4,7 @@ import { BaseWidget } from '../widgets/base-widget';
 import { AddressWidget } from '../widgets/domain-specific/address-widget/address-widget.component';
 import { DatasetWidget } from '../widgets/domain-specific/dataset-widget/dataset-widget.component';
 import { DateWidget } from '../widgets/domain-specific/date-widget/date-widget.component';
+import { IdentifierWidget } from '../widgets/domain-specific/identifier-widget/identifier-widget.component';
 import { ImageGalleryWidget } from '../widgets/generic/image-gallery-widget/image-gallery-widget.component';
 import { JsonWidget } from '../widgets/generic/json-widget/json-widget.component';
 import { LinkWidget } from '../widgets/generic/link-widget/link-widget.component';
@@ -28,6 +29,7 @@ export const WIDGET_COMPONENT_REGISTRY: Record<
   'dataset-widget': DatasetWidget,
   'address-widget': AddressWidget,
   'date-widget': DateWidget,
+  'identifier-widget': IdentifierWidget,
   'referring-nodes-widget': ReferringNodesWidget,
   'separator-widget': SeparatorWidget,
 } as const;

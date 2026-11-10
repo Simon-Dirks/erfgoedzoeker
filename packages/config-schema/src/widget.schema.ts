@@ -13,6 +13,7 @@ export const WidgetComponentKeySchema = z
     'dataset-widget',
     'address-widget',
     'date-widget',
+    'identifier-widget',
     'referring-nodes-widget',
     'separator-widget',
   ])

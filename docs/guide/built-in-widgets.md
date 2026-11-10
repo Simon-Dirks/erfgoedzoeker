@@ -285,3 +285,29 @@ Shows [dataset](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf) infor
   },
 }
 ```
+
+## IdentifierWidget
+
+**Component ID**: `identifier-widget`
+
+Thin passthrough to [`TextWidget`](#textwidget) for [identifier](https://docs.nde.nl/schema-profile/#CreativeWork-identifier) values. It shows the `value` of each identifier as text, and can filter identifiers by their `propertyID`.
+
+**Example Properties**: `identifier`
+
+**Component-Specific Options** (`IdentifierWidgetOptions`, in addition to the [TextWidget](#textwidget) options):
+
+- **`excludePropertyIds`** - List of `propertyID` values; identifiers with one of these `propertyID`s are not shown
+
+**Example**:
+
+```ts
+{
+  id: 'identifier',
+  properties: ['identifier'],
+  componentId: 'identifier-widget',
+  options: {
+    propertyLabel: 'Identifier',
+    excludePropertyIds: ['https://data.axiell.com/vocabulary#Priref'],
+  },
+}
+```
