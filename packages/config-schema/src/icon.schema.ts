@@ -11,6 +11,7 @@ export const IconKeySchema = z
     'file-text',
     'filter',
     'grid',
+    'hash',
     'home',
     'image',
     'info',
