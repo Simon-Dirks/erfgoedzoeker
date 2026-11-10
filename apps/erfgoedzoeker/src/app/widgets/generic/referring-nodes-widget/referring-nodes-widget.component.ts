@@ -38,6 +38,10 @@ export class ReferringNodesWidget extends BaseWidget {
     return value ? String(value) : null;
   });
 
+  protected readonly nodeName = computed(() =>
+    normalizeToFirst<string>(this.node().name),
+  );
+
   protected readonly totalReferringNodes = computed(
     () => this.referringNodesResponse()?.totalCount ?? 0,
   );

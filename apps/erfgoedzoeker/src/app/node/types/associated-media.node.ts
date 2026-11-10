@@ -1,11 +1,14 @@
-import { normalizeToFirst } from '../../data-utils/value-normalization.util';
+import {
+  MaybeMultiple,
+  normalizeToFirst,
+} from '../../data-utils/value-normalization.util';
 import { ImageModel } from '../../ui/image/types/image.model';
 import { NodeModel } from './node.model';
 
 export type AssociatedMediaNode = NodeModel & {
   contentUrl?: string;
   thumbnailUrl?: string;
-  encodingFormat?: string | string[];
+  encodingFormat?: MaybeMultiple<string>;
   isBasedOn?: {
     id?: string;
     encodingFormat?: string;

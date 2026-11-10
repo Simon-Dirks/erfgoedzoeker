@@ -9,7 +9,7 @@
       {{
         totalReferringNodes() === 1 ? 'object verwijst' : 'objecten verwijzen'
       }}
-      naar {{ node().name }}
+      naar {{ nodeName() }}
     </div>
 
     <app-node-link-list [nodes]="referringNodes()" [mode]="'image-card'" />

@@ -1,7 +1,9 @@
+import { MaybeMultiple } from '../../data-utils/value-normalization.util';
+
 export interface NodeModel {
   id: string;
-  type?: string | string[];
-  name?: string | string[];
+  type?: MaybeMultiple<string>;
+  name?: MaybeMultiple<string>;
   [key: string]: any;
 }
 

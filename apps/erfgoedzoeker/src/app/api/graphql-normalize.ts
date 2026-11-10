@@ -1,3 +1,4 @@
+import { MaybeMultiple } from '../data-utils/value-normalization.util';
 import { NodeModel } from '../node/types/node.model';
 import { Facet, isFacetValue } from '../search/types/facet';
 import { Filters } from '../search/types/filters';
@@ -42,15 +43,34 @@ function isObject(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
 }
 
+function valuesInPreferredLanguage(
+  values: LocalizedValue[],
+  preferredLanguage: string,
+): string[] {
+  const language = values.some((value) => value.language === preferredLanguage)
+    ? preferredLanguage
+    : values[0].language;
+  return [
+    ...new Set(
+      values.filter((value) => value.language === language).map((v) => v.value),
+    ),
+  ];
+}
+
 function pickLocalizedValue(
   values: LocalizedValue[] | undefined | null,
   preferredLanguage: string,
 ): string | undefined {
   if (!values?.length) return undefined;
-  return (
-    values.find((value) => value.language === preferredLanguage)?.value ??
-    values[0].value
-  );
+  return valuesInPreferredLanguage(values, preferredLanguage)[0];
+}
+
+function pickLocalizedValues(
+  values: LocalizedValue[],
+  preferredLanguage: string,
+): MaybeMultiple<string> {
+  const matching = valuesInPreferredLanguage(values, preferredLanguage);
+  return matching.length === 1 ? matching[0] : matching;
 }
 
 function normalizeGraphQlValue(
@@ -60,7 +80,7 @@ function normalizeGraphQlValue(
   if (Array.isArray(value)) {
     if (value.length === 0) return value;
     if (value.every(isLocalizedValue)) {
-      return pickLocalizedValue(value, preferredLanguage);
+      return pickLocalizedValues(value, preferredLanguage);
     }
     if (value.every(isObject)) {
       return value.map((item) => normalizeGraphQlItem(item, preferredLanguage));
