@@ -21,7 +21,10 @@ fragment CreativeWorkFields on CreativeWork {
       ...PersonOrOrganizationReferenceFields
     }
   }
-  identifier
+  identifier {
+    value
+    propertyID
+  }
   additionalType {
     ...TermReferenceFields
   }
@@ -38,8 +41,28 @@ fragment CreativeWorkFields on CreativeWork {
     language
   }
   size {
+    statement {
+      value
+      language
+    }
     value
-    language
+    unitText
+    unitCode {
+      name {
+        value
+        language
+      }
+    }
+    valueReference {
+      name {
+        value
+        language
+      }
+    }
+    description {
+      value
+      language
+    }
   }
   contentLocation {
     ...PlaceReferenceFields

@@ -201,12 +201,40 @@ export function toCreativeWorkOrderBy(
   };
 }
 
+type SizeQuantity = CreativeWorkFieldsFragment['size'][number];
+
+function toSizeLabel(
+  quantity: SizeQuantity,
+  preferredLanguage: string,
+): string {
+  const statement = pickLocalizedValue(quantity.statement, preferredLanguage);
+  if (statement) return statement;
+
+  const dimension =
+    pickLocalizedValue(quantity.valueReference?.name, preferredLanguage) ||
+    pickLocalizedValue(quantity.description, preferredLanguage);
+  const unit =
+    quantity.unitText ??
+    pickLocalizedValue(quantity.unitCode?.name, preferredLanguage);
+  const measurement = [quantity.value, unit]
+    .filter((part) => part != null)
+    .join(' ');
+
+  return [dimension, measurement].filter(Boolean).join(': ');
+}
+
 export function mapCreativeWork(
   item: CreativeWorkFieldsFragment,
   preferredLanguage: string,
 ): NodeModel {
-  const node = normalizeGraphQlItem(item, preferredLanguage) as NodeModel;
-  return node;
+  const { size, ...rest } = item;
+  const node = normalizeGraphQlItem(rest, preferredLanguage) as NodeModel;
+
+  // TODO: Handle this in a size widget
+  const sizeLabels = size
+    .map((quantity) => toSizeLabel(quantity, preferredLanguage))
+    .filter(Boolean);
+  return sizeLabels.length ? { ...node, size: sizeLabels } : node;
 }
 
 export function mapDataset(

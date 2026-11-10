@@ -52,7 +52,7 @@ export type CreativeWork = {
   hasCoordinates: Scalars['Boolean']['output'];
   hasMedia: Scalars['Boolean']['output'];
   id: Scalars['IRI']['output'];
-  identifier: Array<Scalars['String']['output']>;
+  identifier: Array<PropertyValue>;
   /** The work’s IIIF Presentation manifest, if it publishes one. Filled however the publisher states it – the profile’s own `associatedMedia` entry, or the `isBasedOn` target older versions used – so a IIIF-aware client dereferences this and never reads `associatedMedia` to find it. */
   iiifManifest?: Maybe<Scalars['String']['output']>;
   isPartOf: Array<DatasetReference>;
@@ -62,7 +62,8 @@ export type CreativeWork = {
   /** The image that represents the work, read from its IIIF manifest: its `url` and full `width` and `height`, and `sizes` a client can request without knowing the IIIF Image API, smallest first. A static image, one without an image service, has no `sizes`: `url` is the only version. Absent where the work has no manifest in `associatedMedia` (the older `isBasedOn` shape `iiifManifest` also reads is not used), the manifest has no usable image, or it could not be read yet; fall back to `associatedMedia[].thumbnailUrl`, which has no dimensions. */
   representativeImage?: Maybe<IiifImage>;
   sdDatePublished: Scalars['ISO8601Date']['output'];
-  size: Array<LanguageString>;
+  /** The work’s dimensions, one entry per value the publisher states: a display `statement` (‘74 cm hoog bij 92 cm breed’), or one measurement with its `value`, `unitCode` (a term) or `unitText` (a label), `valueReference` (the dimension measured) and `description` (the part measured, such as the sheet or the mount). See https://linkedopenlimburg.nl/search/using#structured-values. */
+  size: Array<QuantitativeValue>;
   temporalCoverage: Array<Scalars['String']['output']>;
   text: Array<LanguageString>;
   type: Array<Scalars['String']['output']>;
@@ -82,7 +83,6 @@ export type CreativeWorkCriterion = {
   hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
   hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
-  identifier?: InputMaybe<KeywordFilter>;
   isPartOf?: InputMaybe<DatasetFilter>;
   license?: InputMaybe<IriFilter>;
   locationCreated?: InputMaybe<PlaceFilter>;
@@ -151,7 +151,6 @@ export type CreativeWorkWhere = {
   hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
   hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
-  identifier?: InputMaybe<KeywordFilter>;
   isPartOf?: InputMaybe<DatasetFilter>;
   license?: InputMaybe<IriFilter>;
   locationCreated?: InputMaybe<PlaceFilter>;
@@ -234,6 +233,12 @@ export type DatasetWhere = {
 export type DateRange = {
   max?: InputMaybe<Scalars['ISO8601Date']['input']>;
   min?: InputMaybe<Scalars['ISO8601Date']['input']>;
+};
+
+export type DefinedTerm = {
+  __typename?: 'DefinedTerm';
+  name: Array<LanguageString>;
+  sameAs: Array<Scalars['IRI']['output']>;
 };
 
 export type FloatRange = {
@@ -632,6 +637,12 @@ export type PlaceWhere = {
   streetAddress?: InputMaybe<KeywordFilter>;
 };
 
+export type PropertyValue = {
+  __typename?: 'PropertyValue';
+  propertyID?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+};
+
 export type Publisher = {
   __typename?: 'Publisher';
   id: Scalars['IRI']['output'];
@@ -677,6 +688,16 @@ export type PublisherWhere = {
   id?: InputMaybe<PublisherFilter>;
   /** A disjunction: a document matches when ANY of these criteria holds. Combined with the sibling keys by AND, so it widens across fields without widening the query as a whole. */
   or?: InputMaybe<Array<PublisherCriterion>>;
+};
+
+export type QuantitativeValue = {
+  __typename?: 'QuantitativeValue';
+  description: Array<LanguageString>;
+  statement: Array<LanguageString>;
+  unitCode?: Maybe<DefinedTerm>;
+  unitText?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['Float']['output']>;
+  valueReference?: Maybe<DefinedTerm>;
 };
 
 export type Query = {
