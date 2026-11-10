@@ -7,6 +7,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  EDTF: { input: unknown; output: unknown; }
   IRI: { input: unknown; output: unknown; }
   ISO8601Date: { input: string; output: string; }
 };
@@ -45,7 +46,7 @@ export type CreativeWork = {
   contributor: Array<ContributorRole>;
   creator: Array<PersonOrOrganizationReference>;
   dataset?: Maybe<DatasetReference>;
-  dateCreated?: Maybe<Scalars['ISO8601Date']['output']>;
+  dateCreated: Array<Scalars['EDTF']['output']>;
   description: Array<LanguageString>;
   genre: Array<TermReference>;
   /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
@@ -64,7 +65,7 @@ export type CreativeWork = {
   sdDatePublished: Scalars['ISO8601Date']['output'];
   /** The work’s dimensions, one entry per value the publisher states: a display `statement` (‘74 cm hoog bij 92 cm breed’), or one measurement with its `value`, `unitCode` (a term) or `unitText` (a label), `valueReference` (the dimension measured) and `description` (the part measured, such as the sheet or the mount). See https://linkedopenlimburg.nl/search/using#structured-values. */
   size: Array<QuantitativeValue>;
-  temporalCoverage: Array<Scalars['String']['output']>;
+  temporalCoverage: Array<Scalars['EDTF']['output']>;
   text: Array<LanguageString>;
   type: Array<Scalars['String']['output']>;
 };
@@ -88,7 +89,7 @@ export type CreativeWorkCriterion = {
   locationCreated?: InputMaybe<PlaceFilter>;
   material?: InputMaybe<TermFilter>;
   sdDatePublished?: InputMaybe<DateRange>;
-  temporalCoverage?: InputMaybe<KeywordFilter>;
+  temporalCoverage?: InputMaybe<DateRange>;
   type?: InputMaybe<KeywordFilter>;
 };
 
@@ -107,7 +108,6 @@ export type CreativeWorkFacets = {
   license: Array<IriBucket>;
   locationCreated: Array<IriBucket>;
   material: Array<IriBucket>;
-  temporalCoverage: Array<ValueBucket>;
   type: Array<ValueBucket>;
 };
 
@@ -158,7 +158,7 @@ export type CreativeWorkWhere = {
   /** A disjunction: a document matches when ANY of these criteria holds. Combined with the sibling keys by AND, so it widens across fields without widening the query as a whole. */
   or?: InputMaybe<Array<CreativeWorkCriterion>>;
   sdDatePublished?: InputMaybe<DateRange>;
-  temporalCoverage?: InputMaybe<KeywordFilter>;
+  temporalCoverage?: InputMaybe<DateRange>;
   type?: InputMaybe<KeywordFilter>;
 };
 
@@ -435,9 +435,9 @@ export type Person = {
   __typename?: 'Person';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  birthDate?: Maybe<Scalars['ISO8601Date']['output']>;
+  birthDate?: Maybe<Scalars['EDTF']['output']>;
   birthPlace: Array<PlaceReference>;
-  deathDate?: Maybe<Scalars['ISO8601Date']['output']>;
+  deathDate?: Maybe<Scalars['EDTF']['output']>;
   deathPlace: Array<PlaceReference>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   hasOccupation: Array<OccupationReference>;
@@ -503,9 +503,9 @@ export type PersonReference = PersonOrOrganizationReference & {
   __typename?: 'PersonReference';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  birthDate?: Maybe<Scalars['ISO8601Date']['output']>;
+  birthDate?: Maybe<Scalars['EDTF']['output']>;
   birthPlace: Array<PlaceReference>;
-  deathDate?: Maybe<Scalars['ISO8601Date']['output']>;
+  deathDate?: Maybe<Scalars['EDTF']['output']>;
   deathPlace: Array<PlaceReference>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   hasOccupation: Array<OccupationReference>;

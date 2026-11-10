@@ -146,14 +146,6 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       language
     }
   }
-  temporalCoverage {
-    value
-    count
-    label {
-      value
-      language
-    }
-  }
   locationCreated {
     value
     count
