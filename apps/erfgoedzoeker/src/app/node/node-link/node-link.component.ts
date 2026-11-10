@@ -42,15 +42,7 @@ export class NodeLinkComponent {
   });
 
   getNodeName(node: NodeModel): string {
-    const name = normalizeToFirst<string>(node.name);
-    if (name) return name;
-
-    try {
-      const url = new URL(node.id);
-      return url.hostname;
-    } catch {
-      return node.id;
-    }
+    return normalizeToFirst<string>(node.name) || node.id;
   }
 
   getImageUrl(node: NodeModel): string {
