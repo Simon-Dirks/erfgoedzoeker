@@ -22,6 +22,7 @@ import { NodeLinkVariant } from './node-link-variant';
   templateUrl: './node-link.component.html',
   styleUrl: './node-link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'min-w-0' },
   viewProviders: [provideIcons({ featherExternalLink })],
 })
 export class NodeLinkComponent {

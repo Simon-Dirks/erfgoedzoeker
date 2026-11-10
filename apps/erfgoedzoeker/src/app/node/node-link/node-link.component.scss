@@ -1,7 +1,7 @@
 @reference '#styles.css';
 
 a {
-  @apply inline-flex items-center gap-2;
+  @apply inline-flex items-center gap-2 max-w-full;
 
   &.image-card {
     @apply block relative rounded overflow-visible cursor-pointer max-w-32;
