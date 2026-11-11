@@ -22,6 +22,28 @@ describe('toSizeLabel', () => {
     ).toBe('Height: 10 cm');
   });
 
+  it('shows the measured part next to the dimension', () => {
+    expect(
+      toSizeLabel({
+        valueReference: { name: 'hoogte' },
+        description: 'blad',
+        value: 37.7,
+        unitText: 'cm',
+      }),
+    ).toBe('hoogte (blad): 37.7 cm');
+  });
+
+  it('does not repeat a part identical to the dimension', () => {
+    expect(
+      toSizeLabel({
+        valueReference: { name: 'hoogte' },
+        description: 'hoogte',
+        value: 36.2,
+        unitText: 'cm',
+      }),
+    ).toBe('hoogte: 36.2 cm');
+  });
+
   it('falls back to description and unit code name', () => {
     expect(
       toSizeLabel({

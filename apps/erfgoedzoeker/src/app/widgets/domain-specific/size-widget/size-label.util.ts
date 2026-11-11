@@ -18,9 +18,12 @@ export function toSizeLabel(quantity: SizeQuantity): string {
 
   if (statement) return statement;
 
+  const measured = normalizeToFirst<string>(valueReference?.name);
+  const part = normalizeToFirst<string>(quantity.description);
   const dimension =
-    normalizeToFirst<string>(valueReference?.name) ||
-    normalizeToFirst<string>(quantity.description);
+    measured && part && measured !== part
+      ? `${measured} (${part})`
+      : measured || part;
   const unit = unitText ?? normalizeToFirst<string>(unitCode?.name);
   const measurement = [value, unit].filter((part) => part != null);
   const measurementString = measurement.join(' ');
