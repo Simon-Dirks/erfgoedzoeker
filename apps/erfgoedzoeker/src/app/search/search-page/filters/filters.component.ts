@@ -5,6 +5,7 @@ import {
   inject,
 } from '@angular/core';
 import { RangeFilterConfig } from '@erfgoedzoeker/config-schema';
+import { FilterStore } from '../../state/filter.store';
 import { SearchStore } from '../../state/search.store';
 import { Facet } from '../../types/facet';
 import { FacetFilterComponent } from './facet-filter/facet-filter.component';
@@ -27,6 +28,7 @@ type FilterItem = FacetFilterItem | RangeFilterItem;
 })
 export class FiltersComponent {
   store = inject(SearchStore);
+  filterStore = inject(FilterStore);
   filtersService = inject(FiltersService);
 
   allVisibleFilters = computed((): FilterItem[] => {
@@ -46,4 +48,11 @@ export class FiltersComponent {
   });
 
   hasFiltersToShow = computed(() => this.allVisibleFilters().length > 0);
+
+  noResultsToFilter = computed(
+    () =>
+      !this.store.loading() &&
+      this.store.results().length === 0 &&
+      this.filterStore.activeFilterCount() === 0,
+  );
 }
