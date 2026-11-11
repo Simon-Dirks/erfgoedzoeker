@@ -513,6 +513,33 @@
         }
       },
       {
+        "id": "address-country",
+        "properties": ["addressCountry"],
+        "componentId": "text-widget",
+        "options": {
+          "propertyLabel": "Land",
+          "icon": "map-pin"
+        }
+      },
+      {
+        "id": "latitude",
+        "properties": ["latitude"],
+        "componentId": "text-widget",
+        "options": {
+          "propertyLabel": "Breedtegraad",
+          "icon": "map-pin"
+        }
+      },
+      {
+        "id": "longitude",
+        "properties": ["longitude"],
+        "componentId": "text-widget",
+        "options": {
+          "propertyLabel": "Lengtegraad",
+          "icon": "map-pin"
+        }
+      },
+      {
         "id": "fallback",
         "componentId": "link-widget",
         "isFallback": true
