@@ -5,9 +5,9 @@
     [attr.aria-label]="'Filter ' + label() + ' in-/uitklappen'"
   />
   <div
-    class="collapse-title flex items-center justify-between font-semibold text-sm capitalize"
+    class="collapse-title flex flex-wrap items-center justify-between gap-x-2 gap-y-1 font-semibold text-sm capitalize"
   >
-    <span class="flex items-center gap-2">
+    <span class="flex max-w-full items-center gap-2">
       @if (icon()) {
         <ng-icon
           class="flex-shrink-0 inline-flex items-center"
@@ -15,12 +15,12 @@
           size="16"
         />
       }
-      <span>{{ label() }}</span>
+      <span class="wrap-anywhere">{{ label() }}</span>
     </span>
     @if (activeBadge()) {
       <button
         type="button"
-        class="badge badge-primary badge-sm relative z-10 cursor-pointer gap-1 lowercase hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-content"
+        class="badge badge-primary badge-sm relative z-10 shrink-0 cursor-pointer gap-1 whitespace-nowrap lowercase hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-content"
         [attr.aria-label]="'Wis filter ' + label() + ' (' + activeBadge() + ')'"
         (click)="clear.emit()"
       >
