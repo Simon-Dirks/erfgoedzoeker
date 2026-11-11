@@ -70,14 +70,6 @@ query ReferringNodes($id: IRI!, $perPage: Int) {
       total
     }
   }
-  terms(where: { dataset: { in: [$id] } }, page: 1, perPage: $perPage) {
-    items {
-      ...ReferringTermFields
-    }
-    pagination {
-      total
-    }
-  }
 }
 
 fragment ReferringCreativeWorkFields on CreativeWork {
@@ -117,14 +109,6 @@ fragment ReferringOrganizationFields on Organization {
 }
 
 fragment ReferringPersonFields on Person {
-  id
-  name {
-    value
-    language
-  }
-}
-
-fragment ReferringTermFields on Term {
   id
   name {
     value

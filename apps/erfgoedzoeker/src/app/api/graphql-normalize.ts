@@ -274,14 +274,7 @@ export function toReferringNodesResponse(
   data: ReferringNodesQuery,
   preferredLanguage: string,
 ): ReferringNodesResponse {
-  const {
-    creativeWorks,
-    datasets,
-    occupations,
-    organizations,
-    persons,
-    terms,
-  } = data;
+  const { creativeWorks, datasets, occupations, organizations, persons } = data;
 
   const normalize = (item: object) =>
     normalizeGraphQlItem(item, preferredLanguage) as NodeModel;
@@ -292,7 +285,6 @@ export function toReferringNodesResponse(
     ...occupations.items.map(normalize),
     ...organizations.items.map(normalize),
     ...persons.items.map(normalize),
-    ...terms.items.map(normalize),
   ];
 
   const totalItems = [
@@ -301,7 +293,6 @@ export function toReferringNodesResponse(
     occupations,
     organizations,
     persons,
-    terms,
   ].reduce((sum, result) => sum + result.pagination.total, 0);
 
   return { totalCount: totalItems, nodes: items };

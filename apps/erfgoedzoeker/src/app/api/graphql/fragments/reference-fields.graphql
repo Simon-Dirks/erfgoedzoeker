@@ -101,9 +101,6 @@ fragment TermReferenceFields on TermReference {
   sameAs
   authority
   fetchedAt
-  dataset {
-    ...DatasetReferenceFields
-  }
 }
 
 fragment PublisherReferenceFields on PublisherReference {

@@ -60,12 +60,14 @@ export type CreativeWork = {
   locationCreated: Array<PlaceReference>;
   material: Array<TermReference>;
   name: Array<LanguageString>;
+  /** The Publisher of the dataset this work was drawn from, as registered in the Dataset Register. */
+  publisher: Array<PublisherReference>;
   /** The image that represents the work, read from its IIIF manifest: its `url` and full `width` and `height`, and `sizes` a client can request without knowing the IIIF Image API, smallest first. A static image, one without an image service, has no `sizes`: `url` is the only version. Absent where the work has no manifest in `associatedMedia` (the older `isBasedOn` shape `iiifManifest` also reads is not used), the manifest has no usable image, or it could not be read yet; fall back to `associatedMedia[].thumbnailUrl`, which has no dimensions. */
   representativeImage?: Maybe<IiifImage>;
   sdDatePublished: Scalars['ISO8601Date']['output'];
   /** The work’s dimensions, one entry per value the publisher states: a display `statement` (‘74 cm hoog bij 92 cm breed’), or one measurement with its `value`, `unitCode` (a term) or `unitText` (a label), `valueReference` (the dimension measured) and `description` (the part measured, such as the sheet or the mount). See https://linkedopenlimburg.nl/search/using#structured-values. */
   size: Array<QuantitativeValue>;
-  temporalCoverage: Array<Scalars['EDTF']['output']>;
+  temporalCoverage: Array<TermOrPeriod>;
   text: Array<LanguageString>;
   type: Array<Scalars['String']['output']>;
 };
@@ -88,6 +90,8 @@ export type CreativeWorkCriterion = {
   license?: InputMaybe<IriFilter>;
   locationCreated?: InputMaybe<PlaceFilter>;
   material?: InputMaybe<TermFilter>;
+  /** The Publisher of the dataset this work was drawn from, as registered in the Dataset Register. */
+  publisher?: InputMaybe<PublisherFilter>;
   sdDatePublished?: InputMaybe<DateRange>;
   temporalCoverage?: InputMaybe<DateRange>;
   type?: InputMaybe<KeywordFilter>;
@@ -108,6 +112,7 @@ export type CreativeWorkFacets = {
   license: Array<IriBucket>;
   locationCreated: Array<IriBucket>;
   material: Array<IriBucket>;
+  publisher: Array<IriBucket>;
   type: Array<ValueBucket>;
 };
 
@@ -157,6 +162,8 @@ export type CreativeWorkWhere = {
   material?: InputMaybe<TermFilter>;
   /** A disjunction: a document matches when ANY of these criteria holds. Combined with the sibling keys by AND, so it widens across fields without widening the query as a whole. */
   or?: InputMaybe<Array<CreativeWorkCriterion>>;
+  /** The Publisher of the dataset this work was drawn from, as registered in the Dataset Register. */
+  publisher?: InputMaybe<PublisherFilter>;
   sdDatePublished?: InputMaybe<DateRange>;
   temporalCoverage?: InputMaybe<DateRange>;
   type?: InputMaybe<KeywordFilter>;
@@ -358,8 +365,10 @@ export type OccupationWhere = {
 
 export type Organization = {
   __typename?: 'Organization';
+  additionalType: Array<TermReference>;
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
+  description: Array<LanguageString>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id: Scalars['IRI']['output'];
   location: Array<PlaceReference>;
@@ -368,6 +377,7 @@ export type Organization = {
 
 /** A condition on exactly one field. Used inside `or`, where the criteria are alternatives. */
 export type OrganizationCriterion = {
+  additionalType?: InputMaybe<TermFilter>;
   authority?: InputMaybe<KeywordFilter>;
   fetchedAt?: InputMaybe<DateRange>;
   id?: InputMaybe<OrganizationFilter>;
@@ -376,6 +386,7 @@ export type OrganizationCriterion = {
 
 export type OrganizationFacets = {
   __typename?: 'OrganizationFacets';
+  additionalType: Array<IriBucket>;
   authority: Array<ValueBucket>;
 };
 
@@ -391,8 +402,10 @@ export type OrganizationOrderBy = {
 
 export type OrganizationReference = PersonOrOrganizationReference & {
   __typename?: 'OrganizationReference';
+  additionalType: Array<TermReference>;
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
+  description: Array<LanguageString>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   location: Array<PlaceReference>;
@@ -414,6 +427,7 @@ export enum OrganizationSortField {
 
 /** Sibling keys are combined with AND. Use `or` for a disjunction, and `and` when a query needs more than one of them. */
 export type OrganizationWhere = {
+  additionalType?: InputMaybe<TermFilter>;
   /** Further groups of conditions, all of which apply. The way to carry a second `or` disjunction alongside the first. */
   and?: InputMaybe<Array<OrganizationWhere>>;
   authority?: InputMaybe<KeywordFilter>;
@@ -439,6 +453,7 @@ export type Person = {
   birthPlace: Array<PlaceReference>;
   deathDate?: Maybe<Scalars['EDTF']['output']>;
   deathPlace: Array<PlaceReference>;
+  description: Array<LanguageString>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   hasOccupation: Array<OccupationReference>;
   id: Scalars['IRI']['output'];
@@ -479,6 +494,7 @@ export type PersonOrOrganizationFilter = {
 export type PersonOrOrganizationReference = {
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
+  description: Array<LanguageString>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
@@ -489,6 +505,7 @@ export type PersonOrOrganizationUnresolvedReference = PersonOrOrganizationRefere
   __typename?: 'PersonOrOrganizationUnresolvedReference';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
+  description: Array<LanguageString>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
@@ -507,6 +524,7 @@ export type PersonReference = PersonOrOrganizationReference & {
   birthPlace: Array<PlaceReference>;
   deathDate?: Maybe<Scalars['EDTF']['output']>;
   deathPlace: Array<PlaceReference>;
+  description: Array<LanguageString>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   hasOccupation: Array<OccupationReference>;
   id?: Maybe<Scalars['IRI']['output']>;
@@ -793,7 +811,6 @@ export type Term = {
   __typename?: 'Term';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  dataset?: Maybe<DatasetReference>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
   id: Scalars['IRI']['output'];
   name: Array<LanguageString>;
@@ -803,7 +820,6 @@ export type Term = {
 /** A condition on exactly one field. Used inside `or`, where the criteria are alternatives. */
 export type TermCriterion = {
   authority?: InputMaybe<KeywordFilter>;
-  dataset?: InputMaybe<DatasetFilter>;
   fetchedAt?: InputMaybe<DateRange>;
   id?: InputMaybe<TermFilter>;
   sameAs?: InputMaybe<KeywordFilter>;
@@ -812,13 +828,21 @@ export type TermCriterion = {
 export type TermFacets = {
   __typename?: 'TermFacets';
   authority: Array<ValueBucket>;
-  dataset: Array<IriBucket>;
   sameAs: Array<ValueBucket>;
 };
 
 /** Matches a field holding IRIs of Term. */
 export type TermFilter = {
   in?: InputMaybe<Array<Scalars['IRI']['input']>>;
+};
+
+/** A period, as its source stated it, or a reference to Term: exactly one of the two is set. */
+export type TermOrPeriod = {
+  __typename?: 'TermOrPeriod';
+  /** The Term referenced, where the source named one; null for a period. */
+  reference?: Maybe<TermReference>;
+  /** The period, where the source stated one as a value; null for a reference. */
+  value?: Maybe<Scalars['EDTF']['output']>;
 };
 
 export type TermOrderBy = {
@@ -830,9 +854,8 @@ export type TermReference = {
   __typename?: 'TermReference';
   alternateName: Array<LanguageString>;
   authority?: Maybe<Scalars['String']['output']>;
-  dataset?: Maybe<DatasetReference>;
   fetchedAt?: Maybe<Scalars['ISO8601Date']['output']>;
-  id: Scalars['IRI']['output'];
+  id?: Maybe<Scalars['IRI']['output']>;
   name: Array<LanguageString>;
   sameAs: Array<Scalars['String']['output']>;
 };
@@ -855,7 +878,6 @@ export type TermWhere = {
   /** Further groups of conditions, all of which apply. The way to carry a second `or` disjunction alongside the first. */
   and?: InputMaybe<Array<TermWhere>>;
   authority?: InputMaybe<KeywordFilter>;
-  dataset?: InputMaybe<DatasetFilter>;
   fetchedAt?: InputMaybe<DateRange>;
   id?: InputMaybe<TermFilter>;
   /** A disjunction: a document matches when ANY of these criteria holds. Combined with the sibling keys by AND, so it widens across fields without widening the query as a whole. */

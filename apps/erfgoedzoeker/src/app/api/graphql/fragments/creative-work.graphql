@@ -67,7 +67,12 @@ fragment CreativeWorkFields on CreativeWork {
   contentLocation {
     ...PlaceReferenceFields
   }
-  temporalCoverage
+  temporalCoverage {
+    value
+    reference {
+      ...TermReferenceFields
+    }
+  }
   locationCreated {
     ...PlaceReferenceFields
   }

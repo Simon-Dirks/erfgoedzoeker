@@ -11,7 +11,4 @@ fragment TermFields on Term {
   sameAs
   authority
   fetchedAt
-  dataset {
-    ...DatasetReferenceFields
-  }
 }
