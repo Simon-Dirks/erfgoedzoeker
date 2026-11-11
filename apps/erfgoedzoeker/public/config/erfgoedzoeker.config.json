@@ -308,7 +308,8 @@
           "type",
           "hasCoordinates",
           "authority",
-          "fetchedAt"
+          "fetchedAt",
+          "dataset"
         ],
         "componentId": "text-widget",
         "hidden": true
@@ -379,15 +380,6 @@
           "propertyLabel": "Licentie",
           "icon": "file-text",
           "isExternal": true
-        }
-      },
-      {
-        "id": "publisher",
-        "properties": ["publisher"],
-        "componentId": "link-widget",
-        "options": {
-          "propertyLabel": "Uitgever",
-          "icon": "users"
         }
       },
       {
@@ -570,8 +562,8 @@
         }
       },
       {
-        "id": "dataset",
-        "properties": ["dataset"],
+        "id": "publisher",
+        "properties": ["publisher"],
         "componentId": "link-widget",
         "options": {
           "propertyLabel": "Organisatie",

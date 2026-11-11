@@ -9,6 +9,9 @@ fragment CreativeWorkFields on CreativeWork {
   dataset {
     ...DatasetReferenceFields
   }
+  publisher {
+    ...PublisherReferenceFields
+  }
   isPartOf {
     ...DatasetReferenceFields
   }
