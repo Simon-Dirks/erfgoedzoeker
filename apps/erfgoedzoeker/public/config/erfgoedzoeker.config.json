@@ -558,7 +558,12 @@
         "options": {
           "propertyLabel": "ID",
           "icon": "hash",
-          "excludePropertyIds": ["https://data.axiell.com/vocabulary#Priref"]
+          "excludePropertyIds": [
+            "https://data.axiell.com/vocabulary#Priref",
+            "https://id.tracelimburg.nl/decoraties/dataset/decorbladen",
+            "https://www.kb.nl/geheugen-van-nederland",
+            "http://www.wikidata.org/entity/P8091"
+          ]
         }
       },
       {
