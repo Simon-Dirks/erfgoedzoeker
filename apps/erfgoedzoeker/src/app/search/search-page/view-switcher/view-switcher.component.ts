@@ -31,7 +31,7 @@ export class ViewSwitcherComponent {
   onViewChange(viewType: ViewType): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { view: viewType, pageSize: null, sort: null },
+      queryParams: { view: viewType, page: null, pageSize: null, sort: null },
       queryParamsHandling: 'merge',
     });
   }
