@@ -583,7 +583,8 @@
           "propertyLabel": "Zelfde als",
           "icon": "external-link",
           "isExternal": true
-        }
+        },
+        "hidden": true
       },
       {
         "id": "idAsLink",
