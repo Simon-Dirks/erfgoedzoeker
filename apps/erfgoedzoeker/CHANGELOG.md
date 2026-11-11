@@ -1,5 +1,52 @@
 # Changelog
 
+## [0.20.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.19.0...erfgoedzoeker-v0.20.0) (2026-11-11)
+
+
+### Features
+
+* add hash icon to icon registry ([c6646f5](https://github.com/Simon-Dirks/erfgoedzoeker/commit/c6646f5446c44dd388501e164ff1f9353b108287))
+* add identifier-widget ([d921a6c](https://github.com/Simon-Dirks/erfgoedzoeker/commit/d921a6c9838be8431f6e35f27ec9d80c2ac83aa3))
+* add size-widget ([a824164](https://github.com/Simon-Dirks/erfgoedzoeker/commit/a8241645ca53e3c738f2eb206daf5837630355ef))
+* allow closing/hiding WIP banner ([48e72dd](https://github.com/Simon-Dirks/erfgoedzoeker/commit/48e72dd6c7b4699e209f05e082beb8ae074ddbc5))
+* clear (all) filters through UI ([08ff930](https://github.com/Simon-Dirks/erfgoedzoeker/commit/08ff930f6a1a4d6490b5dd4ea11c5d25f01e0843))
+* configure sameAs presentation ([2fadbed](https://github.com/Simon-Dirks/erfgoedzoeker/commit/2fadbed526f5750653442c542cca7705f71a4169))
+* format facet counts ([e8b0250](https://github.com/Simon-Dirks/erfgoedzoeker/commit/e8b0250f14062ee0cdccdbb616fab9880ad9683d))
+* hide authority and fetchedAt fields ([7b5cc3e](https://github.com/Simon-Dirks/erfgoedzoeker/commit/7b5cc3e60340f348544624b4df1c878f7d9fbac6))
+* hide contributor ([f53ee98](https://github.com/Simon-Dirks/erfgoedzoeker/commit/f53ee98362a58e8b8147e2c301d10dc1367e696e))
+* hide sameAs ([1160226](https://github.com/Simon-Dirks/erfgoedzoeker/commit/1160226155e25eb1911764f7e8bda35222430037))
+* hide some identifiers for Tracé items ([0e44d42](https://github.com/Simon-Dirks/erfgoedzoeker/commit/0e44d4262bb810e9f212b3d7965a0e3653166af9))
+* remove creator widget ([890e4ee](https://github.com/Simon-Dirks/erfgoedzoeker/commit/890e4eed49f650c90ed58c7198268f16c192c176))
+* remove drop shadow from error alert ([2569f5f](https://github.com/Simon-Dirks/erfgoedzoeker/commit/2569f5f005d2104d6b47481f9bee8273836e43d9))
+* reorder facets ([702c672](https://github.com/Simon-Dirks/erfgoedzoeker/commit/702c672e0b161bceb376f2f71f7909ccf1f28f63))
+* show full links instead of only host name ([a7a9d80](https://github.com/Simon-Dirks/erfgoedzoeker/commit/a7a9d807752ddf108d835dd9994e44f9f755443d))
+* show grid view by default ([8b7cca7](https://github.com/Simon-Dirks/erfgoedzoeker/commit/8b7cca7478d30f9bbaeffd193fc36a780555f011))
+* truncate long links ([6c16f12](https://github.com/Simon-Dirks/erfgoedzoeker/commit/6c16f125d86c9193975e760d5a49448c0d75dc31))
+* tweak how alternateName is presented ([2ee8f8e](https://github.com/Simon-Dirks/erfgoedzoeker/commit/2ee8f8e1baee5349f46af3c56e2290aba7eb5e31))
+* tweak size property label ([160aeda](https://github.com/Simon-Dirks/erfgoedzoeker/commit/160aedaaab90b97a8a84103e966cfcc279f0564c))
+* update back to search label ([ae4aa9d](https://github.com/Simon-Dirks/erfgoedzoeker/commit/ae4aa9d27b2a54077f972feeca10cdbfaf36d166))
+* update GraphQL schema ([c049d34](https://github.com/Simon-Dirks/erfgoedzoeker/commit/c049d3413e42b35b209cb8d7289372b2d25b018e))
+* update GraphQL schema ([221087a](https://github.com/Simon-Dirks/erfgoedzoeker/commit/221087ae2928e26429e3cf8075a5aa63ce8b6482))
+* update GraphQL schema ([b361f9e](https://github.com/Simon-Dirks/erfgoedzoeker/commit/b361f9e0a8739fb26d23c965dcb08835dee29381))
+* update GraphQL schema ([bf5c841](https://github.com/Simon-Dirks/erfgoedzoeker/commit/bf5c84169af43ae93c4030905be378472a775a2c))
+* update property labels ([23a2738](https://github.com/Simon-Dirks/erfgoedzoeker/commit/23a2738723e1dea8c1f2f49c28a2d29d75872dff))
+* update search error text ([74fefec](https://github.com/Simon-Dirks/erfgoedzoeker/commit/74fefec4cfb1641062432d6c056f53d07bf07ea5))
+* use associatedMedia if no IIIF manifest is present in media widget ([2fc8a53](https://github.com/Simon-Dirks/erfgoedzoeker/commit/2fc8a5331008bd61729c649bc03e23d6849a901e))
+* use identifier widget ([17bbe23](https://github.com/Simon-Dirks/erfgoedzoeker/commit/17bbe2301ced96e92aac9c0a89743034df03fdad))
+* use publisher as organization facet instead of dataset ([7a7967c](https://github.com/Simon-Dirks/erfgoedzoeker/commit/7a7967c3704e52b467e8c55839df4e4fb7a0e4c6))
+* use publisher instead of dataset on details page ([0828e8d](https://github.com/Simon-Dirks/erfgoedzoeker/commit/0828e8d630673c367f943d80d81f38db262ec109))
+
+
+### Bug Fixes
+
+* allow link clicking in dynamic widgets ([3799eff](https://github.com/Simon-Dirks/erfgoedzoeker/commit/3799effaaa4a982311625cc4ba524c24553266fc))
+* fix issue with active facet badge overlapping facet label ([6e41ebb](https://github.com/Simon-Dirks/erfgoedzoeker/commit/6e41ebb41dda1930cbfe8c8fab359fb68d85f701))
+* fix issue with Leaflet marker cluster group plugin not working in production environments ([a2c8cac](https://github.com/Simon-Dirks/erfgoedzoeker/commit/a2c8cac0ff1a25547e1d175959841c20bba64713))
+* fix WCAG contrast issue ([7ec2f79](https://github.com/Simon-Dirks/erfgoedzoeker/commit/7ec2f793866195ebac19acc7c1e5d57016bc0027))
+* include measured part in size labels ([3261c5f](https://github.com/Simon-Dirks/erfgoedzoeker/commit/3261c5f8ffa4e8b3d50b122d0417d605b8b058b9))
+* preserve multiple values in GraphQL normalization ([57178c0](https://github.com/Simon-Dirks/erfgoedzoeker/commit/57178c0a038d33f4d3497a8500c28ee4817ec916))
+* support date range formatting ([dc4eae2](https://github.com/Simon-Dirks/erfgoedzoeker/commit/dc4eae227c5c68cf76a4f2db83aa0e7b5f38f4dd))
+
 ## [0.19.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.18.0...erfgoedzoeker-v0.19.0) (2026-10-29)
 
 

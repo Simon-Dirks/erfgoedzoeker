@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.6.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/config-schema-v0.5.0...config-schema-v0.6.0) (2026-11-11)
+
+
+### Features
+
+* add hash icon to icon registry ([c6646f5](https://github.com/Simon-Dirks/erfgoedzoeker/commit/c6646f5446c44dd388501e164ff1f9353b108287))
+* add identifier-widget ([d921a6c](https://github.com/Simon-Dirks/erfgoedzoeker/commit/d921a6c9838be8431f6e35f27ec9d80c2ac83aa3))
+* add size-widget ([a824164](https://github.com/Simon-Dirks/erfgoedzoeker/commit/a8241645ca53e3c738f2eb206daf5837630355ef))
+* remove creator widget ([890e4ee](https://github.com/Simon-Dirks/erfgoedzoeker/commit/890e4eed49f650c90ed58c7198268f16c192c176))
+
 ## [0.5.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/config-schema-v0.4.0...config-schema-v0.5.0) (2026-10-27)
 
 
