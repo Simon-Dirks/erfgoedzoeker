@@ -6,8 +6,8 @@ import {
   LOCALE_ID,
 } from '@angular/core';
 import {
-  formatParsedIsoDate,
-  parseIsoDate,
+  formatParsedIsoDateOrRange,
+  parseIsoDateOrRange,
 } from '../../../data-utils/date-parsing.util';
 import { BaseWidget } from '../../base-widget';
 
@@ -33,9 +33,9 @@ export class DateWidget extends BaseWidget {
   });
 
   private formatDate(value: string): string {
-    const parsed = parseIsoDate(value);
+    const parsed = parseIsoDateOrRange(value);
     if (!parsed) return value;
 
-    return formatParsedIsoDate(parsed, this.locale);
+    return formatParsedIsoDateOrRange(parsed, this.locale);
   }
 }

@@ -6,8 +6,8 @@ import {
   LOCALE_ID,
 } from '@angular/core';
 import {
-  formatIsoYear,
-  parseIsoDate,
+  formatIsoYearOrRange,
+  parseIsoDateOrRange,
 } from '../../../data-utils/date-parsing.util';
 import { normalizeToFirst } from '../../../data-utils/value-normalization.util';
 import { NodeComponent } from '../../../node/node.component';
@@ -23,8 +23,8 @@ function extractYear(node: NodeModel, locale: string): string | undefined {
   const dateCreated = normalizeToFirst<string>(node['dateCreated']);
   if (!dateCreated) return undefined;
 
-  const parsed = parseIsoDate(dateCreated);
-  return parsed ? formatIsoYear(parsed, locale) : undefined;
+  const parsed = parseIsoDateOrRange(dateCreated);
+  return parsed ? formatIsoYearOrRange(parsed, locale) : undefined;
 }
 
 @Component({

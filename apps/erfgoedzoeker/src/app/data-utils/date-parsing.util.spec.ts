@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import {
   formatIsoYear,
+  formatIsoYearOrRange,
   formatParsedIsoDate,
+  formatParsedIsoDateOrRange,
   parseIsoDate,
+  parseIsoDateOrRange,
 } from './date-parsing.util';
 
 describe('parseIsoDate', () => {
@@ -50,6 +53,69 @@ describe('parseIsoDate', () => {
       month: 1,
       day: 1,
     });
+  });
+});
+
+describe('parseIsoDateOrRange', () => {
+  it('parses a single date without end', () => {
+    expect(parseIsoDateOrRange('1950-06-15')).toEqual({
+      start: { year: 1950, month: 6, day: 15 },
+    });
+  });
+
+  it('parses a year range', () => {
+    expect(parseIsoDateOrRange('1870/1895')).toEqual({
+      start: { year: 1870, month: undefined, day: undefined },
+      end: { year: 1895, month: undefined, day: undefined },
+    });
+  });
+
+  it('parses a range with negative years', () => {
+    expect(parseIsoDateOrRange('-0500/-0400')?.end?.year).toBe(-400);
+  });
+
+  it('returns undefined if either side is invalid', () => {
+    expect(parseIsoDateOrRange('1870/abc')).toBeUndefined();
+    expect(parseIsoDateOrRange('abc/1895')).toBeUndefined();
+    expect(parseIsoDateOrRange('1870/')).toBeUndefined();
+  });
+
+  it('returns undefined for more than two parts', () => {
+    expect(parseIsoDateOrRange('1870/1880/1890')).toBeUndefined();
+  });
+});
+
+describe('formatIsoYearOrRange', () => {
+  it('formats a range as start – end', () => {
+    expect(formatIsoYearOrRange(parseIsoDateOrRange('1870/1895')!, 'nl')).toBe(
+      '1870 – 1895',
+    );
+  });
+
+  it('formats only years even if the dates are more specific', () => {
+    expect(
+      formatIsoYearOrRange(parseIsoDateOrRange('1870-03-01/1895-12-31')!, 'nl'),
+    ).toBe('1870 – 1895');
+  });
+
+  it('collapses a range with identical start and end', () => {
+    expect(formatIsoYearOrRange(parseIsoDateOrRange('1870/1870')!, 'nl')).toBe(
+      '1870',
+    );
+  });
+
+  it('formats a single date as a year', () => {
+    expect(formatIsoYearOrRange(parseIsoDateOrRange('1870-05-01')!, 'nl')).toBe(
+      '1870',
+    );
+  });
+});
+
+describe('formatParsedIsoDateOrRange', () => {
+  it('formats a full date range', () => {
+    expect(
+      formatParsedIsoDateOrRange(parseIsoDateOrRange('1870/1895')!, 'nl'),
+    ).toBe('1870 – 1895');
   });
 });
 

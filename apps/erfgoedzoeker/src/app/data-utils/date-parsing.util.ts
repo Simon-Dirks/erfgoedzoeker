@@ -36,6 +36,53 @@ export function parseIsoDate(value: string): ParsedIsoDate | undefined {
   return { year, month, day };
 }
 
+export interface ParsedIsoDateOrRange {
+  start: ParsedIsoDate;
+  end?: ParsedIsoDate;
+}
+
+export function parseIsoDateOrRange(
+  value: string,
+): ParsedIsoDateOrRange | undefined {
+  const parts = value.split('/');
+  if (parts.length > 2) return undefined;
+
+  const [startPart, endPart] = parts;
+  const start = parseIsoDate(startPart);
+  if (!start) return undefined;
+  if (endPart === undefined) return { start };
+
+  const end = parseIsoDate(endPart);
+  return end ? { start, end } : undefined;
+}
+
+function formatRange(
+  { start, end }: ParsedIsoDateOrRange,
+  format: (date: ParsedIsoDate) => string,
+): string {
+  const formattedStart = format(start);
+  if (!end) return formattedStart;
+
+  const formattedEnd = format(end);
+  return formattedStart === formattedEnd
+    ? formattedStart
+    : `${formattedStart} – ${formattedEnd}`;
+}
+
+export function formatParsedIsoDateOrRange(
+  range: ParsedIsoDateOrRange,
+  locale: string,
+): string {
+  return formatRange(range, (date) => formatParsedIsoDate(date, locale));
+}
+
+export function formatIsoYearOrRange(
+  range: ParsedIsoDateOrRange,
+  locale: string,
+): string {
+  return formatRange(range, (date) => formatIsoYear(date, locale));
+}
+
 /**
  * Builds a UTC `Date` for the given year/month/day, or `undefined` if the
  * year is outside the range that `Date` can handle, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#the_epoch_timestamps_and_invalid_date
