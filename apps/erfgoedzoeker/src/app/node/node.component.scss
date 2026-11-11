@@ -5,10 +5,14 @@
 }
 
 .position-container {
-  @apply empty:hidden overflow-y-auto p-4 flex flex-col gap-3;
+  @apply empty:hidden overflow-y-auto p-4;
 
   app-dynamic-widget {
     display: block;
+  }
+
+  > * + * {
+    @apply mt-3;
   }
 }
 
