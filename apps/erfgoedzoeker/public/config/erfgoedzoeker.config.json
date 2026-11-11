@@ -292,7 +292,7 @@
         }
       }
     ],
-    "defaultView": "list"
+    "defaultView": "grid"
   },
   "detailsPresentation": {
     "widgets": [
