@@ -199,4 +199,12 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
     value
     count
   }
+  publisher {
+    value
+    count
+    label {
+      value
+      language
+    }
+  }
 }

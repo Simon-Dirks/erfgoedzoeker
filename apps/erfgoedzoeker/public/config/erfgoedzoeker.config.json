@@ -6,10 +6,17 @@
   },
   "filters": [
     {
-      "name": "dataset",
+      "name": "publisher",
       "label": "Organisatie",
       "icon": "archive",
       "type": "facet"
+    },
+    {
+      "name": "dataset",
+      "label": "Organisatie",
+      "icon": "archive",
+      "type": "facet",
+      "hidden": true
     },
     {
       "name": "type",
@@ -77,13 +84,6 @@
       "name": "genre",
       "label": "Genre",
       "icon": "tag",
-      "type": "facet"
-    },
-
-    {
-      "name": "publisher",
-      "label": "Uitgever",
-      "icon": "users",
       "type": "facet"
     },
     {
