@@ -140,7 +140,8 @@ export class GraphqlApiService extends ApiService {
     variables: TVariables,
   ): Observable<TData> {
     const client = new GraphQLClient(this.endpointUrl(), {
-      headers: { 'Accept-Language': this.preferredLanguage },
+      // TODO: Use preferred language here
+      headers: { 'Accept-Language': 'nl' },
     }) as {
       request: (
         document: TypedDocumentNode<TData, TVariables>,
