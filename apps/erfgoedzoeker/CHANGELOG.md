@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.21.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.20.0...erfgoedzoeker-v0.21.0) (2026-11-12)
+
+
+### Features
+
+* configure widgets for addressCountry, latitude and longitude ([e579bc2](https://github.com/Simon-Dirks/erfgoedzoeker/commit/e579bc21bbe0b9c944c77887ce7a3d4434dc52f2))
+* force nl as language for GraphQL requests ([d4b2dc0](https://github.com/Simon-Dirks/erfgoedzoeker/commit/d4b2dc0619726ae835df22ef348a7ff35def102b))
+* hide all filters if there are no search results ([e2360c5](https://github.com/Simon-Dirks/erfgoedzoeker/commit/e2360c5c44a614d0908528513cf60c04b76ccdaf))
+* reset page when switching views ([7b0ac00](https://github.com/Simon-Dirks/erfgoedzoeker/commit/7b0ac0055c0810b92485fa4c81280bb145580e30))
+
+
+### Bug Fixes
+
+* resolve styling issue where a white strip was shown for nodes in the grid view ([6c80ead](https://github.com/Simon-Dirks/erfgoedzoeker/commit/6c80ead032b5b17c3c66484eda1ef793bcef50af))
+
 ## [0.20.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.19.0...erfgoedzoeker-v0.20.0) (2026-11-11)
 
 

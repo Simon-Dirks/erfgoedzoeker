@@ -1,5 +1,5 @@
 {
-  "apps/erfgoedzoeker": "0.20.0",
+  "apps/erfgoedzoeker": "0.21.0",
   "apps/configurator": "0.7.0",
   "packages/config-schema": "0.6.0"
 }
