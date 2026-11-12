@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 
 export async function goToSearchResults(
   page: Page,
-  query = 'brief',
+  query = 'kopje',
 ): Promise<void> {
   await page.goto(`/search?q=${query}`);
 
