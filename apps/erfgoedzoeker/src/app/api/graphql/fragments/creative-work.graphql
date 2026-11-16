@@ -99,91 +99,123 @@ fragment CreativeWorkFields on CreativeWork {
 
 fragment CreativeWorkFacetFields on CreativeWorkFacets {
   type {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   dataset {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   isPartOf {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   creator {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   contributor {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   additionalType {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   contentLocation {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   locationCreated {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   about {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   material {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
     }
   }
   genre {
-    value
-    count
-    label {
+    buckets {
       value
-      language
+      count
+      label {
+        value
+        language
+      }
+    }
+  }
+  publisher {
+    buckets {
+      value
+      count
+      label {
+        value
+        language
+      }
     }
   }
   hasMedia {
@@ -193,13 +225,5 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
   hasCoordinates {
     value
     count
-  }
-  publisher {
-    value
-    count
-    label {
-      value
-      language
-    }
   }
 }

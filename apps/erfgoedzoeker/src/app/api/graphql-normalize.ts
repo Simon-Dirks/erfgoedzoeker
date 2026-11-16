@@ -127,6 +127,11 @@ export function toFacets(
   preferredLanguage: string,
 ): Facet[] {
   return Object.entries(facets)
+    .filter(([name]) => name !== '__typename')
+    .map(
+      ([name, facet]) =>
+        [name, 'buckets' in facet ? facet.buckets : facet] as const,
+    )
     .filter(([, buckets]) => buckets.length > 0)
     .map(([name, buckets]) => ({
       type: 'OrderedCollection' as const,

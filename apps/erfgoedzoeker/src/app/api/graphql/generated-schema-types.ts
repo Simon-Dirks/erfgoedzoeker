@@ -74,7 +74,12 @@ export type CreativeWork = {
 
 export type CreativeWorkAssociatedMediaFacets = {
   __typename?: 'CreativeWorkAssociatedMediaFacets';
-  license: Array<IriBucket>;
+  license: IriFacet;
+};
+
+
+export type CreativeWorkAssociatedMediaFacetsLicenseArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** A condition on exactly one field. Used inside `or`, where the criteria are alternatives. */
@@ -104,21 +109,81 @@ export type CreativeWorkCriterion = {
 
 export type CreativeWorkFacets = {
   __typename?: 'CreativeWorkFacets';
-  about: Array<IriBucket>;
-  additionalType: Array<IriBucket>;
+  about: IriFacet;
+  additionalType: IriFacet;
   associatedMedia: CreativeWorkAssociatedMediaFacets;
-  contentLocation: Array<IriBucket>;
-  contributor: Array<IriBucket>;
-  creator: Array<IriBucket>;
-  dataset: Array<IriBucket>;
-  genre: Array<IriBucket>;
+  contentLocation: IriFacet;
+  contributor: IriFacet;
+  creator: IriFacet;
+  dataset: IriFacet;
+  genre: IriFacet;
   hasCoordinates: Array<BooleanBucket>;
   hasMedia: Array<BooleanBucket>;
-  isPartOf: Array<IriBucket>;
-  locationCreated: Array<IriBucket>;
-  material: Array<IriBucket>;
-  publisher: Array<IriBucket>;
-  type: Array<ValueBucket>;
+  isPartOf: IriFacet;
+  locationCreated: IriFacet;
+  material: IriFacet;
+  publisher: IriFacet;
+  type: ValueFacet;
+};
+
+
+export type CreativeWorkFacetsAboutArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsAdditionalTypeArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsContentLocationArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsContributorArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsCreatorArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsDatasetArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsGenreArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsIsPartOfArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsLocationCreatedArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsMaterialArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsPublisherArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CreativeWorkFacetsTypeArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Matches a field holding IRIs of CreativeWork. */
@@ -194,8 +259,18 @@ export type DatasetCriterion = {
 
 export type DatasetFacets = {
   __typename?: 'DatasetFacets';
-  license: Array<IriBucket>;
-  publisher: Array<IriBucket>;
+  license: IriFacet;
+  publisher: IriFacet;
+};
+
+
+export type DatasetFacetsLicenseArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type DatasetFacetsPublisherArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Matches a field holding IRIs of Dataset. */
@@ -263,6 +338,14 @@ export type IriBucket = {
   count: Scalars['Int']['output'];
   label?: Maybe<Array<LanguageString>>;
   value: Scalars['IRI']['output'];
+};
+
+export type IriFacet = {
+  __typename?: 'IRIFacet';
+  /** The values with the highest counts, at most `limit` of them, plus any value the query selects. */
+  buckets: Array<IriBucket>;
+  /** How many distinct values the facet holds over the matching documents, however many buckets are returned. May be an estimate on large result sets; null when the engine does not report it. */
+  totalValues?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Matches a field holding IRIs that belong to no collection this API serves. */
@@ -336,7 +419,12 @@ export type OccupationCriterion = {
 
 export type OccupationFacets = {
   __typename?: 'OccupationFacets';
-  dataset: Array<IriBucket>;
+  dataset: IriFacet;
+};
+
+
+export type OccupationFacetsDatasetArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Matches a field holding IRIs of Occupation. */
@@ -401,8 +489,18 @@ export type OrganizationCriterion = {
 
 export type OrganizationFacets = {
   __typename?: 'OrganizationFacets';
-  additionalType: Array<IriBucket>;
-  authority: Array<ValueBucket>;
+  additionalType: IriFacet;
+  authority: ValueFacet;
+};
+
+
+export type OrganizationFacetsAdditionalTypeArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type OrganizationFacetsAuthorityArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Matches a field holding IRIs of Organization. */
@@ -489,10 +587,30 @@ export type PersonCriterion = {
 
 export type PersonFacets = {
   __typename?: 'PersonFacets';
-  authority: Array<ValueBucket>;
-  birthPlace: Array<IriBucket>;
-  deathPlace: Array<IriBucket>;
-  hasOccupation: Array<IriBucket>;
+  authority: ValueFacet;
+  birthPlace: IriFacet;
+  deathPlace: IriFacet;
+  hasOccupation: IriFacet;
+};
+
+
+export type PersonFacetsAuthorityArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type PersonFacetsBirthPlaceArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type PersonFacetsDeathPlaceArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type PersonFacetsHasOccupationArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Matches a field holding IRIs of Person. */
@@ -608,10 +726,30 @@ export type PlaceCriterion = {
 
 export type PlaceFacets = {
   __typename?: 'PlaceFacets';
-  addressCountry: Array<ValueBucket>;
-  addressLocality: Array<ValueBucket>;
-  addressRegion: Array<ValueBucket>;
-  authority: Array<ValueBucket>;
+  addressCountry: ValueFacet;
+  addressLocality: ValueFacet;
+  addressRegion: ValueFacet;
+  authority: ValueFacet;
+};
+
+
+export type PlaceFacetsAddressCountryArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type PlaceFacetsAddressLocalityArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type PlaceFacetsAddressRegionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type PlaceFacetsAuthorityArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Matches a field holding IRIs of Place. */
@@ -842,8 +980,18 @@ export type TermCriterion = {
 
 export type TermFacets = {
   __typename?: 'TermFacets';
-  authority: Array<ValueBucket>;
-  sameAs: Array<ValueBucket>;
+  authority: ValueFacet;
+  sameAs: ValueFacet;
+};
+
+
+export type TermFacetsAuthorityArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type TermFacetsSameAsArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** Matches a field holding IRIs of Term. */
@@ -905,4 +1053,12 @@ export type ValueBucket = {
   count: Scalars['Int']['output'];
   label?: Maybe<Array<LanguageString>>;
   value: Scalars['String']['output'];
+};
+
+export type ValueFacet = {
+  __typename?: 'ValueFacet';
+  /** The values with the highest counts, at most `limit` of them, plus any value the query selects. */
+  buckets: Array<ValueBucket>;
+  /** How many distinct values the facet holds over the matching documents, however many buckets are returned. May be an estimate on large result sets; null when the engine does not report it. */
+  totalValues?: Maybe<Scalars['Int']['output']>;
 };
