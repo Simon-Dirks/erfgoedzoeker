@@ -186,14 +186,6 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       language
     }
   }
-  license {
-    value
-    count
-    label {
-      value
-      language
-    }
-  }
   hasMedia {
     value
     count

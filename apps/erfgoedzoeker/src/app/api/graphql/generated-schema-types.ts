@@ -72,10 +72,16 @@ export type CreativeWork = {
   type: Array<Scalars['String']['output']>;
 };
 
+export type CreativeWorkAssociatedMediaFacets = {
+  __typename?: 'CreativeWorkAssociatedMediaFacets';
+  license: Array<IriBucket>;
+};
+
 /** A condition on exactly one field. Used inside `or`, where the criteria are alternatives. */
 export type CreativeWorkCriterion = {
   about?: InputMaybe<TermFilter>;
   additionalType?: InputMaybe<TermFilter>;
+  associatedMedia?: InputMaybe<MediaObjectFilter>;
   contentLocation?: InputMaybe<PlaceFilter>;
   contributor?: InputMaybe<ContributorRoleFilter>;
   creator?: InputMaybe<PersonOrOrganizationFilter>;
@@ -87,7 +93,6 @@ export type CreativeWorkCriterion = {
   hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
   isPartOf?: InputMaybe<DatasetFilter>;
-  license?: InputMaybe<IriFilter>;
   locationCreated?: InputMaybe<PlaceFilter>;
   material?: InputMaybe<TermFilter>;
   /** The Publisher of the dataset this work was drawn from, as registered in the Dataset Register. */
@@ -101,6 +106,7 @@ export type CreativeWorkFacets = {
   __typename?: 'CreativeWorkFacets';
   about: Array<IriBucket>;
   additionalType: Array<IriBucket>;
+  associatedMedia: CreativeWorkAssociatedMediaFacets;
   contentLocation: Array<IriBucket>;
   contributor: Array<IriBucket>;
   creator: Array<IriBucket>;
@@ -109,7 +115,6 @@ export type CreativeWorkFacets = {
   hasCoordinates: Array<BooleanBucket>;
   hasMedia: Array<BooleanBucket>;
   isPartOf: Array<IriBucket>;
-  license: Array<IriBucket>;
   locationCreated: Array<IriBucket>;
   material: Array<IriBucket>;
   publisher: Array<IriBucket>;
@@ -146,6 +151,7 @@ export type CreativeWorkWhere = {
   additionalType?: InputMaybe<TermFilter>;
   /** Further groups of conditions, all of which apply. The way to carry a second `or` disjunction alongside the first. */
   and?: InputMaybe<Array<CreativeWorkWhere>>;
+  associatedMedia?: InputMaybe<MediaObjectFilter>;
   contentLocation?: InputMaybe<PlaceFilter>;
   contributor?: InputMaybe<ContributorRoleFilter>;
   creator?: InputMaybe<PersonOrOrganizationFilter>;
@@ -157,7 +163,6 @@ export type CreativeWorkWhere = {
   hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
   isPartOf?: InputMaybe<DatasetFilter>;
-  license?: InputMaybe<IriFilter>;
   locationCreated?: InputMaybe<PlaceFilter>;
   material?: InputMaybe<TermFilter>;
   /** A disjunction: a document matches when ANY of these criteria holds. Combined with the sibling keys by AND, so it widens across fields without widening the query as a whole. */
@@ -304,6 +309,16 @@ export type MediaObject = {
   encodingFormat: Array<Scalars['String']['output']>;
   license?: Maybe<Scalars['IRI']['output']>;
   thumbnailUrl?: Maybe<Scalars['IRI']['output']>;
+};
+
+/** A condition on one MediaObject entry. */
+export type MediaObjectFilter = {
+  where?: InputMaybe<MediaObjectWhere>;
+};
+
+/** Sibling keys are combined with AND, and all of them must hold of the SAME entry. */
+export type MediaObjectWhere = {
+  license?: InputMaybe<IriFilter>;
 };
 
 export type Occupation = {
