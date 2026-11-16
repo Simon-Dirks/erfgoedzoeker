@@ -1,12 +1,12 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
   OnDestroy,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import { forkJoin, Observable, of } from 'rxjs';
@@ -142,7 +142,8 @@ export class ImageGalleryWidget extends BaseWidget implements OnDestroy {
 
   onThumbnailError(event: Event): void {
     const img = event.target as HTMLImageElement;
-    img.src = 'https://placehold.co/600x400?text=X';
+    img.src =
+      'https://placehold.co/600x400?text=Afbeelding+is+tijdelijk+niet+beschikbaar';
   }
 
   ngOnDestroy(): void {
