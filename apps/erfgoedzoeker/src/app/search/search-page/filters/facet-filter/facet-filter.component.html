@@ -9,10 +9,13 @@
       type="text"
       placeholder="Filter..."
       class="input input-sm input-bordered w-full"
+      [attr.aria-label]="'Filter opties voor ' + label()"
+      [value]="filterText()"
+      (input)="filterText.set($any($event.target).value)"
     />
   </div>
   <div class="space-y-1 max-h-48 overflow-y-scroll">
-    @for (facetItem of facet().orderedItems; track facetItem.value) {
+    @for (facetItem of visibleItems(); track facetItem.value) {
       <label
         class="flex justify-between items-center text-sm cursor-pointer hover:bg-base-200 p-1 rounded gap-1"
       >

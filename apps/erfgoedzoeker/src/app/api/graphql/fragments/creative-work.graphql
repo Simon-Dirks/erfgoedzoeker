@@ -98,7 +98,7 @@ fragment CreativeWorkFields on CreativeWork {
 }
 
 fragment CreativeWorkFacetFields on CreativeWorkFacets {
-  type {
+  type(limit: 100) {
     buckets {
       value
       count
@@ -108,7 +108,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  dataset {
+  dataset(limit: 100) {
     buckets {
       value
       count
@@ -118,7 +118,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  isPartOf {
+  isPartOf(limit: 100) {
     buckets {
       value
       count
@@ -128,7 +128,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  creator {
+  creator(limit: 100) {
     buckets {
       value
       count
@@ -138,7 +138,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  contributor {
+  contributor(limit: 100) {
     buckets {
       value
       count
@@ -148,7 +148,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  additionalType {
+  additionalType(limit: 100) {
     buckets {
       value
       count
@@ -158,7 +158,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  contentLocation {
+  contentLocation(limit: 100) {
     buckets {
       value
       count
@@ -168,7 +168,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  locationCreated {
+  locationCreated(limit: 100) {
     buckets {
       value
       count
@@ -178,7 +178,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  about {
+  about(limit: 100) {
     buckets {
       value
       count
@@ -188,7 +188,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  material {
+  material(limit: 100) {
     buckets {
       value
       count
@@ -198,7 +198,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  genre {
+  genre(limit: 100) {
     buckets {
       value
       count
@@ -208,7 +208,7 @@ fragment CreativeWorkFacetFields on CreativeWorkFacets {
       }
     }
   }
-  publisher {
+  publisher(limit: 100) {
     buckets {
       value
       count

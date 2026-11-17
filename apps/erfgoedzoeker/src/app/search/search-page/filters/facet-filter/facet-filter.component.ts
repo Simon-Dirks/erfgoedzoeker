@@ -5,6 +5,7 @@ import {
   computed,
   inject,
   input,
+  signal,
 } from '@angular/core';
 import { FacetFilterService } from '../../../state/facet-filter.service';
 import { Facet, FacetValue } from '../../../types/facet';
@@ -22,6 +23,17 @@ export class FacetFilterComponent {
   icon = input<string | undefined>(undefined);
 
   private facetFilter = inject(FacetFilterService);
+
+  // TODO: Handle facet filtering at the integration layer, see https://codeberg.org/limburg/lol/issues/221
+  protected readonly filterText = signal('');
+  protected readonly visibleItems = computed(() => {
+    const items = this.facet().orderedItems;
+    const searchText = this.filterText().trim().toLocaleLowerCase('nl');
+    if (!searchText) return items;
+    return items.filter((item) =>
+      this.formatFacetLabel(item).toLocaleLowerCase('nl').includes(searchText),
+    );
+  });
 
   activeBadge = computed(() => {
     const count = this.facetFilter.activeCount(this.facet().name);
