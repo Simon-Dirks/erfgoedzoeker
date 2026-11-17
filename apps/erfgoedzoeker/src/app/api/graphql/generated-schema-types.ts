@@ -91,7 +91,7 @@ export type CreativeWorkCriterion = {
   contributor?: InputMaybe<ContributorRoleFilter>;
   creator?: InputMaybe<PersonOrOrganizationFilter>;
   dataset?: InputMaybe<DatasetFilter>;
-  dateCreated?: InputMaybe<DateRange>;
+  dateCreated?: InputMaybe<DateRangeOrExists>;
   genre?: InputMaybe<TermFilter>;
   /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
   hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
@@ -107,6 +107,12 @@ export type CreativeWorkCriterion = {
   type?: InputMaybe<KeywordFilter>;
 };
 
+export type CreativeWorkDateCreatedFacets = {
+  __typename?: 'CreativeWorkDateCreatedFacets';
+  /** Documents that hold a value for “dateCreated”, and documents that hold none. */
+  exists: Array<BooleanBucket>;
+};
+
 export type CreativeWorkFacets = {
   __typename?: 'CreativeWorkFacets';
   about: IriFacet;
@@ -116,6 +122,7 @@ export type CreativeWorkFacets = {
   contributor: IriFacet;
   creator: IriFacet;
   dataset: IriFacet;
+  dateCreated: CreativeWorkDateCreatedFacets;
   genre: IriFacet;
   hasCoordinates: Array<BooleanBucket>;
   hasMedia: Array<BooleanBucket>;
@@ -221,7 +228,7 @@ export type CreativeWorkWhere = {
   contributor?: InputMaybe<ContributorRoleFilter>;
   creator?: InputMaybe<PersonOrOrganizationFilter>;
   dataset?: InputMaybe<DatasetFilter>;
-  dateCreated?: InputMaybe<DateRange>;
+  dateCreated?: InputMaybe<DateRangeOrExists>;
   genre?: InputMaybe<TermFilter>;
   /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
   hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
@@ -318,6 +325,14 @@ export type DatasetWhere = {
 };
 
 export type DateRange = {
+  max?: InputMaybe<Scalars['ISO8601Date']['input']>;
+  min?: InputMaybe<Scalars['ISO8601Date']['input']>;
+};
+
+/** Matches like DateRange. Or, through “exists”, whether the document holds a value at all. */
+export type DateRangeOrExists = {
+  /** true matches a document that holds a value for this field, false one that holds none. */
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
   max?: InputMaybe<Scalars['ISO8601Date']['input']>;
   min?: InputMaybe<Scalars['ISO8601Date']['input']>;
 };
