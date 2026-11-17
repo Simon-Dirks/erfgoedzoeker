@@ -1,5 +1,5 @@
 # TODO: Generate this automatically for all fields that refer to an IRI
-query ReferringNodes($id: IRI!, $perPage: Int) {
+query ReferringNodes($id: IRI!, $page: Int, $perPage: Int) {
   creativeWorks(
     where: {
       or: [
@@ -14,7 +14,7 @@ query ReferringNodes($id: IRI!, $perPage: Int) {
         { isPartOf: { in: [$id] } }
       ]
     }
-    page: 1
+    page: $page
     perPage: $perPage
   ) {
     items {
@@ -24,7 +24,11 @@ query ReferringNodes($id: IRI!, $perPage: Int) {
       total
     }
   }
-  datasets(where: { publisher: { in: [$id] } }, page: 1, perPage: $perPage) {
+  datasets(
+    where: { publisher: { in: [$id] } }
+    page: $page
+    perPage: $perPage
+  ) {
     items {
       ...ReferringDatasetFields
     }
@@ -32,7 +36,11 @@ query ReferringNodes($id: IRI!, $perPage: Int) {
       total
     }
   }
-  occupations(where: { dataset: { in: [$id] } }, page: 1, perPage: $perPage) {
+  occupations(
+    where: { dataset: { in: [$id] } }
+    page: $page
+    perPage: $perPage
+  ) {
     items {
       ...ReferringOccupationFields
     }
@@ -42,7 +50,7 @@ query ReferringNodes($id: IRI!, $perPage: Int) {
   }
   organizations(
     where: { location: { in: [$id] } }
-    page: 1
+    page: $page
     perPage: $perPage
   ) {
     items {
@@ -60,7 +68,7 @@ query ReferringNodes($id: IRI!, $perPage: Int) {
         { hasOccupation: { in: [$id] } }
       ]
     }
-    page: 1
+    page: $page
     perPage: $perPage
   ) {
     items {

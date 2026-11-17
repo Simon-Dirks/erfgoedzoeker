@@ -1,9 +1,12 @@
-@if (loading()) {
-  <app-loading-spinner size="md" [centered]="false" />
-} @else if (error()) {
+@if (error()) {
   <app-error-alert [message]="error()!" />
-} @else if (hasResults()) {
-  <div class="space-y-2">
+}
+@if (hasResults()) {
+  <div
+    class="space-y-2"
+    [class.opacity-50]="loading()"
+    [attr.aria-busy]="loading()"
+  >
     <div class="text-sm text-gray-600 mb-2">
       {{ totalReferringNodes() }}
       {{
@@ -13,5 +16,17 @@
     </div>
 
     <app-node-link-list [nodes]="referringNodes()" [mode]="'image-card'" />
+
+    <app-pagination
+      [label]="'Paginering van verwijzende objecten'"
+      [currentPage]="currentPage()"
+      [totalItems]="totalReferringNodes()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="pageSizeOptions"
+      (pageChange)="currentPage.set($event)"
+      (pageSizeChange)="changePageSize($event)"
+    />
   </div>
+} @else if (loading()) {
+  <app-loading-spinner size="md" [centered]="false" />
 }

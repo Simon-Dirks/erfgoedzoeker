@@ -124,12 +124,14 @@ export class GraphqlApiService extends ApiService {
     );
   }
 
-  referringNodes(id: string): Observable<ReferringNodesResponse> {
-    const perPage = 20;
-
+  referringNodes(
+    id: string,
+    page: number,
+    perPage: number,
+  ): Observable<ReferringNodesResponse> {
     return this.request<ReferringNodesQuery, ReferringNodesQueryVariables>(
       ReferringNodesDocument,
-      { id, perPage },
+      { id, page, perPage },
     ).pipe(
       map((data) => toReferringNodesResponse(data, this.preferredLanguage)),
     );

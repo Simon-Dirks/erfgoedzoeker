@@ -172,7 +172,11 @@ export class MockApiService extends ApiService {
     return of(node);
   }
 
-  referringNodes(_id: string): Observable<ReferringNodesResponse> {
+  referringNodes(
+    _id: string,
+    _page: number,
+    _pageSize: number,
+  ): Observable<ReferringNodesResponse> {
     return of({
       totalCount: 0,
       nodes: [],

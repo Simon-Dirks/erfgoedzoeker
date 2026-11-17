@@ -91,9 +91,14 @@ export class RestApiService extends ApiService {
     );
   }
 
-  referringNodes(id: string): Observable<ReferringNodesResponse> {
+  referringNodes(
+    id: string,
+    page: number,
+    pageSize: number,
+  ): Observable<ReferringNodesResponse> {
     return this.search({
-      page: 0,
+      page: page - 1,
+      size: pageSize,
       rawFilterRest: `*.id:${id}`,
     }).pipe(
       map((response) => ({

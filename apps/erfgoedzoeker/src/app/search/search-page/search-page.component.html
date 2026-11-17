@@ -73,6 +73,8 @@
             [currentPage]="store.currentPage()"
             [totalItems]="store.totalResults()"
             [pageSize]="store.pageSize()"
+            (pageChange)="goToPage($event)"
+            (pageSizeChange)="changePageSize($event)"
           />
         }
       } @else if (

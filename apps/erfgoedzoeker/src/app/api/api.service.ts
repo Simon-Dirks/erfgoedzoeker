@@ -17,5 +17,9 @@ export abstract class ApiService {
 
   abstract details(id: string): Observable<NodeModel>;
 
-  abstract referringNodes(id: string): Observable<ReferringNodesResponse>;
+  abstract referringNodes(
+    id: string,
+    page: number,
+    pageSize: number,
+  ): Observable<ReferringNodesResponse>;
 }

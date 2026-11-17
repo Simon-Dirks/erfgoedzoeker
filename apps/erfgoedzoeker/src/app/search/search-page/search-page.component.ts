@@ -27,7 +27,7 @@ import { ViewService } from '../views/view.service';
 import { DrawerLayoutComponent } from './drawer-layout/drawer-layout.component';
 import { DrawerToggleButtonComponent } from './drawer-layout/drawer-toggle-button/drawer-toggle-button.component';
 import { FiltersComponent } from './filters/filters.component';
-import { Pagination } from './pagination/pagination';
+import { Pagination } from '../../ui/pagination/pagination';
 import { ResultsCount } from './results-count/results-count';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchSort } from './search-sort/search-sort';
@@ -88,6 +88,20 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.breadcrumbService.reset();
+  }
+
+  protected goToPage(page: number): void {
+    this.router.navigate([], {
+      queryParams: { page },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  protected changePageSize(pageSize: number): void {
+    this.router.navigate([], {
+      queryParams: { pageSize, page: 1 },
+      queryParamsHandling: 'merge',
+    });
   }
 
   private saveScrollPositionOnNavigateAway(): void {

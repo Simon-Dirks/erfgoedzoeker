@@ -1,19 +1,19 @@
 @if (totalPages() > 1) {
 <nav
-  class="flex flex-col items-center gap-4 mt-8 sm:flex-row sm:justify-between"
+  class="flex flex-col items-center gap-4 mt-8 font-sans sm:flex-row sm:justify-between"
   role="navigation"
-  aria-label="Pagination"
+  [attr.aria-label]="label()"
 >
   <div class="flex items-center gap-1 order-2 sm:order-1">
-    <label for="pagination-page-size-select" class="sr-only">
+    <label [for]="pageSizeSelectId" class="sr-only">
       Resultaten per pagina
     </label>
     <select
-      id="pagination-page-size-select"
+      [id]="pageSizeSelectId"
       class="select select-sm"
       (change)="onPageSizeChange($event)"
     >
-      @for (option of pageSizeOptions(); track option) {
+      @for (option of selectablePageSizes(); track option) {
       <option [value]="option" [selected]="option === pageSize()">
         {{ option }} per pagina
       </option>
@@ -22,33 +22,21 @@
   </div>
 
   <div class="flex items-center gap-2 order-1 sm:order-2">
-    @if (hasPrevious()) {
-    <a
+    <button
+      type="button"
       class="btn btn-sm"
-      [routerLink]="[]"
-      [queryParams]="getPreviousPageQueryParams()"
-      queryParamsHandling="merge"
+      [class.btn-disabled]="!hasPrevious()"
+      [attr.aria-disabled]="!hasPrevious()"
       aria-label="Vorige pagina"
+      (click)="goToPrevious()"
     >
       <ng-icon name="featherChevronLeft" size="20" aria-hidden="true" />
-    </a>
-    } @else {
-    <span
-      class="btn btn-sm btn-disabled"
-      role="link"
-      aria-disabled="true"
-      aria-label="Vorige pagina"
-    >
-      <ng-icon name="featherChevronLeft" size="20" aria-hidden="true" />
-    </span>
-    }
+    </button>
 
     <div class="flex items-center gap-1">
-      <label for="pagination-page-input" class="sr-only">
-        Ga naar pagina
-      </label>
+      <label [for]="pageInputId" class="sr-only"> Ga naar pagina </label>
       <input
-        id="pagination-page-input"
+        [id]="pageInputId"
         type="number"
         min="1"
         [max]="totalPages()"
@@ -62,26 +50,16 @@
       <span>van {{ totalPages() }}</span>
     </div>
 
-    @if (hasNext()) {
-    <a
+    <button
+      type="button"
       class="btn btn-sm"
-      [routerLink]="[]"
-      [queryParams]="getNextPageQueryParams()"
-      queryParamsHandling="merge"
+      [class.btn-disabled]="!hasNext()"
+      [attr.aria-disabled]="!hasNext()"
       aria-label="Volgende pagina"
+      (click)="goToNext()"
     >
       <ng-icon name="featherChevronRight" size="20" aria-hidden="true" />
-    </a>
-    } @else {
-    <span
-      class="btn btn-sm btn-disabled"
-      role="link"
-      aria-disabled="true"
-      aria-label="Volgende pagina"
-    >
-      <ng-icon name="featherChevronRight" size="20" aria-hidden="true" />
-    </span>
-    }
+    </button>
   </div>
 </nav>
 }
