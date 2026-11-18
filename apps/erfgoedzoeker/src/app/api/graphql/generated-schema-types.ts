@@ -49,9 +49,6 @@ export type CreativeWork = {
   dateCreated: Array<Scalars['EDTF']['output']>;
   description: Array<LanguageString>;
   genre: Array<TermReference>;
-  /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
-  hasCoordinates: Scalars['Boolean']['output'];
-  hasMedia: Scalars['Boolean']['output'];
   id: Scalars['IRI']['output'];
   identifier: Array<PropertyValue>;
   /** The work’s IIIF Presentation manifest, if it publishes one. Filled however the publisher states it – the profile’s own `associatedMedia` entry, or the `isBasedOn` target older versions used – so a IIIF-aware client dereferences this and never reads `associatedMedia` to find it. */
@@ -72,33 +69,74 @@ export type CreativeWork = {
   type: Array<Scalars['String']['output']>;
 };
 
-export type CreativeWorkAssociatedMediaFacets = {
-  __typename?: 'CreativeWorkAssociatedMediaFacets';
+export type CreativeWorkAssociatedMediaFacet = {
+  __typename?: 'CreativeWorkAssociatedMediaFacet';
   license: IriFacet;
+  thumbnailUrl: CreativeWorkAssociatedMediaThumbnailUrlFacet;
 };
 
 
-export type CreativeWorkAssociatedMediaFacetsLicenseArgs = {
+export type CreativeWorkAssociatedMediaFacetLicenseArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** A condition on one “CreativeWork.associatedMedia” entry. */
+export type CreativeWorkAssociatedMediaFilter = {
+  where?: InputMaybe<CreativeWorkAssociatedMediaWhere>;
+};
+
+export type CreativeWorkAssociatedMediaThumbnailUrlFacet = {
+  __typename?: 'CreativeWorkAssociatedMediaThumbnailUrlFacet';
+  /** Documents with a referent that holds a value for “thumbnailUrl”, and documents with none. */
+  exists: Array<BooleanBucket>;
+};
+
+/** Sibling keys are combined with AND, and all of them must hold of the SAME entry. */
+export type CreativeWorkAssociatedMediaWhere = {
+  license?: InputMaybe<IriFilter>;
+  thumbnailUrl?: InputMaybe<ExistsFilter>;
+};
+
+export type CreativeWorkContentLocationFacet = {
+  __typename?: 'CreativeWorkContentLocationFacet';
+  /** The values with the highest counts, at most `limit` of them, plus any value the query selects. */
+  buckets: Array<IriBucket>;
+  latitude: CreativeWorkContentLocationLatitudeFacet;
+  /** How many distinct values the facet holds over the matching documents, however many buckets are returned. May be an estimate on large result sets; null when the engine does not report it. */
+  totalValues?: Maybe<Scalars['Int']['output']>;
+};
+
+/** A condition on “CreativeWork.contentLocation”: the ids it holds, or a condition on its referents. */
+export type CreativeWorkContentLocationFilter = {
+  in?: InputMaybe<Array<Scalars['IRI']['input']>>;
+  where?: InputMaybe<CreativeWorkContentLocationWhere>;
+};
+
+export type CreativeWorkContentLocationLatitudeFacet = {
+  __typename?: 'CreativeWorkContentLocationLatitudeFacet';
+  /** Documents with a referent that holds a value for “latitude”, and documents with none. */
+  exists: Array<BooleanBucket>;
+};
+
+/** Whether any referent holds a value for a leaf. Sibling keys are combined with AND. */
+export type CreativeWorkContentLocationWhere = {
+  latitude?: InputMaybe<ExistsFilter>;
 };
 
 /** A condition on exactly one field. Used inside `or`, where the criteria are alternatives. */
 export type CreativeWorkCriterion = {
   about?: InputMaybe<TermFilter>;
   additionalType?: InputMaybe<TermFilter>;
-  associatedMedia?: InputMaybe<MediaObjectFilter>;
-  contentLocation?: InputMaybe<PlaceFilter>;
+  associatedMedia?: InputMaybe<CreativeWorkAssociatedMediaFilter>;
+  contentLocation?: InputMaybe<CreativeWorkContentLocationFilter>;
   contributor?: InputMaybe<ContributorRoleFilter>;
   creator?: InputMaybe<PersonOrOrganizationFilter>;
   dataset?: InputMaybe<DatasetFilter>;
   dateCreated?: InputMaybe<DateRangeOrExists>;
   genre?: InputMaybe<TermFilter>;
-  /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
-  hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
-  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
   isPartOf?: InputMaybe<DatasetFilter>;
-  locationCreated?: InputMaybe<PlaceFilter>;
+  locationCreated?: InputMaybe<CreativeWorkLocationCreatedFilter>;
   material?: InputMaybe<TermFilter>;
   /** The Publisher of the dataset this work was drawn from, as registered in the Dataset Register. */
   publisher?: InputMaybe<PublisherFilter>;
@@ -107,8 +145,8 @@ export type CreativeWorkCriterion = {
   type?: InputMaybe<KeywordFilter>;
 };
 
-export type CreativeWorkDateCreatedFacets = {
-  __typename?: 'CreativeWorkDateCreatedFacets';
+export type CreativeWorkDateCreatedFacet = {
+  __typename?: 'CreativeWorkDateCreatedFacet';
   /** Documents that hold a value for “dateCreated”, and documents that hold none. */
   exists: Array<BooleanBucket>;
 };
@@ -117,17 +155,15 @@ export type CreativeWorkFacets = {
   __typename?: 'CreativeWorkFacets';
   about: IriFacet;
   additionalType: IriFacet;
-  associatedMedia: CreativeWorkAssociatedMediaFacets;
-  contentLocation: IriFacet;
+  associatedMedia: CreativeWorkAssociatedMediaFacet;
+  contentLocation: CreativeWorkContentLocationFacet;
   contributor: IriFacet;
   creator: IriFacet;
   dataset: IriFacet;
-  dateCreated: CreativeWorkDateCreatedFacets;
+  dateCreated: CreativeWorkDateCreatedFacet;
   genre: IriFacet;
-  hasCoordinates: Array<BooleanBucket>;
-  hasMedia: Array<BooleanBucket>;
   isPartOf: IriFacet;
-  locationCreated: IriFacet;
+  locationCreated: CreativeWorkLocationCreatedFacet;
   material: IriFacet;
   publisher: IriFacet;
   type: ValueFacet;
@@ -136,66 +172,104 @@ export type CreativeWorkFacets = {
 
 export type CreativeWorkFacetsAboutArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsAdditionalTypeArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsContentLocationArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsContributorArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsCreatorArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsDatasetArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsGenreArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsIsPartOfArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsLocationCreatedArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsMaterialArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsPublisherArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type CreativeWorkFacetsTypeArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Matches a field holding IRIs of CreativeWork. */
 export type CreativeWorkFilter = {
   in?: InputMaybe<Array<Scalars['IRI']['input']>>;
+};
+
+export type CreativeWorkLocationCreatedFacet = {
+  __typename?: 'CreativeWorkLocationCreatedFacet';
+  /** The values with the highest counts, at most `limit` of them, plus any value the query selects. */
+  buckets: Array<IriBucket>;
+  latitude: CreativeWorkLocationCreatedLatitudeFacet;
+  /** How many distinct values the facet holds over the matching documents, however many buckets are returned. May be an estimate on large result sets; null when the engine does not report it. */
+  totalValues?: Maybe<Scalars['Int']['output']>;
+};
+
+/** A condition on “CreativeWork.locationCreated”: the ids it holds, or a condition on its referents. */
+export type CreativeWorkLocationCreatedFilter = {
+  in?: InputMaybe<Array<Scalars['IRI']['input']>>;
+  where?: InputMaybe<CreativeWorkLocationCreatedWhere>;
+};
+
+export type CreativeWorkLocationCreatedLatitudeFacet = {
+  __typename?: 'CreativeWorkLocationCreatedLatitudeFacet';
+  /** Documents with a referent that holds a value for “latitude”, and documents with none. */
+  exists: Array<BooleanBucket>;
+};
+
+/** Whether any referent holds a value for a leaf. Sibling keys are combined with AND. */
+export type CreativeWorkLocationCreatedWhere = {
+  latitude?: InputMaybe<ExistsFilter>;
 };
 
 export type CreativeWorkOrderBy = {
@@ -223,19 +297,16 @@ export type CreativeWorkWhere = {
   additionalType?: InputMaybe<TermFilter>;
   /** Further groups of conditions, all of which apply. The way to carry a second `or` disjunction alongside the first. */
   and?: InputMaybe<Array<CreativeWorkWhere>>;
-  associatedMedia?: InputMaybe<MediaObjectFilter>;
-  contentLocation?: InputMaybe<PlaceFilter>;
+  associatedMedia?: InputMaybe<CreativeWorkAssociatedMediaFilter>;
+  contentLocation?: InputMaybe<CreativeWorkContentLocationFilter>;
   contributor?: InputMaybe<ContributorRoleFilter>;
   creator?: InputMaybe<PersonOrOrganizationFilter>;
   dataset?: InputMaybe<DatasetFilter>;
   dateCreated?: InputMaybe<DateRangeOrExists>;
   genre?: InputMaybe<TermFilter>;
-  /** Whether a place in `contentLocation` or `locationCreated` has coordinates (`latitude` and `longitude`). */
-  hasCoordinates?: InputMaybe<Scalars['Boolean']['input']>;
-  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<CreativeWorkFilter>;
   isPartOf?: InputMaybe<DatasetFilter>;
-  locationCreated?: InputMaybe<PlaceFilter>;
+  locationCreated?: InputMaybe<CreativeWorkLocationCreatedFilter>;
   material?: InputMaybe<TermFilter>;
   /** A disjunction: a document matches when ANY of these criteria holds. Combined with the sibling keys by AND, so it widens across fields without widening the query as a whole. */
   or?: InputMaybe<Array<CreativeWorkCriterion>>;
@@ -278,6 +349,7 @@ export type DatasetFacetsLicenseArgs = {
 
 export type DatasetFacetsPublisherArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Matches a field holding IRIs of Dataset. */
@@ -341,6 +413,12 @@ export type DefinedTerm = {
   __typename?: 'DefinedTerm';
   name: Array<LanguageString>;
   sameAs: Array<Scalars['IRI']['output']>;
+};
+
+/** Matches a field on whether the document holds a value. */
+export type ExistsFilter = {
+  /** true matches a document that holds a value for this field, false one that holds none. */
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type FloatRange = {
@@ -409,16 +487,6 @@ export type MediaObject = {
   thumbnailUrl?: Maybe<Scalars['IRI']['output']>;
 };
 
-/** A condition on one MediaObject entry. */
-export type MediaObjectFilter = {
-  where?: InputMaybe<MediaObjectWhere>;
-};
-
-/** Sibling keys are combined with AND, and all of them must hold of the SAME entry. */
-export type MediaObjectWhere = {
-  license?: InputMaybe<IriFilter>;
-};
-
 export type Occupation = {
   __typename?: 'Occupation';
   dataset?: Maybe<DatasetReference>;
@@ -440,6 +508,7 @@ export type OccupationFacets = {
 
 export type OccupationFacetsDatasetArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Matches a field holding IRIs of Occupation. */
@@ -511,11 +580,13 @@ export type OrganizationFacets = {
 
 export type OrganizationFacetsAdditionalTypeArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type OrganizationFacetsAuthorityArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Matches a field holding IRIs of Organization. */
@@ -611,21 +682,25 @@ export type PersonFacets = {
 
 export type PersonFacetsAuthorityArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type PersonFacetsBirthPlaceArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type PersonFacetsDeathPlaceArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type PersonFacetsHasOccupationArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Matches a field holding IRIs of Person. */
@@ -750,21 +825,25 @@ export type PlaceFacets = {
 
 export type PlaceFacetsAddressCountryArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type PlaceFacetsAddressLocalityArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type PlaceFacetsAddressRegionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type PlaceFacetsAuthorityArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Matches a field holding IRIs of Place. */
@@ -1002,11 +1081,13 @@ export type TermFacets = {
 
 export type TermFacetsAuthorityArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type TermFacetsSameAsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Matches a field holding IRIs of Term. */

@@ -2,7 +2,7 @@ import { MaybeMultiple } from '../data-utils/value-normalization.util';
 import { NodeModel } from '../node/types/node.model';
 import { Facet, isFacetValue } from '../search/types/facet';
 import { Filters } from '../search/types/filters';
-import { hasActiveBounds, RangeValue } from '../search/types/range-value';
+import { hasActiveBounds } from '../search/types/range-value';
 import { ReferringNodesResponse } from '../search/types/referring-node';
 import { SearchQuery } from '../search/types/search-query';
 import { SearchResponse } from '../search/types/search-response';
@@ -21,7 +21,6 @@ import {
   CreativeWorkOrderBy,
   CreativeWorkSortField,
   CreativeWorkWhere,
-  KeywordFilter,
   Pagination,
   SortDirection,
 } from './graphql/generated-schema-types';
@@ -122,16 +121,49 @@ export function normalizeGraphQlItem<T extends object>(
   );
 }
 
+type BooleanBucket = { value: boolean; count: number };
+
+// TODO: Find a more sustainable/generic way to handle boolean filters
+const BOOLEAN_FILTERS: Record<
+  string,
+  {
+    where: (exists: boolean) => object;
+    buckets: (facets: CreativeWorkFacetFieldsFragment) => BooleanBucket[];
+  }
+> = {
+  hasMedia: {
+    where: (exists) => ({
+      associatedMedia: { where: { thumbnailUrl: { exists } } },
+    }),
+    buckets: (facets) => facets.associatedMedia.thumbnailUrl.exists,
+  },
+  hasCoordinates: {
+    where: (exists) => ({
+      locationCreated: { where: { latitude: { exists } } },
+    }),
+    buckets: (facets) => facets.locationCreated.latitude.exists,
+  },
+  hasDateCreated: {
+    where: (exists) => ({ dateCreated: { exists } }),
+    buckets: (facets) => facets.dateCreated.exists,
+  },
+};
+
 export function toFacets(
   facets: CreativeWorkFacetFieldsFragment,
   preferredLanguage: string,
 ): Facet[] {
-  return Object.entries(facets)
-    .filter(([name]) => name !== '__typename')
-    .map(
-      ([name, facet]) =>
-        [name, 'buckets' in facet ? facet.buckets : facet] as const,
-    )
+  const bucketFacets = Object.entries(facets).flatMap(([name, facet]) =>
+    typeof facet === 'object' && 'buckets' in facet
+      ? [[name, facet.buckets] as const]
+      : [],
+  );
+
+  const booleanFacets = Object.entries(BOOLEAN_FILTERS).map(
+    ([name, { buckets }]) => [name, buckets(facets)] as const,
+  );
+
+  return [...bucketFacets, ...booleanFacets]
     .filter(([, buckets]) => buckets.length > 0)
     .map(([name, buckets]) => ({
       type: 'OrderedCollection' as const,
@@ -173,25 +205,25 @@ export function toSearchResponse<TItem>(
 }
 
 export function toCreativeWorkWhere(filters: Filters): CreativeWorkWhere {
-  const where: Record<string, KeywordFilter | boolean | RangeValue> = {};
+  const where: Record<string, object> = {};
+  const and: object[] = [];
 
   for (const [filterName, value] of Object.entries(filters)) {
     if (isFacetValue(value)) {
       if (value.size === 0) continue;
 
-      // TODO: Find a more sustainable/generic way to handle boolean filters
-      if (filterName === 'hasMedia' || filterName === 'hasCoordinates') {
-        where[filterName] = value.has('true');
-        continue;
+      const booleanFilter = BOOLEAN_FILTERS[filterName];
+      if (booleanFilter) {
+        and.push(booleanFilter.where(value.has('true')));
+      } else {
+        where[filterName] = { in: Array.from(value) };
       }
-
-      where[filterName] = { in: Array.from(value) };
     } else if (hasActiveBounds(value)) {
       where[filterName] = { min: value.min, max: value.max };
     }
   }
 
-  return where as CreativeWorkWhere;
+  return (and.length ? { ...where, and } : where) as CreativeWorkWhere;
 }
 
 export function toSearchVariables(query: SearchQuery): {

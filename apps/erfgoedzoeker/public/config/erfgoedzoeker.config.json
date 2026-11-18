@@ -107,6 +107,13 @@
       "hidden": true
     },
     {
+      "name": "hasDateCreated",
+      "label": "Met vervaardigingsdatum",
+      "icon": "calendar",
+      "type": "facet",
+      "hidden": true
+    },
+    {
       "name": "isPartOf",
       "label": "-",
       "hidden": true,
@@ -251,7 +258,10 @@
           "pageSize": 10,
           "showPagination": true,
           "showResultsCount": true,
-          "defaultSort": "dateCreated:asc"
+          "defaultSort": "dateCreated:asc",
+          "forcedFilters": {
+            "hasDateCreated": ["true"]
+          }
         },
         "presentationConfig": {
           "showArrowIndicator": true,
