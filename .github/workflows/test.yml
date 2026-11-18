@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_call:
+    inputs:
+      skip_e2e:
+        description: Skip Playwright e2e tests
+        type: boolean
+        default: false
   workflow_dispatch:
 
 jobs:
@@ -30,6 +35,7 @@ jobs:
         run: pnpm run test:unit
 
   e2e-test:
+    if: ${{ !inputs.skip_e2e }}
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:

@@ -5,10 +5,17 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      skip_e2e:
+        description: Skip Playwright e2e tests (unit tests still run)
+        type: boolean
+        default: false
 
 jobs:
   test:
     uses: ./.github/workflows/test.yml
+    with:
+      skip_e2e: ${{ inputs.skip_e2e || false }}
 
   build-and-deploy:
     needs: test
