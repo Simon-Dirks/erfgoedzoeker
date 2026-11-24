@@ -8,6 +8,8 @@
   "scripts": {
     "start": "pnpm --filter @erfgoedzoeker/app run start",
     "build": "pnpm --filter @erfgoedzoeker/app run build",
+    "build:packages": "pnpm --filter @erfgoedzoeker/config-schema --filter @erfgoedzoeker/icon-registry run build",
+    "graphql-codegen": "pnpm --filter @erfgoedzoeker/app run graphql-codegen",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
