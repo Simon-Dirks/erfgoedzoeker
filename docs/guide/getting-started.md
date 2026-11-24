@@ -45,3 +45,23 @@ pnpm run start
 ```
 
 Navigate to `http://localhost:4200/` to see the application in action.
+
+## Running with Docker
+
+Every Erfgoedzoeker release is published as a container image, `ghcr.io/simon-dirks/erfgoedzoeker`, tagged with its version and as `latest`. It serves the app with nginx on port 8080.
+
+The image contains the default configuration. To use your own, mount it over `/usr/share/nginx/html/config/erfgoedzoeker.config.json`:
+
+```bash
+docker run -p 8080:8080 \
+  -v ./erfgoedzoeker.config.json:/usr/share/nginx/html/config/erfgoedzoeker.config.json:ro \
+  ghcr.io/simon-dirks/erfgoedzoeker:latest
+```
+
+Because the configuration is read at startup, one image serves any number of instances, each with its own file. `/healthz` answers `200` for health checks.
+
+To build the image yourself, run from the repository root:
+
+```bash
+docker build -f apps/erfgoedzoeker/Dockerfile -t erfgoedzoeker .
+```
