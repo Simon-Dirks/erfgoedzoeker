@@ -1,0 +1,6 @@
+**/node_modules
+**/dist
+**/.angular
+docs/.vitepress/cache
+docs/.vitepress/dist
+.git
