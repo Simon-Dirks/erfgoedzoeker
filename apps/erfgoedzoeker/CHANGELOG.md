@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.21.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.20.0...erfgoedzoeker-v0.21.0) (2026-11-24)
+
+
+### Features
+
+* (temporarily) support client-side facet filtering ([40e9ad6](https://github.com/Simon-Dirks/erfgoedzoeker/commit/40e9ad61bffaeef21f27f034c42a380a42bf5c78))
+* add pagination to referring nodes widget ([b6ba8ef](https://github.com/Simon-Dirks/erfgoedzoeker/commit/b6ba8ef48e37e9919f7aacb9fcc334ede1d58c4a))
+* configure widgets for addressCountry, latitude and longitude ([e579bc2](https://github.com/Simon-Dirks/erfgoedzoeker/commit/e579bc21bbe0b9c944c77887ce7a3d4434dc52f2))
+* force nl as language for GraphQL requests ([d4b2dc0](https://github.com/Simon-Dirks/erfgoedzoeker/commit/d4b2dc0619726ae835df22ef348a7ff35def102b))
+* hide all filters if there are no search results ([e2360c5](https://github.com/Simon-Dirks/erfgoedzoeker/commit/e2360c5c44a614d0908528513cf60c04b76ccdaf))
+* reset page when switching views ([7b0ac00](https://github.com/Simon-Dirks/erfgoedzoeker/commit/7b0ac0055c0810b92485fa4c81280bb145580e30))
+* update GraphQL schema ([7f4c430](https://github.com/Simon-Dirks/erfgoedzoeker/commit/7f4c43061fb620143d1caee203f6b120fc05a8c7))
+* update GraphQL schema ([aa2f511](https://github.com/Simon-Dirks/erfgoedzoeker/commit/aa2f511d482e4470680bfc72dc9f960a30f1620e))
+* update GraphQL schema ([979e89b](https://github.com/Simon-Dirks/erfgoedzoeker/commit/979e89bc6250b5fa7819c73b5cc6b57a4b995377))
+* update GraphQL schema ([4c8e25d](https://github.com/Simon-Dirks/erfgoedzoeker/commit/4c8e25d85ae9ea2680816d8e104d4343c1b3acd6))
+* update placeholder image when image loading fails ([eb6dc79](https://github.com/Simon-Dirks/erfgoedzoeker/commit/eb6dc79e2b43934dad78480e3801c60d20beadc1))
+* update WIP banner text ([24fdb82](https://github.com/Simon-Dirks/erfgoedzoeker/commit/24fdb8248533862d3b4f4531acbf5d812da53901))
+* update WIP banner text ([93a2762](https://github.com/Simon-Dirks/erfgoedzoeker/commit/93a2762df9e7732aa8da18a18da5cc6cf12fcde5))
+* update WIP banner text ([a78d5cc](https://github.com/Simon-Dirks/erfgoedzoeker/commit/a78d5cc0d71ee893e139341d21ababf384f3b79d))
+* update z-index of WIP banner ([58dc7bc](https://github.com/Simon-Dirks/erfgoedzoeker/commit/58dc7bc21c7cf4e2aff9f72cc7355d7038481c58))
+
+
+### Bug Fixes
+
+* resolve styling issue where a white strip was shown for nodes in the grid view ([6c80ead](https://github.com/Simon-Dirks/erfgoedzoeker/commit/6c80ead032b5b17c3c66484eda1ef793bcef50af))
+
 ## [0.20.0](https://github.com/Simon-Dirks/erfgoedzoeker/compare/erfgoedzoeker-v0.19.0...erfgoedzoeker-v0.20.0) (2026-11-11)
 
 
