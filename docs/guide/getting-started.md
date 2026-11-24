@@ -18,12 +18,13 @@ Available integration layer implementations:
 
 ## Installation
 
-Clone the repository and install dependencies:
+Clone the repository, install dependencies and build the shared workspace packages:
 
 ```bash
 git clone https://github.com/Simon-Dirks/erfgoedzoeker.git
-cd Erfgoedzoeker-NDE
+cd erfgoedzoeker
 pnpm install
+pnpm run build:packages
 ```
 
 ## Configuration
